@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "FbxExtractor.h"
 #include <Windows.h>
 

@@ -7,7 +7,7 @@
 
 class Object;
 
-struct Component // °´Ã¼·Î ¸¸µéÁö ¾Ê´Â Å¬·¡½º
+struct Component // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 {
 	Component() = default;
 	Component(Object* root) : mRoot{root} {}
@@ -15,7 +15,7 @@ struct Component // °´Ã¼·Î ¸¸µéÁö ¾Ê´Â Å¬·¡½º
 	Object* mRoot;
 };
 
-struct NeedVector // °´Ã¼·Î ¸¸µéÁö ¾Ê´Â Å¬·¡½º
+struct NeedVector // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 {
 	NeedVector() = default;
 	NeedVector(float x, float y, float z, float w) : mFloat4 { x, y, z, w } {}

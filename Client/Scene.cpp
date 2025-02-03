@@ -344,17 +344,17 @@ void Scene::BuildTextureBuffer(ID3D12Device* device, ID3D12GraphicsCommandList* 
         ComPtr<ID3D12Resource> defaultBuffer;
         ComPtr<ID3D12Resource> uploadBuffer;
 
-        // DDSTexture ¸¦ »ç¿ëÇÏ´Â ¹æ½Ä
+        // DDSTexture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½
         unique_ptr<uint8_t[]> ddsData;
         vector<D3D12_SUBRESOURCE_DATA> subresources;
         ThrowIfFailed(LoadDDSTextureFromFile(device, fileName.c_str(), defaultBuffer.GetAddressOf(), ddsData, subresources));
 
-        //// DirectTex¸¦ »ç¿ëÇÏ´Â ¹æ½Ä
+        //// DirectTexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½
         //ScratchImage image;
         //TexMetadata metadata;
 
         //ThrowIfFailed(LoadFromDDSFile(L"./Textures/grass.dds", DDS_FLAGS_NONE, &metadata, image));
-        ////metadata = image.GetMetadata(); // ÀÌÄÚµå¸¦ »ç¿ëÇÏ°í À§ ÄÚµåÀÇ 3¹øÂ° ÀÎÀÚ¸¦ nullptr·Î ÇØµµ µÈ´Ù.
+        ////metadata = image.GetMetadata(); // ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ 3ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú¸ï¿½ nullptrï¿½ï¿½ ï¿½Øµï¿½ ï¿½È´ï¿½.
 
         //ThrowIfFailed(CreateTexture(device, metadata, m_textureBuffer_default.GetAddressOf()));
         //ThrowIfFailed(PrepareUpload(device, image.GetImages(), image.GetImageCount(), metadata, subresources));
@@ -394,7 +394,7 @@ void Scene::BuildTextureBufferView(ID3D12Device* device)
         srvDesc.Texture2D.MipLevels = m_textureBuffer_defaults[i]->GetDesc().MipLevels;
 
         CD3DX12_CPU_DESCRIPTOR_HANDLE hDescriptor(m_descriptorHeap->GetCPUDescriptorHandleForHeapStart());
-        hDescriptor.Offset(1 + i, m_cbvsrvuavDescriptorSize); // 1 + i  ¿¡¼­ 1ÀÇ ÀÇ¹Ì´Â ÀÌÀü¿¡ ¸¸µé¾îÁø constant buffer viewÀÇ ¼ö ÀÌ´Ù. ¾ÆÁ÷ ÇÑ °³¸¸ ÀÖÀ½ 
+        hDescriptor.Offset(1 + i, m_cbvsrvuavDescriptorSize); // 1 + i  ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ç¹Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ constant buffer viewï¿½ï¿½ ï¿½ï¿½ ï¿½Ì´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
 
         device->CreateShaderResourceView(m_textureBuffer_defaults[i].Get(), &srvDesc, hDescriptor);
     }
@@ -480,8 +480,8 @@ void Scene::OnUpdate(GameTimer& gTimer)
         visit([&gTimer](auto& arg) {arg.OnUpdate(gTimer); }, value);
     }
 
-    //Åõ¿µÇà·Ä ½¦ÀÌ´õ·Î Àü´Ş
-    memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX)); // Ã³ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½
 }
 
 // Render the scene.
@@ -532,21 +532,21 @@ void Scene::CheckCollision()
             Object* object2 = visit([](auto& arg)->Object* { return &arg; }, it2->second);
             if (object2->FindComponent<Collider>() == false) continue;
             Collider& collider2 = object2->GetComponent<Collider>();
-            if (collider1.mAABB.Intersects(collider2.mAABB)) { // obj1 °ú obj2 °¡ Ãæµ¹Çß´Ù¸é?
-                if (collider1.FindCollisionObj(object2)) { // ÀÌÀü¿¡ °°Àº ¿ÀºêÁ§Æ®¿Í Ãæµ¹ÇÑ ÀûÀÌ ÀÖ´Ù¸é?
+            if (collider1.mAABB.Intersects(collider2.mAABB)) { // obj1 ï¿½ï¿½ obj2 ï¿½ï¿½ ï¿½æµ¹ï¿½ß´Ù¸ï¿½?
+                if (collider1.FindCollisionObj(object2)) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½?
                     CollisionState state = collider1.mCollisionStates.at(object2);
-                    if (state == CollisionState::ENTER || state == CollisionState::STAY) { // Ãæµ¹»óÅÂ°¡ *** ¶ó¸é?
+                    if (state == CollisionState::ENTER || state == CollisionState::STAY) { // ï¿½æµ¹ï¿½ï¿½ï¿½Â°ï¿½ *** ï¿½ï¿½ï¿½?
                         collider1.mCollisionStates[object2] = CollisionState::STAY;
-                        OutputDebugStringW((it1->first + L" ¿Í " + it2->first + L" Ãæµ¹Áß").c_str());
+                        OutputDebugStringW((it1->first + L" ï¿½ï¿½ " + it2->first + L" ï¿½æµ¹ï¿½ï¿½").c_str());
                         OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                     }
-                    else { // EXIT ÀÎ »óÅÂ¿¡¼­ Ãæµ¹ÇßÀ»°æ¿ì. Áï, È®·üÀÌ ¸Å¿ì Èñ¹ÚÇÔ. Âü°í: EXIT´Â µü ÇÑ ÇÁ·¹ÀÓ¸¸ À¯ÁöµÈ´Ù.
+                    else { // EXIT ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½, È®ï¿½ï¿½ï¿½ï¿½ ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½: EXITï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½.
                         collider1.mCollisionStates[object2] = CollisionState::ENTER;
                     }
                 }
                 else {
                     collider1.mCollisionStates[object2] = CollisionState::ENTER;
-                    OutputDebugStringW((it1->first + L" ¿Í " + it2->first + L" Ãæµ¹½ÃÀÛ").c_str());
+                    OutputDebugStringW((it1->first + L" ï¿½ï¿½ " + it2->first + L" ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½").c_str());
                     OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                 }
 
@@ -554,30 +554,30 @@ void Scene::CheckCollision()
                     CollisionState state = collider2.mCollisionStates.at(object1);
                     if (state == CollisionState::ENTER || state == CollisionState::STAY) {
                         collider2.mCollisionStates[object1] = CollisionState::STAY;
-                        OutputDebugStringW((it2->first + L" ¿Í " + it1->first + L" Ãæµ¹Áß").c_str());
+                        OutputDebugStringW((it2->first + L" ï¿½ï¿½ " + it1->first + L" ï¿½æµ¹ï¿½ï¿½").c_str());
                         OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                     }
-                    else { // EXIT ÀÎ »óÅÂ¿¡¼­ Ãæµ¹ÇßÀ»°æ¿ì. Áï, È®·üÀÌ ¸Å¿ì Èñ¹ÚÇÔ. Âü°í: EXIT´Â µü ÇÑ ÇÁ·¹ÀÓ¸¸ À¯ÁöµÈ´Ù.
+                    else { // EXIT ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½, È®ï¿½ï¿½ï¿½ï¿½ ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½: EXITï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½.
                         collider2.mCollisionStates[object1] = CollisionState::ENTER;
                     }
                 }
                 else {
                     collider2.mCollisionStates[object1] = CollisionState::ENTER;
-                    OutputDebugStringW((it2->first + L" ¿Í " + it1->first + L" Ãæµ¹½ÃÀÛ").c_str());
+                    OutputDebugStringW((it2->first + L" ï¿½ï¿½ " + it1->first + L" ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½").c_str());
                     OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                 }
             }
-            else { // obj1 °ú obj2°¡ Ãæµ¹ÇÏÁö ¾Ê¾Ò´Ù¸é
+            else { // obj1 ï¿½ï¿½ obj2ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
                 if (collider1.FindCollisionObj(object2)) {
                     CollisionState state = collider1.mCollisionStates.at(object2);
                     if (state == CollisionState::EXIT) {
                         collider1.mCollisionStates.erase(object2);
-                        OutputDebugStringW((it1->first + L" ¿Í " + it2->first + L" Ãæµ¹»èÁ¦").c_str());
+                        OutputDebugStringW((it1->first + L" ï¿½ï¿½ " + it2->first + L" ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½").c_str());
                         OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                     }
                     else {
                         collider1.mCollisionStates[object2] = CollisionState::EXIT;
-                        OutputDebugStringW((it1->first + L" ¿Í " + it2->first + L" Ãæµ¹³¡").c_str());
+                        OutputDebugStringW((it1->first + L" ï¿½ï¿½ " + it2->first + L" ï¿½æµ¹ï¿½ï¿½").c_str());
                         OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                     }
                 }
@@ -586,12 +586,12 @@ void Scene::CheckCollision()
                     CollisionState state = collider2.mCollisionStates.at(object1);
                     if (state == CollisionState::EXIT) {
                         collider2.mCollisionStates.erase(object1);
-                        OutputDebugStringW((it2->first + L" ¿Í " + it1->first + L" Ãæµ¹»èÁ¦").c_str());
+                        OutputDebugStringW((it2->first + L" ï¿½ï¿½ " + it1->first + L" ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½").c_str());
                         OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                     }
                     else {
                         collider2.mCollisionStates[object1] = CollisionState::EXIT;
-                        OutputDebugStringW((it2->first + L" ¿Í " + it1->first + L" Ãæµ¹³¡").c_str());
+                        OutputDebugStringW((it2->first + L" ï¿½ï¿½ " + it1->first + L" ï¿½æµ¹ï¿½ï¿½").c_str());
                         OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                     }
                 }
@@ -620,11 +620,34 @@ ResourceManager& Scene::GetResourceManager()
 
 void* Scene::GetConstantBufferMappedData()
 {
-    // TODO: ¿©±â¿¡ return ¹®À» »ğÀÔÇÕ´Ï´Ù.
+    // TODO: ï¿½ï¿½ï¿½â¿¡ return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
     return m_mappedData;
 }
 
 ID3D12DescriptorHeap* Scene::GetDescriptorHeap()
 {
     return m_descriptorHeap.Get();
+}
+
+void Scene::UpdateNetwork(NetworkManager& networkManager)
+{
+    auto& player = GetObj<PlayerObject>(L"PlayerObject");
+    auto& position = player.GetComponent<Position>();
+    auto& rotation = player.GetComponent<Rotation>();
+    
+    XMFLOAT4 pos = position.mFloat4;
+    XMFLOAT4 rot = rotation.mFloat4;
+    
+    static XMFLOAT4 lastPos = pos;
+    static XMFLOAT4 lastRot = rot;
+
+    // ìœ„ì¹˜ë‚˜ íšŒì „ì´ ë³€ê²½ë˜ì—ˆì„ ë•Œë§Œ ì—…ë°ì´íŠ¸ íŒ¨í‚· ì „ì†¡
+    if (memcmp(&lastPos, &pos, sizeof(XMFLOAT4)) != 0 || 
+        memcmp(&lastRot, &rot, sizeof(XMFLOAT4)) != 0) 
+    {
+        //std::cout << "[Network] Sending position update" << std::endl;
+        networkManager.SendPlayerUpdate(pos.x, pos.y, pos.z, rot.y);
+        lastPos = pos;
+        lastRot = rot;
+    }
 }

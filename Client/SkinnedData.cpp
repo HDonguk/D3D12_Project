@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "SkinnedData.h"
 #include "MathHelper.h"
 

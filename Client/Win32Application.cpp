@@ -8,7 +8,7 @@
 // PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 //
 //*********************************************************
-
+#include "stdafx.h"
 #include "Win32Application.h"
 #include "Framework.h"
 #include <WindowsX.h>

@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Win32Application.h"
 #include "GameTimer.h"
+#include "NetworkManager.h"
 
 class Framework
 {
@@ -26,6 +27,8 @@ public:
 	Scene& GetScene(const wstring& name);
 	const wstring& GetCurrentSceneName();
 	Win32Application& GetWin32App();
+
+	void OnNetworkUpdate();  // 匙飘况农 贸府 眠啊 Hong
 private:
 	void GetHardwareAdapter(
 		_In_ IDXGIFactory1* pFactory,
@@ -81,5 +84,6 @@ private:
 	unordered_map<wstring, Scene> m_scenes;
 	wstring m_currentSceneName;
 
+	NetworkManager networkManager; // Hong
 };
 

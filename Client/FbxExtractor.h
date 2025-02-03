@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include <fbxsdk.h>
 #include <string>
 #include <vector>

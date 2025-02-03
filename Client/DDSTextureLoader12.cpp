@@ -13,7 +13,7 @@
 // http://go.microsoft.com/fwlink/?LinkId=248926
 // http://go.microsoft.com/fwlink/?LinkID=615561
 //--------------------------------------------------------------------------------------
-
+#include "stdafx.h"
 #include "DDSTextureLoader12.h"
 
 #include <algorithm>

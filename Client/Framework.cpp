@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Framework.h"
 #include "DXSampleHelper.h"
 #include <DirectXColors.h>
@@ -48,10 +49,12 @@ int Framework::Run(HINSTANCE hInstance, int nCmdShow)
 
 void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
 {
-    // À©µµ¿ì ÃÊ±âÈ­
+    networkManager.Initialize("127.0.0.1", 5000);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Hong
+
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     InitWnd(hInstance);
 
-    // D3D12 ÃÊ±âÈ­
+    // D3D12 ï¿½Ê±ï¿½È­
     BuildFactoryAndDevice();
     BuildCommandQueueAndSwapChain();
     BuildCommandListAndAllocator();
@@ -62,7 +65,7 @@ void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
     BuildDsv();
     BuildFence();
 
-    // ¾À »ý¼º
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     BuildScenes(m_device.Get(), m_commandList.Get());
 
     // Close the command list and execute it to begin the initial GPU setup.
@@ -75,6 +78,16 @@ void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
 void Framework::OnUpdate(GameTimer& gTimer)
 {
     m_scenes[L"BaseScene"].OnUpdate(gTimer);
+    
+    // ë„¤íŠ¸ì›Œí¬ê°€ ì‹¤í–‰ ì¤‘ì¼ ë•Œë§Œ ì—…ë°ì´íŠ¸ ì „ì†¡
+    if (networkManager.IsRunning()) {
+        static float networkTimer = 0.0f;
+        networkTimer += gTimer.DeltaTime();
+        if (networkTimer >= 1.0f / 60.0f) {
+            m_scenes[L"BaseScene"].UpdateNetwork(networkManager);
+            networkTimer = 0.0f;
+        }
+    }
 }
 
 void Framework::CheckCollision()
@@ -351,18 +364,18 @@ void Framework::BuildDepthStencilBuffer(UINT width, UINT height)
 {
     D3D12_RESOURCE_DESC depthStencilDesc;
     depthStencilDesc = CD3DX12_RESOURCE_DESC::Tex2D(
-        DXGI_FORMAT_D24_UNORM_S8_UINT, // ±íÀÌ ¹× ½ºÅÙ½Ç Æ÷¸Ë
+        DXGI_FORMAT_D24_UNORM_S8_UINT, // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
         width, height,
         1, 0, 1, 0, // MipLevels, ArraySize, SampleCount, Quality
-        D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL // ±íÀÌ-½ºÅÙ½Ç ÇÃ·¡±×
+        D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL // ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½Ù½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
     );
 
     D3D12_CLEAR_VALUE depthOptimizedClearValue;
     depthOptimizedClearValue.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-    depthOptimizedClearValue.DepthStencil.Depth = 1.0f; // ±íÀÌ ÃÊ±â°ª
-    depthOptimizedClearValue.DepthStencil.Stencil = 0;  // ½ºÅÙ½Ç ÃÊ±â°ª
+    depthOptimizedClearValue.DepthStencil.Depth = 1.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±â°ª
+    depthOptimizedClearValue.DepthStencil.Stencil = 0;  // ï¿½ï¿½ï¿½Ù½ï¿½ ï¿½Ê±â°ª
 
-    // ¸®¼Ò½º »ý¼º
+    // ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½
     m_device->CreateCommittedResource(
         &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
         D3D12_HEAP_FLAG_NONE,

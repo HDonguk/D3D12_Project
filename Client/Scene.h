@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Object.h"
 #include "ResourceManager.h"
+#include "NetworkManager.h"
 #include <utility>
 
 class GameTimer;
@@ -39,6 +40,8 @@ public:
     ID3D12DescriptorHeap* GetDescriptorHeap();
 
     UINT CalcConstantBufferByteSize(UINT byteSize);
+
+    void UpdateNetwork(NetworkManager& networkManager); // 네트워크 업데이트 처리 Hong
 
 private:
     void BuildRootSignature(ID3D12Device* device);
