@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "Packet.h"
 
+class OtherPlayerManager;  // 전방 선언 추가
+
 class NetworkManager {
 public:
     NetworkManager();
@@ -13,7 +15,7 @@ public:
 
 private:
     static DWORD WINAPI NetworkThread(LPVOID arg);
-    void ProcessPacket();
+    void ProcessPacket(char* buffer);
 
     SOCKET sock;
     HANDLE m_networkThread;

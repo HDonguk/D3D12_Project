@@ -28,7 +28,7 @@ public:
 	const wstring& GetCurrentSceneName();
 	Win32Application& GetWin32App();
 
-	void OnNetworkUpdate();  // 匙飘况农 贸府 眠啊 Hong
+	void OnNetworkUpdate();  // 】ā㈢??? ?㈢ ?┈∑ Hong
 private:
 	void GetHardwareAdapter(
 		_In_ IDXGIFactory1* pFactory,
@@ -86,4 +86,3 @@ private:
 
 	NetworkManager networkManager; // Hong
 };
-

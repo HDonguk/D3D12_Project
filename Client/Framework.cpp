@@ -78,7 +78,7 @@ void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
 void Framework::OnUpdate(GameTimer& gTimer)
 {
     m_scenes[L"BaseScene"].OnUpdate(gTimer);
-    
+
     // 네트워크가 실행 중일 때만 업데이트 전송
     if (networkManager.IsRunning()) {
         static float networkTimer = 0.0f;
@@ -107,7 +107,7 @@ void Framework::OnRender()
     PopulateCommandList();
 
     // Execute the command list.
-    ID3D12CommandList* ppCommandLists[] = { m_commandList.Get()};
+    ID3D12CommandList* ppCommandLists[] = { m_commandList.Get() };
     m_commandQueue->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
 
     // Present the frame.
@@ -421,7 +421,7 @@ void Framework::PopulateCommandList()
     m_scenes[L"BaseScene"].SetState(m_commandList.Get());
     m_scenes[L"BaseScene"].SetDescriptorHeaps(m_commandList.Get());
     // Set
-    
+
     // Indicate that the back buffer will be used as a render target.
     m_commandList->ResourceBarrier(1,
         &CD3DX12_RESOURCE_BARRIER::Transition(m_renderTargets[m_frameIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
@@ -431,14 +431,14 @@ void Framework::PopulateCommandList()
     m_commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, &dsvHandle);
 
     // Record commands.
-    
+
     m_commandList->ClearRenderTargetView(rtvHandle, Colors::LightSteelBlue, 0, nullptr);
     m_commandList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1, 0, 0, nullptr);
 
     // Rendering
     m_scenes[L"BaseScene"].OnRender(m_device.Get(), m_commandList.Get());
     // Rendering
-    
+
     // Indicate that the back buffer will now be used to present.
     m_commandList->ResourceBarrier(1,
         &CD3DX12_RESOURCE_BARRIER::Transition(m_renderTargets[m_frameIndex].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
@@ -510,4 +510,3 @@ Win32Application& Framework::GetWin32App()
 {
     return *m_win32App.get();
 }
-

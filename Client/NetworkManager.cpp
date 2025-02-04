@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "NetworkManager.h"
+#include "OtherPlayerManager.h"
 #include <iostream>
 
 NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false) {
@@ -76,6 +77,26 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
     PacketPlayerUpdate pkt = { {sizeof(PacketPlayerUpdate), PACKET_PLAYER_UPDATE}, x, y, z, rotY };
     std::cout << "[Send] Player position update: (" << x << ", " << y << ", " << z << ") rot: " << rotY << std::endl;
     send(sock, (char*)&pkt, sizeof(pkt), 0);
+}
+
+void NetworkManager::ProcessPacket(char* buffer) {
+    PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+    
+    switch (header->type) {
+        case PACKET_PLAYER_SPAWN: {
+            PacketPlayerSpawn* pkt = reinterpret_cast<PacketPlayerSpawn*>(buffer);
+            OtherPlayerManager::GetInstance()->SpawnOtherPlayer(
+                pkt->playerID, pkt->x, pkt->y, pkt->z);
+            break;
+        }
+        
+        case PACKET_PLAYER_UPDATE: {
+            PacketPlayerUpdate* pkt = reinterpret_cast<PacketPlayerUpdate*>(buffer);
+            OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
+                pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
+            break;
+        }
+    }
 }
 
 void NetworkManager::Shutdown() {

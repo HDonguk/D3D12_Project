@@ -1,0 +1,170 @@
+[Tue Feb  4 15:36:56 2025] [NetworkThread] Thread started
+[Tue Feb  4 15:36:56 2025] [Receive] Got 20 bytes
+[Tue Feb  4 15:36:56 2025] 
+[NetworkThread] Processing packet: Type=2, Size=20
+[Tue Feb  4 15:36:56 2025] [ProcessPacket] Handling spawn for player ID: 1
+[Tue Feb  4 15:36:56 2025] [Scene] Attempting to spawn player 1
+[Tue Feb  4 15:36:56 2025] [Scene] Creating new player object
+[Tue Feb  4 15:36:56 2025] [Scene] Getting player object reference
+[Tue Feb  4 15:36:56 2025] [Scene] Adding components to player 1
+[Tue Feb  4 15:36:56 2025]   Adding Position component
+[Tue Feb  4 15:36:56 2025]   Adding Velocity component
+[Tue Feb  4 15:36:56 2025]   Adding Rotation component
+[Tue Feb  4 15:36:56 2025]   Adding Rotate component
+[Tue Feb  4 15:36:56 2025]   Adding Scale component
+[Tue Feb  4 15:36:56 2025]   Adding Mesh component
+[Tue Feb  4 15:36:56 2025]   Adding Texture component
+[Tue Feb  4 15:36:56 2025]   Adding Animation component
+[Tue Feb  4 15:36:56 2025]   Adding Gravity component
+[Tue Feb  4 15:36:56 2025]   Adding Collider component
+[Tue Feb  4 15:36:56 2025] [Scene] Successfully spawned player 1
+[Tue Feb  4 15:36:56 2025] [ProcessPacket] Sent spawn acknowledgment
+[Tue Feb  4 15:36:56 2025] [ProcessPacket] Sent initial position update with ID: 0
+[Tue Feb  4 15:36:57 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:36:57 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:36:57 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:36:57 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:36:59 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:36:59 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:36:59 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:36:59 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:48:40 2025] [NetworkThread] Thread started
+[Tue Feb  4 15:48:40 2025] [Receive] Got 20 bytes
+[Tue Feb  4 15:48:40 2025] 
+[NetworkThread] Processing packet: Type=2, Size=20
+[Tue Feb  4 15:48:40 2025] [ProcessPacket] Handling spawn for player ID: 1
+[Tue Feb  4 15:48:40 2025] [Scene] Attempting to spawn player 1
+[Tue Feb  4 15:48:40 2025] [Scene] Creating new player object
+[Tue Feb  4 15:48:40 2025] [Scene] Getting player object reference
+[Tue Feb  4 15:48:40 2025] [Scene] Adding components to player 1
+[Tue Feb  4 15:48:40 2025]   Adding Position component
+[Tue Feb  4 15:48:40 2025]   Adding Velocity component
+[Tue Feb  4 15:48:40 2025]   Adding Rotation component
+[Tue Feb  4 15:48:40 2025]   Adding Rotate component
+[Tue Feb  4 15:48:40 2025]   Adding Scale component
+[Tue Feb  4 15:48:40 2025]   Adding Mesh component
+[Tue Feb  4 15:48:40 2025]   Adding Texture component
+[Tue Feb  4 15:48:40 2025]   Adding Animation component
+[Tue Feb  4 15:48:40 2025]   Adding Gravity component
+[Tue Feb  4 15:48:40 2025]   Adding Collider component
+[Tue Feb  4 15:48:40 2025] [Scene] Successfully spawned player 1
+[Tue Feb  4 15:48:40 2025] [ProcessPacket] Sent spawn acknowledgment
+[Tue Feb  4 15:48:40 2025] [ProcessPacket] Sent initial position update with ID: 0
+[Tue Feb  4 15:48:43 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:48:43 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:48:43 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:48:43 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:52:22 2025] [NetworkThread] Thread started
+[Tue Feb  4 15:52:22 2025] [Receive] Got 20 bytes
+[Tue Feb  4 15:52:22 2025] 
+[NetworkThread] Processing packet: Type=2, Size=20
+[Tue Feb  4 15:52:22 2025] [ProcessPacket] Handling spawn for player ID: 1
+[Tue Feb  4 15:52:22 2025] [Scene] Attempting to spawn player 1
+[Tue Feb  4 15:52:22 2025] [Scene] Creating new player object
+[Tue Feb  4 15:52:22 2025] [Scene] Getting player object reference
+[Tue Feb  4 15:52:22 2025] [Scene] Adding components to player 1
+[Tue Feb  4 15:52:22 2025]   Adding Position component
+[Tue Feb  4 15:52:22 2025]   Adding Velocity component
+[Tue Feb  4 15:52:22 2025]   Adding Rotation component
+[Tue Feb  4 15:52:22 2025]   Adding Rotate component
+[Tue Feb  4 15:52:22 2025]   Adding Scale component
+[Tue Feb  4 15:52:22 2025]   Adding Mesh component
+[Tue Feb  4 15:52:22 2025]   Adding Texture component
+[Tue Feb  4 15:52:22 2025]   Adding Animation component
+[Tue Feb  4 15:52:22 2025]   Adding Gravity component
+[Tue Feb  4 15:52:22 2025]   Adding Collider component
+[Tue Feb  4 15:52:22 2025] [Scene] Successfully spawned player 1
+[Tue Feb  4 15:52:22 2025] [ProcessPacket] Sent spawn acknowledgment
+[Tue Feb  4 15:52:22 2025] [ProcessPacket] Sent initial position update with ID: 0
+[Tue Feb  4 15:52:25 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:52:25 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:52:25 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:52:25 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:52:25 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:52:25 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:52:25 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:52:25 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:52:25 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:52:25 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:52:25 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:52:25 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:52:25 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:52:25 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:52:25 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:54:28 2025] [NetworkThread] Thread started
+[Tue Feb  4 15:54:28 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:54:28 2025] [Receive] Got 20 bytes
+[Tue Feb  4 15:54:28 2025] 
+[NetworkThread] Processing packet: Type=2, Size=20
+[Tue Feb  4 15:54:28 2025] [ProcessPacket] Handling spawn for player ID: 1
+[Tue Feb  4 15:54:28 2025] [Scene] Attempting to spawn player 1
+[Tue Feb  4 15:54:28 2025] [Scene] Creating new player object
+[Tue Feb  4 15:54:28 2025] [Scene] Getting player object reference
+[Tue Feb  4 15:54:28 2025] [Scene] Adding components to player 1
+[Tue Feb  4 15:54:28 2025]   Adding Position component
+[Tue Feb  4 15:54:28 2025]   Adding Velocity component
+[Tue Feb  4 15:54:28 2025]   Adding Rotation component
+[Tue Feb  4 15:54:28 2025]   Adding Rotate component
+[Tue Feb  4 15:54:28 2025]   Adding Scale component
+[Tue Feb  4 15:54:28 2025]   Adding Mesh component
+[Tue Feb  4 15:54:28 2025]   Adding Texture component
+[Tue Feb  4 15:54:28 2025]   Adding Animation component
+[Tue Feb  4 15:54:28 2025]   Adding Gravity component
+[Tue Feb  4 15:54:28 2025]   Adding Collider component
+[Tue Feb  4 15:54:28 2025] [Scene] Successfully spawned player 1
+[Tue Feb  4 15:54:28 2025] [ProcessPacket] Sent spawn acknowledgment
+[Tue Feb  4 15:54:28 2025] [ProcessPacket] Sent initial position update with ID: 0
+[Tue Feb  4 15:54:28 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:54:28 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:54:28 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:54:31 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:54:31 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:54:31 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:54:31 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:56:00 2025] [NetworkThread] Thread started
+[Tue Feb  4 15:56:00 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:56:00 2025] [Receive] Got 20 bytes
+[Tue Feb  4 15:56:00 2025] 
+[NetworkThread] Processing packet: Type=2, Size=20
+[Tue Feb  4 15:56:00 2025] [ProcessPacket] Handling spawn for player ID: 2
+[Tue Feb  4 15:56:00 2025] [Scene] Attempting to spawn player 2
+[Tue Feb  4 15:56:00 2025] [Scene] Creating new player object
+[Tue Feb  4 15:56:00 2025] [Scene] Getting player object reference
+[Tue Feb  4 15:56:00 2025] [Scene] Adding components to player 2
+[Tue Feb  4 15:56:00 2025]   Adding Position component
+[Tue Feb  4 15:56:00 2025]   Adding Velocity component
+[Tue Feb  4 15:56:00 2025]   Adding Rotation component
+[Tue Feb  4 15:56:00 2025]   Adding Rotate component
+[Tue Feb  4 15:56:00 2025]   Adding Scale component
+[Tue Feb  4 15:56:00 2025]   Adding Mesh component
+[Tue Feb  4 15:56:00 2025]   Adding Texture component
+[Tue Feb  4 15:56:00 2025]   Adding Animation component
+[Tue Feb  4 15:56:00 2025]   Adding Gravity component
+[Tue Feb  4 15:56:00 2025]   Adding Collider component
+[Tue Feb  4 15:56:00 2025] [Scene] Successfully spawned player 2
+[Tue Feb  4 15:56:00 2025] [ProcessPacket] Sent spawn acknowledgment
+[Tue Feb  4 15:56:00 2025] [ProcessPacket] Sent initial position update with ID: 0
+[Tue Feb  4 15:56:00 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:56:00 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:56:00 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:56:01 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:56:01 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:56:01 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:56:01 2025] [Network] Received heartbeat ack
+[Tue Feb  4 15:56:03 2025] [Network] Sent heartbeat
+[Tue Feb  4 15:56:03 2025] [Receive] Got 4 bytes
+[Tue Feb  4 15:56:03 2025] 
+[NetworkThread] Processing packet: Type=5, Size=4
+[Tue Feb  4 15:56:03 2025] [Network] Received heartbeat ack

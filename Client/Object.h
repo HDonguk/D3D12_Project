@@ -16,7 +16,7 @@ public:
 	//virtual void OnInit(ID3D12Device* device);
 	virtual void OnUpdate(GameTimer& gTimer) = 0;
 	virtual void LateUpdate(GameTimer& gTimer) = 0;
-	virtual void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList * commandList) = 0;
+	virtual void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) = 0;
 	//virtual void OnDestroy();
 
 	void BuildConstantBuffer(ID3D12Device* device);
@@ -28,7 +28,7 @@ public:
 	T& GetComponent() { return get<T>(m_components.at(typeid(T).name())); }
 
 	template <typename T>
-	bool FindComponent() { 
+	bool FindComponent() {
 		auto& it = m_components.find(typeid(T).name());
 		return it != m_components.end();
 	}
@@ -37,7 +37,7 @@ protected:
 	Scene* m_root;
 	unordered_map<string, ComponentVariant> m_components;
 
-	// ¿ÀºêÁ§Æ® ¸¶´Ù µ¶¸³ÀûÀÎ CB
+	// ì˜¤ë¸Œì íŠ¸ ë§ˆë‹¤ ë…ë¦½ì ì¸ CB
 	UINT8* m_mappedData;
 	ComPtr<ID3D12Resource> m_constantBuffer;
 };
@@ -52,7 +52,7 @@ public:
 	void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override;
 	void OnKeyboardInput(const GameTimer& gTimer);
 private:
-	XMMATRIX mRotation; // Å°º¸µå ÀÎÇ² ÇÔ¼ö¿¡¼­ ±¸Çß´ø Ä«¸Ş¶ó ÁÂÇ¥°è¸¦ ±âÁØÀ¸·Î ÇÏ´Â È¸ÀüÇà·ÄÀÌ´Ù. ÀÌ °ªÀ» ÇÔ¼ö ³»ºÎ¿¡¼­ ÄÄÆ÷³ÍÆ®ÀÇ rotate¿¡ °öÇÏ°í ±× °á°ú¸¦ ´Ù½Ã ÄÄÆ÷³ÍÆ®¿¡ ÀúÀåÇÏ¸é ÀÌ º¯¼ö´Â ¾ø¾îµµ µÉµí. ³ªÁß¿¡ °íÄ¡ÀÚ.
+	XMMATRIX mRotation; // í‚¤ë³´ë“œ ì¸í’‹ í•¨ìˆ˜ì—ì„œ êµ¬í–ˆë˜ ì¹´ë©”ë¼ ì¢Œí‘œê³„ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í•˜ëŠ” íšŒì „í–‰ë ¬ì´ë‹¤. ì´ ê°’ì„ í•¨ìˆ˜ ë‚´ë¶€ì—ì„œ ì»´í¬ë„ŒíŠ¸ì˜ rotateì— ê³±í•˜ê³  ê·¸ ê²°ê³¼ë¥¼ ë‹¤ì‹œ ì»´í¬ë„ŒíŠ¸ì— ì €ì¥í•˜ë©´ ì´ ë³€ìˆ˜ëŠ” ì—†ì–´ë„ ë ë“¯. ë‚˜ì¤‘ì— ê³ ì¹˜ì.
 };
 
 class CameraObject : public Object

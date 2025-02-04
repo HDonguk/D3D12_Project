@@ -21,7 +21,8 @@ struct ClientInfo {
     // 필요한 경우 추가 클라이언트 정보를 여기에 넣을 수 있습니다
 };
 
-std::unordered_map<int, ClientInfo> g_clients;  // 클라이언트 ID를 키로 사용하는 맵
+// 명시적으로 타입을 지정
+std::unordered_map<int, struct ClientInfo> g_clients;  // 클라이언트 ID를 키로 사용하는 맵
 
 // IOCP 작업을 위한 구조체 추가
 struct IOContext {
@@ -35,11 +36,11 @@ void BroadcastPacket(const void* packet, int size, int excludeID = -1) {
     PacketHeader* header = (PacketHeader*)packet;
     std::cout << "\n[Broadcast] Type: " << header->type << ", Size: " << size << std::endl;
     std::cout << "  -> Excluding client ID: " << excludeID << std::endl;
-    
+
     if (header->type == PACKET_PLAYER_UPDATE) {
         PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)packet;
-        std::cout << "  -> Broadcasting position: (" << pkt->x << ", " << pkt->y << ", " << pkt->z 
-                 << "), Rotation: " << pkt->rotY << std::endl;
+        std::cout << "  -> Broadcasting position: (" << pkt->x << ", " << pkt->y << ", " << pkt->z
+            << "), Rotation: " << pkt->rotY << std::endl;
     }
 
     int sentCount = 0;
@@ -47,19 +48,20 @@ void BroadcastPacket(const void* packet, int size, int excludeID = -1) {
         if (id == excludeID) continue;
         if (send(client.socket, (char*)packet, size, 0) == SOCKET_ERROR) {
             std::cout << "  -> Failed to send to client " << id << " (Error: " << WSAGetLastError() << ")" << std::endl;
-        } else {
+        }
+        else {
             std::cout << "  -> Successfully sent to client " << id << std::endl;
             sentCount++;
         }
     }
-    std::cout << "  -> Total broadcasts sent: " << sentCount << "/" << g_clients.size()-1 << std::endl;
+    std::cout << "  -> Total broadcasts sent: " << sentCount << "/" << g_clients.size() - 1 << std::endl;
 }
 
 DWORD WINAPI WorkerThread(LPVOID lpParam) {
     DWORD bytesTransferred;
     ULONG_PTR completionKey;
     OVERLAPPED* pOverlapped;
-    
+
     std::cout << "[Thread] Worker thread started" << std::endl;
 
     while (true) {
@@ -69,7 +71,7 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
 
         if (!result || bytesTransferred == 0) {
             std::cout << "\n[Disconnect] Client ID " << clientID << " disconnected" << std::endl;
-            std::cout << "  -> Active clients remaining: " << g_clients.size()-1 << std::endl;
+            std::cout << "  -> Active clients remaining: " << g_clients.size() - 1 << std::endl;
             closesocket(g_clients[clientID].socket);
             g_clients.erase(clientID);
             delete ioContext;
@@ -84,7 +86,7 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
 
         if (header->type == PACKET_PLAYER_UPDATE) {
             PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)ioContext->buffer;
-            
+
             // 이전 위치와 비교
             float oldX = g_clients[clientID].x;
             float oldY = g_clients[clientID].y;
@@ -110,8 +112,8 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
         ioContext->flags = 0;
 
         DWORD recvBytes;
-        if (WSARecv(g_clients[clientID].socket, &ioContext->wsaBuf, 1, &recvBytes, 
-                    &ioContext->flags, &ioContext->overlapped, NULL) == SOCKET_ERROR) {
+        if (WSARecv(g_clients[clientID].socket, &ioContext->wsaBuf, 1, &recvBytes,
+            &ioContext->flags, &ioContext->overlapped, NULL) == SOCKET_ERROR) {
             if (WSAGetLastError() != ERROR_IO_PENDING) {
                 std::cout << "[Error] WSARecv failed: " << WSAGetLastError() << std::endl;
                 closesocket(g_clients[clientID].socket);
@@ -132,8 +134,8 @@ void StartReceive(SOCKET clientSocket, int clientID) {
     ioContext->flags = 0;
 
     DWORD recvBytes;
-    if (WSARecv(clientSocket, &ioContext->wsaBuf, 1, &recvBytes, 
-                &ioContext->flags, &ioContext->overlapped, NULL) == SOCKET_ERROR) {
+    if (WSARecv(clientSocket, &ioContext->wsaBuf, 1, &recvBytes,
+        &ioContext->flags, &ioContext->overlapped, NULL) == SOCKET_ERROR) {
         if (WSAGetLastError() != ERROR_IO_PENDING) {
             std::cout << "[Error] Initial WSARecv failed: " << WSAGetLastError() << std::endl;
             delete ioContext;
@@ -144,7 +146,7 @@ void StartReceive(SOCKET clientSocket, int clientID) {
 
 int main() {
     std::cout << "[Server] Starting server on port " << SERVER_PORT << std::endl;
-    
+
     WSADATA wsaData;
     WSAStartup(MAKEWORD(2, 2), &wsaData);
 

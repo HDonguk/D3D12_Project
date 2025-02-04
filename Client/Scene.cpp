@@ -49,9 +49,9 @@ void Scene::BuildObjects(ID3D12Device* device)
     objectPtr->AddComponent(Texture{ m_subTextureData.at(L"boy"), objectPtr });
     objectPtr->AddComponent(Animation{ animData, objectPtr });
     objectPtr->AddComponent(Gravity{ 2.f, objectPtr });
-    objectPtr->AddComponent(Collider{0.f, 0.f, 0.f, 4.f, 50.f, 4.f, objectPtr});
+    objectPtr->AddComponent(Collider{ 0.f, 0.f, 0.f, 4.f, 50.f, 4.f, objectPtr });
 
-    AddObj(L"CameraObject", CameraObject{70.f, this });
+    AddObj(L"CameraObject", CameraObject{ 70.f, this });
     objectPtr = &GetObj<CameraObject>(L"CameraObject");
     objectPtr->AddComponent(Position{ 0.f, 0.f, 0.f, 0.f, objectPtr });
 
@@ -339,7 +339,7 @@ void Scene::BuildConstantBufferView(ID3D12Device* device)
 void Scene::BuildTextureBuffer(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
     // Create the texture.
-    for(auto& fileName: m_DDSFileName)
+    for (auto& fileName : m_DDSFileName)
     {
         ComPtr<ID3D12Resource> defaultBuffer;
         ComPtr<ID3D12Resource> uploadBuffer;
@@ -360,10 +360,10 @@ void Scene::BuildTextureBuffer(ID3D12Device* device, ID3D12GraphicsCommandList* 
         //ThrowIfFailed(PrepareUpload(device, image.GetImages(), image.GetImageCount(), metadata, subresources));
 
         const UINT64 uploadBufferSize = GetRequiredIntermediateSize(defaultBuffer.Get(), 0, subresources.size());
-        
-        OutputDebugStringA(string{ "current texture subresource size = " + to_string(subresources.size()) + "\n"}.c_str());
-        OutputDebugStringA(string{ "current texture mip level = " + to_string(defaultBuffer->GetDesc().MipLevels) + "\n"}.c_str());
-        OutputDebugStringA(string{ "current texture format = " + to_string(defaultBuffer->GetDesc().Format) + "\n"}.c_str());
+
+        OutputDebugStringA(string{ "current texture subresource size = " + to_string(subresources.size()) + "\n" }.c_str());
+        OutputDebugStringA(string{ "current texture mip level = " + to_string(defaultBuffer->GetDesc().MipLevels) + "\n" }.c_str());
+        OutputDebugStringA(string{ "current texture format = " + to_string(defaultBuffer->GetDesc().Format) + "\n" }.c_str());
 
         // Create the GPU upload buffer.
         ThrowIfFailed(device->CreateCommittedResource(
@@ -373,7 +373,7 @@ void Scene::BuildTextureBuffer(ID3D12Device* device, ID3D12GraphicsCommandList* 
             D3D12_RESOURCE_STATE_GENERIC_READ,
             nullptr,
             IID_PPV_ARGS(uploadBuffer.GetAddressOf())));
-        
+
         UpdateSubresources(commandList, defaultBuffer.Get(), uploadBuffer.Get(), 0, 0, static_cast<UINT>(subresources.size()), subresources.data());
         commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(defaultBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
 
@@ -468,7 +468,7 @@ void Scene::SetState(ID3D12GraphicsCommandList* commandList)
 
 void Scene::SetDescriptorHeaps(ID3D12GraphicsCommandList* commandList)
 {
-    ID3D12DescriptorHeap* ppHeaps[] = { m_descriptorHeap.Get()};
+    ID3D12DescriptorHeap* ppHeaps[] = { m_descriptorHeap.Get() };
     commandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
 }
 
@@ -634,16 +634,16 @@ void Scene::UpdateNetwork(NetworkManager& networkManager)
     auto& player = GetObj<PlayerObject>(L"PlayerObject");
     auto& position = player.GetComponent<Position>();
     auto& rotation = player.GetComponent<Rotation>();
-    
+
     XMFLOAT4 pos = position.mFloat4;
     XMFLOAT4 rot = rotation.mFloat4;
-    
+
     static XMFLOAT4 lastPos = pos;
     static XMFLOAT4 lastRot = rot;
 
     // 위치나 회전이 변경되었을 때만 업데이트 패킷 전송
-    if (memcmp(&lastPos, &pos, sizeof(XMFLOAT4)) != 0 || 
-        memcmp(&lastRot, &rot, sizeof(XMFLOAT4)) != 0) 
+    if (memcmp(&lastPos, &pos, sizeof(XMFLOAT4)) != 0 ||
+        memcmp(&lastRot, &rot, sizeof(XMFLOAT4)) != 0)
     {
         //std::cout << "[Network] Sending position update" << std::endl;
         networkManager.SendPlayerUpdate(pos.x, pos.y, pos.z, rot.y);

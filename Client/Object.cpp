@@ -5,14 +5,14 @@
 #include "DXSampleHelper.h"
 #include <random>
 
-std::random_device rdX;  // Ã¹ ¹øÂ° rd °´Ã¼
-std::random_device rdZ;  // µÎ ¹øÂ° rd °´Ã¼
+std::random_device rdX;  // ì²« ë²ˆì§¸ rd ê°ì²´
+std::random_device rdZ;  // ë‘ ë²ˆì§¸ rd ê°ì²´
 default_random_engine dreX(rdX());
 default_random_engine dreZ(rdZ());
-uniform_int_distribution uidX(-1,1);
-uniform_int_distribution uidZ(-1,1);
+uniform_int_distribution uidX(-1, 1);
+uniform_int_distribution uidZ(-1, 1);
 
-Object::Object(Scene* root) : m_root{ root }, m_mappedData{nullptr}
+Object::Object(Scene* root) : m_root{ root }, m_mappedData{ nullptr }
 {
 }
 
@@ -31,10 +31,10 @@ void Object::BuildConstantBuffer(ID3D12Device* device)
     // Map and initialize the constant buffer. We don't unmap this until the
     // app closes. Keeping things mapped for the lifetime of the resource is okay.
     CD3DX12_RANGE readRange(0, 0);        // We do not intend to read from this resource on the CPU.
-    ThrowIfFailed(m_constantBuffer->Map(0, &readRange, reinterpret_cast<void**>(& m_mappedData)));
+    ThrowIfFailed(m_constantBuffer->Map(0, &readRange, reinterpret_cast<void**>(&m_mappedData)));
 }
 
-PlayerObject::PlayerObject(Scene* root) : Object{ root } , mRotation{ XMMatrixIdentity()}
+PlayerObject::PlayerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }
 {
 }
 
@@ -43,10 +43,10 @@ void PlayerObject::OnUpdate(GameTimer& gTimer)
     OnKeyboardInput(gTimer);
 
     ResourceManager& rm = m_root->GetResourceManager();
-    // terrain Y ·Î player Y ¼³Á¤ÇÏ±â.
+    // terrain Y ë¡œ player Y ì„¤ì •í•˜ê¸°.
     XMFLOAT4 pos = GetComponent<Position>().mFloat4;
     float newY = 0.f;
-    int width = rm.GetTerrainData().terrainWidth; 
+    int width = rm.GetTerrainData().terrainWidth;
     int height = rm.GetTerrainData().terrainHeight;
     int terrainScale = rm.GetTerrainData().terrainScale;
 
@@ -73,12 +73,12 @@ void PlayerObject::OnUpdate(GameTimer& gTimer)
         newY = lerpZ;
     }
 
-    // Ãæµ¹Ã¼ À§Ä¡ Á¶Á¤
+    // ì¶©ëŒì²´ ìœ„ì¹˜ ì¡°ì •
     GetComponent<Collider>().mAABB.Center = { pos.x, newY + 10.f, pos.z };
 
-    XMVECTOR newPos = XMVECTOR{pos.x, newY, pos.z};
+    XMVECTOR newPos = XMVECTOR{ pos.x, newY, pos.z };
     GetComponent<Position>().SetXMVECTOR(newPos);
-    // terrain Y ·Î player Y ¼³Á¤ÇÏ±â. end
+    // terrain Y ë¡œ player Y ì„¤ì •í•˜ê¸°. end
 
     GetComponent<Rotation>().SetXMVECTOR(GetComponent<Rotation>().GetXMVECTOR() + GetComponent<Rotate>().GetXMVECTOR() * gTimer.DeltaTime());
     GetComponent<Position>().SetXMVECTOR(GetComponent<Position>().GetXMVECTOR() + GetComponent<Velocity>().GetXMVECTOR() * gTimer.DeltaTime());
@@ -117,17 +117,17 @@ void PlayerObject::OnUpdate(GameTimer& gTimer)
     int isAnimate = FindComponent<Animation>();
     //int isAnimate = false;
     if (isAnimate) {
-        vector<XMFLOAT4X4> finalTransforms{90};
+        vector<XMFLOAT4X4> finalTransforms{ 90 };
         Animation& animComponent = GetComponent<Animation>();
         SkinnedData& animData = animComponent.mAnimData->at(currentFileName);
         animComponent.mAnimationTime += gTimer.DeltaTime();
         string clipName = "Take 001";
         if (animComponent.mAnimationTime >= animData.GetClipEndTime(clipName)) animComponent.mAnimationTime = 0.f;
         animData.GetFinalTransforms(clipName, animComponent.mAnimationTime, finalTransforms);
-        memcpy(m_mappedData + sizeof(XMMATRIX), finalTransforms.data(), sizeof(XMMATRIX) * 90); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+        memcpy(m_mappedData + sizeof(XMMATRIX), finalTransforms.data(), sizeof(XMMATRIX) * 90); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
     }
     memcpy(m_mappedData + sizeof(XMMATRIX) * 91, &isAnimate, sizeof(int));
-    float powValue = 1.f; // Â¦¼öÀÌ¸é ¾ÈµÊ
+    float powValue = 1.f; // ì§ìˆ˜ì´ë©´ ì•ˆë¨
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4, &powValue, sizeof(float));
     float ambiantValue = 0.4f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4 + sizeof(float), &ambiantValue, sizeof(float));
@@ -158,7 +158,7 @@ void PlayerObject::LateUpdate(GameTimer& gTimer)
                 //velocity.SetXMVECTOR(velocityVector);
                 velocity.SetXMVECTOR(contactVector * -result);
             }
-                break;
+            break;
             case CollisionState::EXIT:
                 break;
             default:
@@ -173,7 +173,7 @@ void PlayerObject::LateUpdate(GameTimer& gTimer)
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR());
     XMMATRIX world = XMMatrixIdentity();
     world = scale * mRotation * rotate * translate;
-    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
 
     GetComponent<Velocity>().SetXMVECTOR(XMVectorZero());
 }
@@ -181,7 +181,7 @@ void PlayerObject::LateUpdate(GameTimer& gTimer)
 void PlayerObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
     CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_root->GetDescriptorHeap()->GetGPUDescriptorHandleForHeapStart());
-    hDescriptor.Offset(1+GetComponent<Texture>().mDescriptorStartIndex, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV));
+    hDescriptor.Offset(1 + GetComponent<Texture>().mDescriptorStartIndex, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV));
     commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
     commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
     SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
@@ -230,7 +230,7 @@ void PlayerObject::OnKeyboardInput(const GameTimer& gTimer)
         velocity += rightInv;
     }
 
-    //float& t = GetComponent<Animation>().mSleepTime; // ¾²·¹±âÀÓ
+    //float& t = GetComponent<Animation>().mSleepTime; // ì“°ë ˆê¸°ì„
     //if (GetKeyState('V') & 0x8000) {
     //    t += gTimer.DeltaTime();
     //    if (t > 0.3f) {
@@ -248,13 +248,13 @@ void PlayerObject::OnKeyboardInput(const GameTimer& gTimer)
 
     if (XMVectorGetX(velocity) == 0.f && XMVectorGetZ(velocity) == 0.f) return;
 
-    // mRotation Çà·ÄÀ» ¸¸µé¶§ y ÁÂÇ¥´Â Ç×»ó 0 ÀÌ¿©¾ßÇÑ´Ù.
+    // mRotation í–‰ë ¬ì„ ë§Œë“¤ë•Œ y ì¢Œí‘œëŠ” í•­ìƒ 0 ì´ì—¬ì•¼í•œë‹¤.
     velocity = XMVectorSetY(velocity, 0.f);
     velocity = XMVector4Normalize(velocity);
     mRotation = XMMATRIX(XMVector3Cross(up, velocity), up, velocity, XMVECTOR{ 0.f, 0.f, 0.f, 1.f });
 }
 
-TestObject::TestObject(Scene* root) : Object{root}
+TestObject::TestObject(Scene* root) : Object{ root }
 {
 }
 
@@ -265,10 +265,10 @@ void TestObject::OnUpdate(GameTimer& gTimer)
 
     GetComponent<Rotation>().SetXMVECTOR(GetComponent<Rotation>().GetXMVECTOR() + GetComponent<Rotate>().GetXMVECTOR() * gTimer.DeltaTime());
     XMMATRIX rotate = XMMatrixRotationRollPitchYawFromVector(GetComponent<Rotation>().GetXMVECTOR() * (XM_PI / 180.0f));
-    
+
     if (FindComponent<Gravity>()) {
         float& t = GetComponent<Gravity>().mGravityTime;
-        t += gTimer.DeltaTime(); // t¸¦ ÃÊ±âÈ­ ÇÏ´Â Á¶°Çµµ »ı°¢ÇØ¾ßÇÔ.
+        t += gTimer.DeltaTime(); // të¥¼ ì´ˆê¸°í™” í•˜ëŠ” ì¡°ê±´ë„ ìƒê°í•´ì•¼í•¨.
         float y = XMVectorGetY(GetComponent<Position>().GetXMVECTOR());
         if (y > 0) {
             GetComponent<Velocity>().SetXMVECTOR(XMVectorSetY(GetComponent<Velocity>().GetXMVECTOR(), 0.5 * -9.8 * (t * t)));
@@ -282,12 +282,12 @@ void TestObject::OnUpdate(GameTimer& gTimer)
     GetComponent<Velocity>().SetXMVECTOR(XMVECTOR{ 0,0,0,0 });
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR());
 
-    // ¿ùµå Çà·Ä = Å©±â Çà·Ä * È¸Àü Çà·Ä * ÀÌµ¿ Çà·Ä
+    // ì›”ë“œ í–‰ë ¬ = í¬ê¸° í–‰ë ¬ * íšŒì „ í–‰ë ¬ * ì´ë™ í–‰ë ¬
     XMMATRIX world = scale * rotate * translate;
-    
-    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
 
-    //¾Ö´Ï¸ŞÀÌ¼Ç À¯¹«
+    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
+
+    //ì• ë‹ˆë©”ì´ì…˜ ìœ ë¬´
     int isAnimate = FindComponent<Animation>();
     if (isAnimate) {
         vector<XMFLOAT4X4> finalTransforms{ 90 };
@@ -296,10 +296,10 @@ void TestObject::OnUpdate(GameTimer& gTimer)
         animComponent.mAnimationTime += gTimer.DeltaTime();
         if (animComponent.mAnimationTime > animData.GetClipEndTime("shot")) animComponent.mAnimationTime = 0.f;
         animData.GetFinalTransforms("shot", animComponent.mAnimationTime, finalTransforms);
-        memcpy(m_mappedData + sizeof(XMFLOAT4X4), finalTransforms.data(), sizeof(XMFLOAT4X4) * 90); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+        memcpy(m_mappedData + sizeof(XMFLOAT4X4), finalTransforms.data(), sizeof(XMFLOAT4X4) * 90); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
     }
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91, &isAnimate, sizeof(int));
-    float powValue = 1.f; // Â¦¼öÀÌ¸é ¾ÈµÊ
+    float powValue = 1.f; // ì§ìˆ˜ì´ë©´ ì•ˆë¨
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4, &powValue, sizeof(float));
     float ambiantValue = 0.2f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4 + sizeof(float), &ambiantValue, sizeof(float));
@@ -321,12 +321,12 @@ void TestObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comma
 }
 
 CameraObject::CameraObject(float radius, Scene* root) :
-    Object{ root }, 
-    mLastPosX{ -1 }, 
-    mLastPosY{ -1 }, 
-    mTheta{XMConvertToRadians(-90)}, 
-    mPhi{ XMConvertToRadians(70) }, 
-    mRadius{radius}
+    Object{ root },
+    mLastPosX{ -1 },
+    mLastPosY{ -1 },
+    mTheta{ XMConvertToRadians(-90) },
+    mPhi{ XMConvertToRadians(70) },
+    mRadius{ radius }
 {
 }
 
@@ -339,13 +339,13 @@ void CameraObject::OnUpdate(GameTimer& gTimer)
     XMVECTOR playerPos = m_root->GetObj<PlayerObject>(L"PlayerObject").GetComponent<Position>().GetXMVECTOR();
     GetComponent<Position>().SetXMVECTOR(playerPos + XMVECTOR{ x, y, z, 0.f });
 
-    // Ä«¸Ş¶ó º¯È¯ Çà·Ä.
+    // ì¹´ë©”ë¼ ë³€í™˜ í–‰ë ¬.
     XMVECTOR eye = GetComponent<Position>().GetXMVECTOR();
-    XMVECTOR target = playerPos + XMVECTOR{0.f, 5.f, 0.f, 0.f};
+    XMVECTOR target = playerPos + XMVECTOR{ 0.f, 5.f, 0.f, 0.f };
     XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
     SetXMMATRIX(XMMatrixLookAtLH(eye, target, up));
-    // Ä«¸Ş¶ó º¯È¯ Çà·Ä ½¦ÀÌ´õ¿¡ Àü´Ş
-    memcpy(m_root->GetConstantBufferMappedData(), &XMMatrixTranspose(GetXMMATRIX()), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+    // ì¹´ë©”ë¼ ë³€í™˜ í–‰ë ¬ ì‰ì´ë”ì— ì „ë‹¬
+    memcpy(m_root->GetConstantBufferMappedData(), &XMMatrixTranspose(GetXMMATRIX()), sizeof(XMMATRIX)); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
 }
 
 void CameraObject::LateUpdate(GameTimer& gTimer)
@@ -358,7 +358,7 @@ void CameraObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* com
 
 void CameraObject::OnMouseInput(WPARAM wParam, HWND hWnd)
 {
-    // ÇöÀç wndÀÇ ¼¾ÅÍ ÁÂÇ¥¸¦ ¾Ë¾Æ¿Â´Ù
+    // í˜„ì¬ wndì˜ ì„¼í„° ì¢Œí‘œë¥¼ ì•Œì•„ì˜¨ë‹¤
     RECT clientRect{};
     GetWindowRect(hWnd, &clientRect);
     int width = int(clientRect.right - clientRect.left);
@@ -373,7 +373,7 @@ void CameraObject::OnMouseInput(WPARAM wParam, HWND hWnd)
     mTheta -= XMConvertToRadians(dx * 0.02f);
     mPhi -= XMConvertToRadians(dy * 0.02f);
 
-    // °¢µµ clamp
+    // ê°ë„ clamp
     float min = 0.1f;
     float max = XM_PI - 0.1f;
     mPhi = mPhi < min ? min : (mPhi > max ? max : mPhi);
@@ -404,7 +404,7 @@ void TerrainObject::OnUpdate(GameTimer& gTimer)
 
     if (FindComponent<Gravity>()) {
         float& t = GetComponent<Gravity>().mGravityTime;
-        t += gTimer.DeltaTime(); // t¸¦ ÃÊ±âÈ­ ÇÏ´Â Á¶°Çµµ »ı°¢ÇØ¾ßÇÔ.
+        t += gTimer.DeltaTime(); // të¥¼ ì´ˆê¸°í™” í•˜ëŠ” ì¡°ê±´ë„ ìƒê°í•´ì•¼í•¨.
         float y = XMVectorGetY(GetComponent<Position>().GetXMVECTOR());
         if (y > 0) {
             GetComponent<Velocity>().SetXMVECTOR(XMVectorSetY(GetComponent<Velocity>().GetXMVECTOR(), 0.5 * -9.8 * (t * t)));
@@ -418,11 +418,11 @@ void TerrainObject::OnUpdate(GameTimer& gTimer)
     GetComponent<Velocity>().SetXMVECTOR(XMVECTOR{ 0,0,0,0 });
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR());
 
-    // ¿ùµå Çà·Ä = Å©±â Çà·Ä * È¸Àü Çà·Ä * ÀÌµ¿ Çà·Ä
+    // ì›”ë“œ í–‰ë ¬ = í¬ê¸° í–‰ë ¬ * íšŒì „ í–‰ë ¬ * ì´ë™ í–‰ë ¬
     XMMATRIX world = scale * rotate * translate;
-    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
 
-    //¾Ö´Ï¸ŞÀÌ¼Ç À¯¹«
+    //ì• ë‹ˆë©”ì´ì…˜ ìœ ë¬´
     int isAnimate = FindComponent<Animation>();
     if (isAnimate) {
         vector<XMFLOAT4X4> finalTransforms{ 90 };
@@ -431,10 +431,10 @@ void TerrainObject::OnUpdate(GameTimer& gTimer)
         animComponent.mAnimationTime += gTimer.DeltaTime();
         if (animComponent.mAnimationTime > animData.GetClipEndTime("shot")) animComponent.mAnimationTime = 0.f;
         animData.GetFinalTransforms("shot", animComponent.mAnimationTime, finalTransforms);
-        memcpy(m_mappedData + sizeof(XMFLOAT4X4), finalTransforms.data(), sizeof(XMFLOAT4X4) * 90); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+        memcpy(m_mappedData + sizeof(XMFLOAT4X4), finalTransforms.data(), sizeof(XMFLOAT4X4) * 90); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
     }
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91, &isAnimate, sizeof(int));
-    float powValue = 5.f; // Â¦¼öÀÌ¸é ¾ÈµÊ
+    float powValue = 5.f; // ì§ìˆ˜ì´ë©´ ì•ˆë¨
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4, &powValue, sizeof(float));
     float ambiantValue = 0.4f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4 + sizeof(float), &ambiantValue, sizeof(float));
@@ -461,7 +461,7 @@ TreeObject::TreeObject(Scene* root) : Object{ root }
 
 void TreeObject::OnUpdate(GameTimer& gTimer)
 {
-    // terrain Y ·Î object Y ¼³Á¤ÇÏ±â.
+    // terrain Y ë¡œ object Y ì„¤ì •í•˜ê¸°.
     XMFLOAT4 pos = GetComponent<Position>().mFloat4;
     ResourceManager& rm = m_root->GetResourceManager();
     float newY = 0.f;
@@ -491,12 +491,12 @@ void TreeObject::OnUpdate(GameTimer& gTimer)
 
         newY = lerpZ;
     }
-    // Ãæµ¹Ã¼ À§Ä¡ Á¶Á¤
+    // ì¶©ëŒì²´ ìœ„ì¹˜ ì¡°ì •
     GetComponent<Collider>().mAABB.Center = { pos.x, newY + 5.f, pos.z };
 
     XMVECTOR newPos{ pos.x, newY, pos.z };
     GetComponent<Position>().SetXMVECTOR(newPos);
-    // terrain Y ·Î object Y ¼³Á¤ÇÏ±â. end
+    // terrain Y ë¡œ object Y ì„¤ì •í•˜ê¸°. end
 
     XMMATRIX scale = XMMatrixScalingFromVector(GetComponent<Scale>().GetXMVECTOR());
 
@@ -505,14 +505,14 @@ void TreeObject::OnUpdate(GameTimer& gTimer)
 
     GetComponent<Position>().SetXMVECTOR(GetComponent<Position>().GetXMVECTOR() + GetComponent<Velocity>().GetXMVECTOR() * gTimer.DeltaTime());
     GetComponent<Velocity>().SetXMVECTOR(XMVECTOR{ 0,0,0,0 });
-    XMVECTOR pivot{ -16.5f, 4.5f, -50.f }; // pivot Á¶Á¤
+    XMVECTOR pivot{ -16.5f, 4.5f, -50.f }; // pivot ì¡°ì •
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR() + pivot);
 
-    // ¿ùµå Çà·Ä = Å©±â Çà·Ä * È¸Àü Çà·Ä * ÀÌµ¿ Çà·Ä
+    // ì›”ë“œ í–‰ë ¬ = í¬ê¸° í–‰ë ¬ * íšŒì „ í–‰ë ¬ * ì´ë™ í–‰ë ¬
     XMMATRIX world = scale * rotate * translate;
-    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
 
-    //¾Ö´Ï¸ŞÀÌ¼Ç À¯¹«
+    //ì• ë‹ˆë©”ì´ì…˜ ìœ ë¬´
     int isAnimate = FindComponent<Animation>();
     if (isAnimate) {
         vector<XMFLOAT4X4> finalTransforms{ 90 };
@@ -521,10 +521,10 @@ void TreeObject::OnUpdate(GameTimer& gTimer)
         animComponent.mAnimationTime += gTimer.DeltaTime();
         if (animComponent.mAnimationTime > animData.GetClipEndTime("")) animComponent.mAnimationTime = 0.f;
         animData.GetFinalTransforms("", animComponent.mAnimationTime, finalTransforms);
-        memcpy(m_mappedData + sizeof(XMFLOAT4X4), finalTransforms.data(), sizeof(XMFLOAT4X4) * 90); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+        memcpy(m_mappedData + sizeof(XMFLOAT4X4), finalTransforms.data(), sizeof(XMFLOAT4X4) * 90); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
     }
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91, &isAnimate, sizeof(int));
-    float powValue = 1.f; // Â¦¼öÀÌ¸é ¾ÈµÊ
+    float powValue = 1.f; // ì§ìˆ˜ì´ë©´ ì•ˆë¨
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4, &powValue, sizeof(float));
     float ambiantValue = 0.4f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4 + sizeof(float), &ambiantValue, sizeof(float));
@@ -546,7 +546,7 @@ void TreeObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comma
 
 }
 
-TigerObject::TigerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }, mTimer{10.f}
+TigerObject::TigerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }, mTimer{ 10.f }
 {
 }
 
@@ -555,7 +555,7 @@ void TigerObject::OnUpdate(GameTimer& gTimer)
     RandomVelocity(gTimer);
     TigerBehavior(gTimer);
     ResourceManager& rm = m_root->GetResourceManager();
-    // terrain Y ·Î player Y ¼³Á¤ÇÏ±â.
+    // terrain Y ë¡œ player Y ì„¤ì •í•˜ê¸°.
     XMFLOAT4 pos = GetComponent<Position>().mFloat4;
     float newY = 0.f;
     int width = rm.GetTerrainData().terrainWidth;
@@ -587,12 +587,12 @@ void TigerObject::OnUpdate(GameTimer& gTimer)
 
     XMVECTOR newPos = XMVECTOR{ pos.x, newY, pos.z };
     GetComponent<Position>().SetXMVECTOR(newPos);
-    // terrain Y ·Î tiger Y ¼³Á¤ÇÏ±â. end
+    // terrain Y ë¡œ tiger Y ì„¤ì •í•˜ê¸°. end
 
     GetComponent<Rotation>().SetXMVECTOR(GetComponent<Rotation>().GetXMVECTOR() + GetComponent<Rotate>().GetXMVECTOR() * gTimer.DeltaTime());
     GetComponent<Position>().SetXMVECTOR(GetComponent<Position>().GetXMVECTOR() + GetComponent<Velocity>().GetXMVECTOR() * gTimer.DeltaTime());
 
-    // Ãæµ¹Ã¼ Á¶Á¤
+    // ì¶©ëŒì²´ ì¡°ì •
     XMMATRIX scale = XMMatrixIdentity();
     XMMATRIX rotate = XMMatrixRotationRollPitchYawFromVector(GetComponent<Rotation>().GetXMVECTOR() * (XM_PI / 180.0f));
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR());
@@ -641,10 +641,10 @@ void TigerObject::OnUpdate(GameTimer& gTimer)
         string clipName = "Take 001";
         if (animComponent.mAnimationTime >= animData.GetClipEndTime(clipName)) animComponent.mAnimationTime = 0.f;
         animData.GetFinalTransforms(clipName, animComponent.mAnimationTime, finalTransforms);
-        memcpy(m_mappedData + sizeof(XMMATRIX), finalTransforms.data(), sizeof(XMMATRIX) * 90); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+        memcpy(m_mappedData + sizeof(XMMATRIX), finalTransforms.data(), sizeof(XMMATRIX) * 90); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
     }
     memcpy(m_mappedData + sizeof(XMMATRIX) * 91, &isAnimate, sizeof(int));
-    float powValue = 1.f; // Â¦¼öÀÌ¸é ¾ÈµÊ
+    float powValue = 1.f; // ì§ìˆ˜ì´ë©´ ì•ˆë¨
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4, &powValue, sizeof(float));
     float ambiantValue = 0.4f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4 + sizeof(float), &ambiantValue, sizeof(float));
@@ -687,12 +687,12 @@ void TigerObject::LateUpdate(GameTimer& gTimer)
     XMMATRIX scale = XMMatrixScalingFromVector(GetComponent<Scale>().GetXMVECTOR());
     XMMATRIX rotate = XMMatrixRotationRollPitchYawFromVector(GetComponent<Rotation>().GetXMVECTOR() * (XM_PI / 180.0f));
     GetComponent<Position>().SetXMVECTOR(GetComponent<Position>().GetXMVECTOR() + GetComponent<Velocity>().GetXMVECTOR() * gTimer.DeltaTime());
-    XMVECTOR pivot{ 0.f , 0.f, -8.f }; // pivot Á¶Á¤
+    XMVECTOR pivot{ 0.f , 0.f, -8.f }; // pivot ì¡°ì •
     pivot = XMVector3Transform(pivot, mRotation);
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR() + pivot);
     XMMATRIX world = XMMatrixIdentity();
     world = scale * mRotation * rotate * translate;
-    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // Ã³À½ ¸Å°³º¯¼ö´Â ½ÃÀÛÁÖ¼Ò
+    memcpy(m_mappedData, &XMMatrixTranspose(world), sizeof(XMMATRIX)); // ì²˜ìŒ ë§¤ê°œë³€ìˆ˜ëŠ” ì‹œì‘ì£¼ì†Œ
 
     GetComponent<Velocity>().SetXMVECTOR(XMVectorZero());
 
@@ -743,7 +743,7 @@ void TigerObject::RandomVelocity(GameTimer& gTimer)
     if (XMVectorGetX(pos) <= 0.f) {
         mTimer = 0.f;
         //float value = static_cast<float>(uid(dre)) ? 1.f : -1.f;
-        mTempVelocity = {1.f, 0.f, (float)uidZ(dreZ)};
+        mTempVelocity = { 1.f, 0.f, (float)uidZ(dreZ) };
     }
 
     if (XMVectorGetZ(pos) <= 0.f) {
@@ -765,7 +765,7 @@ void TigerObject::RandomVelocity(GameTimer& gTimer)
     }
 }
 
-StoneObject::StoneObject(Scene* root) : Object{root}
+StoneObject::StoneObject(Scene* root) : Object{ root }
 {
 }
 
