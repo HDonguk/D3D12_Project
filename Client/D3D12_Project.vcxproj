@@ -145,8 +145,10 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="NetworkLogger.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="OtherPlayerManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SkinnedData.cpp" />
@@ -162,8 +164,11 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="NetworkLogger.h" />
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="OtherPlayerManager.h" />
+    <ClInclude Include="OtherPlayersScene.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />

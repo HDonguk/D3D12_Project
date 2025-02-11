@@ -3,6 +3,8 @@
 #include "FbxExtractor.h"
 #include "Info.h"
 
+class Scene;  // 전방 선언
+
 struct TerrainData {
 	int terrainWidth;
 	int terrainHeight;
@@ -11,8 +13,9 @@ struct TerrainData {
 
 class ResourceManager
 {
+	friend class Scene;  // Scene을 friend 클래스로 선언
 public:
-	ResourceManager();
+	ResourceManager();  // private 생성자
 	~ResourceManager();
 	void LoadFbx(const string& fileName, bool onlyAnimation, bool zUp);
 	void CreatePlane(const string& name, float size);
@@ -22,6 +25,7 @@ public:
 	unordered_map<string, SubMeshData>& GetSubMeshData();
 	unordered_map<string, SkinnedData>& GetAnimationData();
 	TerrainData& GetTerrainData();
+
 private:
 	unique_ptr<FbxExtractor> mFbxExtractor;
 	vector<Vertex> mVertexBuffer;

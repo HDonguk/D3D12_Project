@@ -1,4 +1,4 @@
-﻿#include <winsock2.h>
+﻿#include "Packet.h"
 #include <windows.h>
 #include <mswsock.h>
 #include <iostream>
@@ -16,9 +16,8 @@ int g_nextClientID = 1;  // 클라이언트 ID 카운터도 필요
 
 struct ClientInfo {
     SOCKET socket;
-    float x, y, z;
-    float rotY;
-    // 필요한 경우 추가 클라이언트 정보를 여기에 넣을 수 있습니다
+    int clientID;
+    PacketPlayerUpdate lastUpdate;  // 마지막으로 업데이트된 위치 정보를 패킷 형태로 저장
 };
 
 // 명시적으로 타입을 지정
@@ -88,16 +87,13 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
             PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)ioContext->buffer;
 
             // 이전 위치와 비교
-            float oldX = g_clients[clientID].x;
-            float oldY = g_clients[clientID].y;
-            float oldZ = g_clients[clientID].z;
-            float oldRotY = g_clients[clientID].rotY;
+            float oldX = g_clients[clientID].lastUpdate.x;
+            float oldY = g_clients[clientID].lastUpdate.y;
+            float oldZ = g_clients[clientID].lastUpdate.z;
+            float oldRotY = g_clients[clientID].lastUpdate.rotY;
 
             // 새 위치 저장
-            g_clients[clientID].x = pkt->x;
-            g_clients[clientID].y = pkt->y;
-            g_clients[clientID].z = pkt->z;
-            g_clients[clientID].rotY = pkt->rotY;
+            g_clients[clientID].lastUpdate = *pkt;
 
             std::cout << "  -> Client " << clientID << " position update:" << std::endl;
             std::cout << "     Previous: (" << oldX << ", " << oldY << ", " << oldZ << ") rot: " << oldRotY << std::endl;
@@ -168,7 +164,7 @@ int main() {
     while (true) {
         SOCKET clientSock = accept(listenSock, NULL, NULL);
         int clientID = g_nextClientID++;
-        g_clients[clientID] = { clientSock, 0, 0, 0, 0 };
+        g_clients[clientID] = { clientSock, 0, { 0, 0, 0, 0 } };
         CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
 
         std::cout << "[Connect] New client connected. ID: " << clientID << std::endl;

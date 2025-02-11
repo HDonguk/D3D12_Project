@@ -49,12 +49,12 @@ int Framework::Run(HINSTANCE hInstance, int nCmdShow)
 
 void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
 {
-    networkManager.Initialize("127.0.0.1", 5000);  // ���� ���� Hong
 
-    // ������ �ʱ�ȭ
+
+    //  ʱȭ
     InitWnd(hInstance);
-
-    // D3D12 �ʱ�ȭ
+    
+    // D3D12 초기화
     BuildFactoryAndDevice();
     BuildCommandQueueAndSwapChain();
     BuildCommandListAndAllocator();
@@ -64,11 +64,14 @@ void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
     BuildDepthStencilBuffer(m_win32App->GetWidth(), m_win32App->GetHeight());
     BuildDsv();
     BuildFence();
-
-    // �� ����
+    
+    // Scene 생성
     BuildScenes(m_device.Get(), m_commandList.Get());
-
-    // Close the command list and execute it to begin the initial GPU setup.
+    
+    // Scene이 생성된 후 NetworkManager 초기화
+    networkManager.Initialize("127.0.0.1", 5000, &m_scenes[L"BaseScene"]);
+    
+    // Command List 실행
     ThrowIfFailed(m_commandList->Close());
     ID3D12CommandList* ppCommandLists[] = { m_commandList.Get() };
     m_commandQueue.Get()->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);

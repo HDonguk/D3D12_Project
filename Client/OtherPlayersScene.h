@@ -10,9 +10,17 @@ public:
     void OnInit(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override {
         Scene::OnInit(device, commandList);
         
-        // 메인 플레이어를 기반으로 OtherPlayerManager 초기화
-        auto& player = GetObj<PlayerObject>(L"PlayerObject");
-        OtherPlayerManager::GetInstance()->Initialize(&player);
+        // 다른 플레이어들을 위한 리소스 초기화
+        auto& rm = GetResourceManager();
+        auto& subMeshData = rm.GetSubMeshData();
+        
+        PlayerObject* playerPrefab = new PlayerObject(nullptr);
+        playerPrefab->AddComponent(Position{ 0.f, 0.f, 0.f, 1.f, playerPrefab });
+        playerPrefab->AddComponent(Rotation{ 0.0f, 180.0f, 0.0f, 0.0f, playerPrefab });
+        playerPrefab->AddComponent(Scale{ 0.1f, playerPrefab });
+        playerPrefab->AddComponent(Mesh{ subMeshData.at("1P(boy-idle).fbx"), playerPrefab });
+        
+        OtherPlayerManager::GetInstance()->Initialize(playerPrefab);
     }
 
     void OnUpdate(GameTimer& gTimer) override {
@@ -28,10 +36,11 @@ public:
     void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override {
         Scene::OnRender(device, commandList);
         
-        // 다른 플레이어들 렌더링
         auto& otherPlayers = OtherPlayerManager::GetInstance()->GetPlayers();
         for (auto& [id, player] : otherPlayers) {
-            player->OnRender(device, commandList);
+            if (player) {
+                player->OnRender(device, commandList);
+            }
         }
     }
 }; 

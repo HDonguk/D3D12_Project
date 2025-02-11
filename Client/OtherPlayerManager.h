@@ -1,12 +1,15 @@
 #pragma once
 #include <unordered_map>
 #include "Object.h"
+#include "Scene.h"
+#include "ResourceManager.h"
 
 class OtherPlayerManager {
 private:
-    static OtherPlayerManager* instance;
+    static inline OtherPlayerManager* instance = nullptr;
     std::unordered_map<int, PlayerObject*> otherPlayers;
     PlayerObject* playerPrefab;
+    Scene* m_currentScene{nullptr};
 
     OtherPlayerManager() {}
 
@@ -18,8 +21,19 @@ public:
         return instance;
     }
 
-    void Initialize(PlayerObject* prefab) {
-        playerPrefab = prefab;
+    void SetScene(Scene* scene) { m_currentScene = scene; }
+
+    void Initialize(Scene* scene) {
+        m_currentScene = scene;
+        
+        // 프리팹 초기화
+        playerPrefab = new PlayerObject(m_currentScene);
+        auto& rm = m_currentScene->GetResourceManager();
+        
+        playerPrefab->AddComponent(Position{ 0.f, 0.f, 0.f, 1.f, playerPrefab });
+        playerPrefab->AddComponent(Rotation{ 0.0f, 180.0f, 0.0f, 0.0f, playerPrefab });
+        playerPrefab->AddComponent(Scale{ 0.1f, playerPrefab });
+        playerPrefab->AddComponent(Mesh{ rm.GetSubMeshData().at("1P(boy-idle).fbx"), playerPrefab });
     }
 
     void SpawnOtherPlayer(int clientID, float x, float y, float z) {
@@ -50,9 +64,15 @@ public:
         }
     }
 
-    const std::unordered_map<int, PlayerObject*>& GetPlayers() const {
+    std::unordered_map<int, PlayerObject*>& GetPlayers() {
         return otherPlayers;
     }
-};
 
-OtherPlayerManager* OtherPlayerManager::instance = nullptr; 
+    void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) {
+        for (auto& [id, player] : otherPlayers) {
+            if (player) {
+                player->OnRender(device, commandList);
+            }
+        }
+    }
+}; 

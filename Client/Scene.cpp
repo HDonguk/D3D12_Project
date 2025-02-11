@@ -3,6 +3,7 @@
 #include "GameTimer.h"
 #include "string"
 #include "info.h"
+#include "NetworkManager.h"
 
 Scene::Scene(UINT width, UINT height, std::wstring name) :
     m_viewport(0.0f, 0.0f, static_cast<float>(width), static_cast<float>(height)),
@@ -641,11 +642,9 @@ void Scene::UpdateNetwork(NetworkManager& networkManager)
     static XMFLOAT4 lastPos = pos;
     static XMFLOAT4 lastRot = rot;
 
-    // 위치나 회전이 변경되었을 때만 업데이트 패킷 전송
     if (memcmp(&lastPos, &pos, sizeof(XMFLOAT4)) != 0 ||
         memcmp(&lastRot, &rot, sizeof(XMFLOAT4)) != 0)
     {
-        //std::cout << "[Network] Sending position update" << std::endl;
         networkManager.SendPlayerUpdate(pos.x, pos.y, pos.z, rot.y);
         lastPos = pos;
         lastRot = rot;

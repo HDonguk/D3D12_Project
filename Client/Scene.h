@@ -2,9 +2,9 @@
 #include "stdafx.h"
 #include "Object.h"
 #include "ResourceManager.h"
-#include "NetworkManager.h"
 #include <utility>
 
+class NetworkManager;  // 전방 선언 추가
 class GameTimer;
 
 class Scene

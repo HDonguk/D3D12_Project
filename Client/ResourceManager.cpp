@@ -41,7 +41,7 @@ void ResourceManager::CreatePlane(const string& name, float size)
 	float wrap = 100;
 	vector<Vertex> vertexData;
 
-	// Æò¸é
+	// ï¿½ï¿½ï¿½
 	{
 		vertexData.push_back(Vertex{ {-halfSize, 0, halfSize},{0,1,0},{0,0} });
 		vertexData.push_back(Vertex{ {halfSize, 0, halfSize},{0,1,0},{wrap,0} });
@@ -85,8 +85,8 @@ void ResourceManager::CreateTerrain(const string& name, int maxHeight , int scal
 	vector<float> heightData(width * height);
 	for (int z = 0; z < height; ++z) {
 		for (int x = 0; x < width; ++x) {
-			heightData[z * width + x] = (heightMap[(height - 1 - z) * width + x] / 255.f - down) * maxHeight; // (height - 1 - z)´Â ¿ÞÂÊ ¾Æ·¡¸¦ ¿øÁ¡(¿ø·¡ ¿øÁ¡Àº ¿ÞÂÊ À§)À¸·Î ÇÏ±â À§ÇÔÀÌ´Ù.
-			//heightData[z * width + x] = heightMap[z * width + x] / 255.f * maxHeight; // (height - 1 - z) ÀÇ ÀÇ¹Ì´Â ¿ÞÂÊ ¾Æ·¡¸¦ ¿øÁ¡À¸·Î ÇÏ±â À§ÇÔÀÌ´Ù.
+			heightData[z * width + x] = (heightMap[(height - 1 - z) * width + x] / 255.f - down) * maxHeight; // (height - 1 - z)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+			//heightData[z * width + x] = heightMap[z * width + x] / 255.f * maxHeight; // (height - 1 - z) ï¿½ï¿½ ï¿½Ç¹Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
 
 		}
 	}

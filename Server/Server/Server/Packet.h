@@ -15,6 +15,7 @@ enum PacketType {
 
 struct PacketPlayerUpdate {
     PacketHeader header;
+    int clientID;
     float x, y, z;
     float rotY;
 };
