@@ -3,6 +3,8 @@
 #include "Object.h"
 #include "Scene.h"
 #include "ResourceManager.h"
+#include "GameTimer.h"
+#include "NetworkManager.h"
 
 class OtherPlayerManager {
 private:
@@ -10,6 +12,13 @@ private:
     std::unordered_map<int, PlayerObject*> otherPlayers;
     PlayerObject* playerPrefab;
     Scene* m_currentScene{nullptr};
+    NetworkManager* m_networkManager{nullptr};
+
+    struct PendingSpawn {
+        int clientID;
+        PlayerObject* player;
+    };
+    std::vector<PendingSpawn> m_pendingSpawns;
 
     OtherPlayerManager() {}
 
@@ -22,6 +31,8 @@ public:
     }
 
     void SetScene(Scene* scene) { m_currentScene = scene; }
+
+    void SetNetworkManager(NetworkManager* nm) { m_networkManager = nm; }
 
     void Initialize(Scene* scene) {
         m_currentScene = scene;
@@ -36,26 +47,9 @@ public:
         playerPrefab->AddComponent(Mesh{ rm.GetSubMeshData().at("1P(boy-idle).fbx"), playerPrefab });
     }
 
-    void SpawnOtherPlayer(int clientID, float x, float y, float z) {
-        if (otherPlayers.find(clientID) != otherPlayers.end()) {
-            return;
-        }
+    void SpawnOtherPlayer(int clientID, float x, float y, float z);  // 선언만 남기기
 
-        PlayerObject* newPlayer = new PlayerObject(*playerPrefab);  // 복사 생성
-        newPlayer->GetComponent<Position>().mFloat4 = XMFLOAT4(x, y, z, 1.0f);
-        otherPlayers[clientID] = newPlayer;
-    }
-
-    void UpdateOtherPlayer(int clientID, float x, float y, float z, float rotY) {
-        if (otherPlayers.find(clientID) == otherPlayers.end()) {
-            SpawnOtherPlayer(clientID, x, y, z);
-            return;
-        }
-
-        PlayerObject* player = otherPlayers[clientID];
-        player->GetComponent<Position>().mFloat4 = XMFLOAT4(x, y, z, 1.0f);
-        player->GetComponent<Rotation>().mFloat4.y = rotY;
-    }
+    void UpdateOtherPlayer(int clientID, float x, float y, float z, float rotY);
 
     void RemoveOtherPlayer(int clientID) {
         if (otherPlayers.find(clientID) != otherPlayers.end()) {
@@ -68,7 +62,22 @@ public:
         return otherPlayers;
     }
 
-    void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) {
+    void Update(GameTimer& timer) {
+        // 대기 중인 스폰 처리
+        for (const auto& spawn : m_pendingSpawns) {
+            std::wstring objectName = L"OtherPlayer" + std::to_wstring(spawn.clientID);
+            m_currentScene->AddObj(objectName, *spawn.player);
+        }
+        m_pendingSpawns.clear();
+
+        for (auto& [id, player] : otherPlayers) {
+            if (player) {
+                player->OnUpdate(timer);
+            }
+        }
+    }
+
+    void Render(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) {
         for (auto& [id, player] : otherPlayers) {
             if (player) {
                 player->OnRender(device, commandList);

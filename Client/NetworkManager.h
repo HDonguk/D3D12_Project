@@ -1,28 +1,34 @@
 #pragma once
 #include "stdafx.h"
 #include "Packet.h"
-#include "Scene.h"  // Scene 헤더 추가
+#include "Scene.h"
+#include "GameTimer.h"
+#include <fstream>
+#include <ctime>
 
-class OtherPlayerManager;  // 전방 선언 추가
-class Scene;  // 전방 선언 추가
+class OtherPlayerManager;
+class Scene;
 
 class NetworkManager {
 public:
     NetworkManager();
     ~NetworkManager();
-    bool Initialize(const char* serverIP, int port, Scene* scene);  // Scene 매개변수 추가
-    void SetScene(Scene* scene) { m_scene = scene; }  // Scene 설정 함수 추가
+    bool Initialize(const char* serverIP, int port, Scene* scene);
+    void SetScene(Scene* scene) { m_scene = scene; }
     void SendPlayerUpdate(float x, float y, float z, float rotY);
     void Shutdown();
     bool IsRunning() const { return m_isRunning; }
+    void LogToFile(const std::string& message);
 
 private:
     static DWORD WINAPI NetworkThread(LPVOID arg);
     void ProcessPacket(char* buffer);
 
-    Scene* m_scene{nullptr};  // Scene 포인터 멤버 추가
+    Scene* m_scene{nullptr};
     SOCKET sock;
     HANDLE m_networkThread;
     bool m_isRunning;
     char m_recvBuffer[1024];
+    std::ofstream m_logFile;
+    int m_myClientID{0};  // 자신의 클라이언트 ID 저장
 };

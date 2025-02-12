@@ -43,6 +43,8 @@ public:
 
     void UpdateNetwork(NetworkManager& networkManager); // 네트워크 업데이트 처리 Hong
 
+    const auto& GetSubTextureData() const { return m_subTextureData; }; //Hong other player 에서 사용
+
 private:
     void BuildRootSignature(ID3D12Device* device);
     void BuildPSO(ID3D12Device* device);

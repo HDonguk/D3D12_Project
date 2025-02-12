@@ -1,0 +1,25 @@
+[17:16:11] NetworkManager initialized
+[17:16:14] [Info] Found PlayerObject in scene
+[17:16:14] [Client] Connecting to server 127.0.0.1:5000
+[17:16:14] [Client] Successfully connected to server
+[17:16:14] [Thread] Network thread started
+[17:16:14] [Receive] Received 20 bytes
+[17:16:14] [Receive] Packet type: 2, size: 20
+[17:16:14] [Client] Processing packet type: 2, size: 20, expected size: 4
+[17:16:14] [Client] Processing spawn packet for player ID: 1
+[17:16:14] [Info] Set my client ID to: 1
+[17:16:14] [Info] Ignoring own spawn packet
+[17:16:16] [Send] Player Update: (600.193970, -25.098038, 599.926575) rot: 180.000000
+[17:16:16] [Send] Player Update: (600.926147, -25.041529, 599.671875) rot: 180.000000
+[17:16:16] [Send] Player Update: (601.638611, -24.984835, 599.902527) rot: 180.000000
+[17:16:16] [Send] Player Update: (602.334167, -24.909136, 600.325500) rot: 180.000000
+[17:16:16] [Send] Player Update: (603.025452, -24.804436, 600.787476) rot: 180.000000
+[17:16:16] [Send] Player Update: (603.667542, -24.704292, 601.246277) rot: 180.000000
+[17:16:16] [Send] Player Update: (604.293640, -24.595484, 601.708984) rot: 180.000000
+[17:16:16] [Send] Player Update: (604.957275, -24.474644, 602.205872) rot: 180.000000
+[17:16:16] [Send] Player Update: (605.089478, -24.426060, 602.305054) rot: 180.000000
+[17:16:24] [Receive] Received 20 bytes
+[17:16:24] [Receive] Packet type: 2, size: 20
+[17:16:24] [Client] Processing packet type: 2, size: 20, expected size: 4
+[17:16:24] [Client] Processing spawn packet for player ID: 2
+[17:16:24] [Success] Spawned other player 2

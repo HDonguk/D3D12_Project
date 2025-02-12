@@ -3,8 +3,23 @@
 #include "OtherPlayerManager.h"
 #include <iostream>
 #include "ResourceManager.h"
+#include <ctime>
+#include <cstdio>
 
-NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false) {
+NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false), m_myClientID(0) {
+    // 로그 파일 생성 (현재 시간을 파일명에 포함)
+    time_t now = time(0);
+    tm ltm;
+    localtime_s(&ltm, &now);
+    char filename[100];
+    sprintf_s(filename, "network_log_%d%02d%02d_%02d%02d%02d.txt",
+        ltm.tm_year + 1900, ltm.tm_mon + 1, ltm.tm_mday,
+        ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
+    
+    m_logFile.open(filename);
+    if (m_logFile.is_open()) {
+        LogToFile("NetworkManager initialized");
+    }
 }
 
 NetworkManager::~NetworkManager() {
@@ -12,18 +27,33 @@ NetworkManager::~NetworkManager() {
 }
 
 bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
-    m_scene = scene;  // Scene 설정
+    if (!scene) {
+        LogToFile("[Error] Scene is null");
+        return false;
+    }
+    m_scene = scene;
     
-    std::cout << "[Client] Connecting to server " << serverIP << ":" << port << std::endl;
+    try {
+        auto& player = m_scene->GetObj<PlayerObject>(L"PlayerObject");
+        LogToFile("[Info] Found PlayerObject in scene");
+    }
+    catch (const std::exception& e) {
+        LogToFile("[Error] Failed to find PlayerObject: " + std::string(e.what()));
+        return false;
+    }
+    
+    std::string logMsg = "[Client] Connecting to server " + std::string(serverIP) + ":" + std::to_string(port);
+    LogToFile(logMsg);
+    
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cout << "[Error] WSAStartup failed" << std::endl;
+        LogToFile("[Error] WSAStartup failed");
         return false;
     }
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock == INVALID_SOCKET) {
-        std::cout << "[Error] Socket creation failed" << std::endl;
+        LogToFile("[Error] Socket creation failed");
         return false;
     }
 
@@ -33,9 +63,12 @@ bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
     serverAddr.sin_port = htons(port);
 
     if (connect(sock, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
-        std::cout << "[Error] Connection failed" << std::endl;
+        LogToFile("[Error] Connection failed");
         return false;
     }
+
+    // recv 버퍼 초기화
+    memset(m_recvBuffer, 0, sizeof(m_recvBuffer));
 
     m_isRunning = true;
     m_networkThread = CreateThread(NULL, 0, NetworkThread, this, 0, NULL);
@@ -44,7 +77,7 @@ bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
         return false;
     }
 
-    std::cout << "[Client] Successfully connected to server" << std::endl;
+    LogToFile("[Client] Successfully connected to server");
 
     // Scene의 PlayerObject 설정과 동일하게 프리팹 생성
     PlayerObject* playerPrefab = new PlayerObject(nullptr);
@@ -59,26 +92,35 @@ bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
     }
     
     OtherPlayerManager::GetInstance()->Initialize(m_scene);  // Scene 포인터 전달
+    delete playerPrefab;  // 메모리 해제 추가
     return true;
 }
 
 DWORD WINAPI NetworkManager::NetworkThread(LPVOID arg) {
     NetworkManager* network = (NetworkManager*)arg;
+    network->LogToFile("[Thread] Network thread started");
+    
     while (network->m_isRunning) {
         int recvBytes = recv(network->sock, network->m_recvBuffer, sizeof(network->m_recvBuffer), 0);
+        network->LogToFile("[Receive] Received " + std::to_string(recvBytes) + " bytes");
+        
         if (recvBytes <= 0) {
             if (recvBytes == 0) {
                 std::cout << "[Disconnect] Server closed connection" << std::endl;
+                network->LogToFile("[Disconnect] Server closed connection");
             }
             else {
-                std::cout << "[Error] recv failed: " << WSAGetLastError() << std::endl;
+                std::string errorMsg = "[Error] recv failed: " + std::to_string(WSAGetLastError());
+                std::cout << errorMsg << std::endl;
+                network->LogToFile(errorMsg);
             }
             network->m_isRunning = false;
             break;
         }
 
         PacketHeader* header = (PacketHeader*)network->m_recvBuffer;
-        std::cout << "[Receive] Packet type: " << header->type << ", size: " << header->size << std::endl;
+        std::string logMsg = "[Receive] Packet type: " + std::to_string(header->type) + ", size: " + std::to_string(header->size);
+        network->LogToFile(logMsg);
 
         if (header->type == PACKET_PLAYER_UPDATE) {
             PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)network->m_recvBuffer;
@@ -88,49 +130,114 @@ DWORD WINAPI NetworkManager::NetworkThread(LPVOID arg) {
 
         network->ProcessPacket(network->m_recvBuffer);
     }
+    
+    network->LogToFile("[Thread] Network thread ended");
     return 0;
 }
 
 void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
     if (!m_isRunning) return;
 
-    PacketPlayerUpdate pkt;
-    pkt.header.size = sizeof(PacketPlayerUpdate);
-    pkt.header.type = PACKET_PLAYER_UPDATE;
-    pkt.clientID = 0;  // 서버가 알아서 설정할 것이므로 0으로 초기화
-    pkt.x = x;
-    pkt.y = y;
-    pkt.z = z;
-    pkt.rotY = rotY;
+    try {
+        PacketPlayerUpdate pkt;
+        pkt.header.size = sizeof(PacketPlayerUpdate);
+        pkt.header.type = PACKET_PLAYER_UPDATE;
+        pkt.clientID = m_myClientID;
+        pkt.x = x;
+        pkt.y = y;
+        pkt.z = z;
+        pkt.rotY = rotY;
 
-    send(sock, (char*)&pkt, sizeof(pkt), 0);
+        std::string logMsg = "[Send] Player Update: (" + std::to_string(x) + ", " + 
+                            std::to_string(y) + ", " + std::to_string(z) + 
+                            ") rot: " + std::to_string(rotY);
+        LogToFile(logMsg);
+        
+        int sendResult = send(sock, (char*)&pkt, sizeof(pkt), 0);
+        if (sendResult == SOCKET_ERROR) {
+            LogToFile("[Error] Failed to send update: " + std::to_string(WSAGetLastError()));
+            m_isRunning = false;
+        }
+    }
+    catch (const std::exception& e) {
+        LogToFile("[Error] SendPlayerUpdate failed: " + std::string(e.what()));
+        m_isRunning = false;
+    }
 }
 
 void NetworkManager::ProcessPacket(char* buffer) {
     PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
     
     try {
+        if (!OtherPlayerManager::GetInstance()) {
+            LogToFile("[Error] OtherPlayerManager instance is null");
+            return;
+        }
+        
+        if (!m_scene) {
+            LogToFile("[Error] Scene is null");
+            return;
+        }
+
+        std::string logMsg = "[Client] Processing packet type: " + std::to_string(header->type) + 
+                            ", size: " + std::to_string(header->size) + 
+                            ", expected size: " + std::to_string(sizeof(PacketHeader));
+        LogToFile(logMsg);
+        
         switch (header->type) {
             case PACKET_PLAYER_SPAWN: {
                 PacketPlayerSpawn* pkt = reinterpret_cast<PacketPlayerSpawn*>(buffer);
+                logMsg = "[Client] Processing spawn packet for player ID: " + std::to_string(pkt->playerID);
+                LogToFile(logMsg);
+                
+                if (m_myClientID == 0) {
+                    m_myClientID = pkt->playerID;
+                    LogToFile("[Info] Set my client ID to: " + std::to_string(m_myClientID));
+                }
+                
+                if (pkt->playerID == m_myClientID) {
+                    LogToFile("[Info] Ignoring own spawn packet");
+                    break;
+                }
+                
                 if (OtherPlayerManager::GetInstance()) {
-                    OtherPlayerManager::GetInstance()->SpawnOtherPlayer(
-                        pkt->playerID, pkt->x, pkt->y, pkt->z);
+                    try {
+                        OtherPlayerManager::GetInstance()->SpawnOtherPlayer(pkt->playerID, pkt->x, pkt->y, pkt->z);
+                        LogToFile("[Success] Spawned other player " + std::to_string(pkt->playerID));
+                    } catch (const std::exception& e) {
+                        LogToFile("[Error] Failed to spawn other player: " + std::string(e.what()));
+                    }
+                }
+                
+                try {
+                    if (m_scene) {
+                        m_scene->OnUpdate(GameTimer());  // 임시 GameTimer 객체 생성
+                    }
+                }
+                catch (const std::exception& e) {
+                    LogToFile("[Error] Failed to spawn other player: " + std::string(e.what()));
                 }
                 break;
             }
             case PACKET_PLAYER_UPDATE: {
                 PacketPlayerUpdate* pkt = reinterpret_cast<PacketPlayerUpdate*>(buffer);
-                if (OtherPlayerManager::GetInstance()) {
-                    OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
-                        pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
+                if (pkt->clientID != m_myClientID) {
+                    try {
+                        OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
+                            pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
+                    } catch (const std::exception& e) {
+                        LogToFile("[Error] Failed to update other player: " + std::string(e.what()));
+                    }
                 }
                 break;
             }
+            default:
+                std::cout << "[Client] Unknown packet type: " << header->type << std::endl;
+                break;
         }
     }
     catch (const std::exception& e) {
-        std::cout << "[Error] ProcessPacket failed: " << e.what() << std::endl;
+        LogToFile("[Error] ProcessPacket failed: " + std::string(e.what()));
     }
 }
 
@@ -146,4 +253,17 @@ void NetworkManager::Shutdown() {
         sock = INVALID_SOCKET;
     }
     WSACleanup();
+}
+
+void NetworkManager::LogToFile(const std::string& message) {
+    if (!m_logFile.is_open()) return;
+    
+    time_t now = time(0);
+    tm ltm;
+    localtime_s(&ltm, &now);
+    char timestamp[50];
+    sprintf_s(timestamp, "[%02d:%02d:%02d] ", ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
+    
+    m_logFile << timestamp << message << std::endl;
+    m_logFile.flush();
 }

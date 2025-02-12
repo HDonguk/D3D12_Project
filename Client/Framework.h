@@ -28,7 +28,7 @@ public:
 	const wstring& GetCurrentSceneName();
 	Win32Application& GetWin32App();
 
-	void OnNetworkUpdate();  // ©ø¡¿¨¡¢ç¢¯??? ?©ø¢¬¢ç ?©¬¡Æ¢® Hong
+	void OnNetworkUpdate();  // Â©Ã¸Â¡Â¿Â¨Â¡Â¢Ã§Â¢Â¯??? ?Â©Ã¸Â¢Â¬Â¢Ã§ ?Â©Â¬Â¡Ã†Â¢Â® Hong
 private:
 	void GetHardwareAdapter(
 		_In_ IDXGIFactory1* pFactory,

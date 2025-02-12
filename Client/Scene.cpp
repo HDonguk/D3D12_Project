@@ -4,6 +4,7 @@
 #include "string"
 #include "info.h"
 #include "NetworkManager.h"
+#include "OtherPlayerManager.h"
 
 Scene::Scene(UINT width, UINT height, std::wstring name) :
     m_viewport(0.0f, 0.0f, static_cast<float>(width), static_cast<float>(height)),
@@ -319,7 +320,7 @@ void Scene::BuildConstantBuffer(ID3D12Device* device)
     ThrowIfFailed(m_constantBuffer->Map(0, &readRange, &m_mappedData));
 
     for (auto& [key, value] : m_objects) {
-        visit([&device](auto& arg) {arg.BuildConstantBuffer(device); }, value);
+        visit([device](auto& arg) {arg.BuildConstantBuffer(device); }, value);
     }
 }
 
@@ -476,12 +477,16 @@ void Scene::SetDescriptorHeaps(ID3D12GraphicsCommandList* commandList)
 // Update frame-based values.
 void Scene::OnUpdate(GameTimer& gTimer)
 {
-    for (auto& [key, value] : m_objects)
-    {
+    for (auto& [key, value] : m_objects) {
         visit([&gTimer](auto& arg) {arg.OnUpdate(gTimer); }, value);
     }
+    
+    // 다른 플레이어들 업데이트
+    if (auto otherPlayerMgr = OtherPlayerManager::GetInstance()) {
+        otherPlayerMgr->Update(gTimer);
+    }
 
-    //������� ���̴��� ����
+    // ̴��� ����
     memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX)); // ó�� �Ű������� �����ּ�
 }
 
@@ -495,9 +500,14 @@ void Scene::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandLis
     CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_descriptorHeap->GetGPUDescriptorHandleForHeapStart());
     commandList->SetGraphicsRootDescriptorTable(0, hDescriptor);
 
-    for (auto& [key, value] : m_objects)
-    {
-        visit([&device, &commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
+    // 기존 오브젝트 렌더링
+    for (auto& [key, value] : m_objects) {
+        visit([device, commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
+    }
+    
+    // 다른 플레이어들 렌더링
+    if (auto otherPlayerMgr = OtherPlayerManager::GetInstance()) {
+        otherPlayerMgr->Render(device, commandList);
     }
 }
 

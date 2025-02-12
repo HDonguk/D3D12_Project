@@ -72,6 +72,7 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
             std::cout << "\n[Disconnect] Client ID " << clientID << " disconnected" << std::endl;
             std::cout << "  -> Active clients remaining: " << g_clients.size() - 1 << std::endl;
             closesocket(g_clients[clientID].socket);
+            g_clients[clientID].socket = INVALID_SOCKET;
             g_clients.erase(clientID);
             delete ioContext;
             continue;
@@ -85,7 +86,8 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
 
         if (header->type == PACKET_PLAYER_UPDATE) {
             PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)ioContext->buffer;
-
+            pkt->clientID = clientID;  // 클라이언트 ID 설정
+            
             // 이전 위치와 비교
             float oldX = g_clients[clientID].lastUpdate.x;
             float oldY = g_clients[clientID].lastUpdate.y;
@@ -113,6 +115,7 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
             if (WSAGetLastError() != ERROR_IO_PENDING) {
                 std::cout << "[Error] WSARecv failed: " << WSAGetLastError() << std::endl;
                 closesocket(g_clients[clientID].socket);
+                g_clients[clientID].socket = INVALID_SOCKET;
                 g_clients.erase(clientID);
                 delete ioContext;
             }
@@ -140,6 +143,43 @@ void StartReceive(SOCKET clientSocket, int clientID) {
     }
 }
 
+void ProcessNewClient(SOCKET clientSock) {
+    int clientID = g_nextClientID++;
+    g_clients[clientID] = { clientSock, 0, { 0, 0, 0, 0 } };
+    
+    // IOCP에 소켓 연결
+    CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
+    std::cout << "[Connect] New client connected. ID: " << clientID << std::endl;
+    
+    // 새 클라이언트에게 자신의 ID 전송
+    PacketPlayerSpawn spawnPacket = { { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, clientID, 600.0f, 0.0f, 600.0f };
+    send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0);
+    std::cout << "[Spawn] Sent spawn packet to client ID: " << clientID << std::endl;
+
+    Sleep(100);  // 첫 패킷이 처리될 시간을 주기 위해 잠시 대기
+
+    // 기존 클라이언트들의 정보를 새 클라이언트에게 전송
+    for (const auto& [id, client] : g_clients) {
+        if (id != clientID && client.socket != INVALID_SOCKET) {
+            PacketPlayerSpawn otherSpawn = { { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, 
+                id, client.lastUpdate.x, client.lastUpdate.y, client.lastUpdate.z };
+            send(clientSock, (char*)&otherSpawn, sizeof(otherSpawn), 0);
+            std::cout << "[Spawn] Sent existing client " << id << " info to new client " << clientID << std::endl;
+        }
+    }
+    
+    // 새 클라이언트 정보를 기존 클라이언트들에게 전송
+    for (const auto& [id, client] : g_clients) {
+        if (id != clientID && client.socket != INVALID_SOCKET) {
+            send(client.socket, (char*)&spawnPacket, sizeof(spawnPacket), 0);
+            std::cout << "[Spawn] Sent new client " << clientID << " info to client " << id << std::endl;
+        }
+    }
+
+    // 클라이언트의 수신 시작
+    StartReceive(clientSock, clientID);
+}
+
 int main() {
     std::cout << "[Server] Starting server on port " << SERVER_PORT << std::endl;
 
@@ -163,18 +203,7 @@ int main() {
 
     while (true) {
         SOCKET clientSock = accept(listenSock, NULL, NULL);
-        int clientID = g_nextClientID++;
-        g_clients[clientID] = { clientSock, 0, { 0, 0, 0, 0 } };
-        CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
-
-        std::cout << "[Connect] New client connected. ID: " << clientID << std::endl;
-
-        PacketPlayerSpawn spawnPacket = { { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, clientID, 0, 0, 0 };
-        send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0);
-        std::cout << "[Spawn] Sent spawn packet to client ID: " << clientID << std::endl;
-
-        // 클라이언트의 수신 시작
-        StartReceive(clientSock, clientID);
+        ProcessNewClient(clientSock);
     }
 
     closesocket(listenSock);
