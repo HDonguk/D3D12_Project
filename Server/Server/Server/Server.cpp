@@ -144,39 +144,68 @@ void StartReceive(SOCKET clientSocket, int clientID) {
 }
 
 void ProcessNewClient(SOCKET clientSock) {
-    int clientID = g_nextClientID++;
-    g_clients[clientID] = { clientSock, 0, { 0, 0, 0, 0 } };
+    static int nextClientID = 1;  // 정적 변수로 변경
+    int clientID = nextClientID++;
     
-    // IOCP에 소켓 연결
+    ClientInfo newClient;
+    newClient.socket = clientSock;
+    newClient.clientID = clientID;
+    newClient.lastUpdate = { 0 };  // 초기화 추가
+    
+    g_clients[clientID] = newClient;
+    
     CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
-    std::cout << "[Connect] New client connected. ID: " << clientID << std::endl;
+    std::cout << "[연결] 새로운 클라이언트 연결됨. ID: " << clientID << std::endl;
     
-    // 새 클라이언트에게 자신의 ID 전송
-    PacketPlayerSpawn spawnPacket = { { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, clientID, 600.0f, 0.0f, 600.0f };
-    send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0);
-    std::cout << "[Spawn] Sent spawn packet to client ID: " << clientID << std::endl;
+    // 스폰 패킷에 packetID 추가
+    PacketPlayerSpawn spawnPacket;
+    spawnPacket.header.type = PACKET_PLAYER_SPAWN;
+    spawnPacket.header.size = sizeof(PacketPlayerSpawn);
+    spawnPacket.playerID = clientID;
+    spawnPacket.packetID = nextClientID;  // packetID 설정
+    spawnPacket.x = 600.0f;  // 클라이언트별 위치 조정
+    spawnPacket.y = 0.0f;
+    spawnPacket.z = 600.0f;
+    
+    if (send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
+        std::cout << "[오류] 스폰 패킷 전송 실패. 클라이언트 ID: " << clientID << std::endl;
+        return;
+    }
+    std::cout << "[스폰] 클라이언트 " << clientID << "에게 스폰 패킷 전송됨" << std::endl;
 
-    Sleep(100);  // 첫 패킷이 처리될 시간을 주기 위해 잠시 대기
+    Sleep(100);  // 패킷 처리 시간 확보
 
     // 기존 클라이언트들의 정보를 새 클라이언트에게 전송
     for (const auto& [id, client] : g_clients) {
-        if (id != clientID && client.socket != INVALID_SOCKET) {
-            PacketPlayerSpawn otherSpawn = { { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, 
-                id, client.lastUpdate.x, client.lastUpdate.y, client.lastUpdate.z };
-            send(clientSock, (char*)&otherSpawn, sizeof(otherSpawn), 0);
-            std::cout << "[Spawn] Sent existing client " << id << " info to new client " << clientID << std::endl;
+        if (id != clientID) {
+            PacketPlayerSpawn otherSpawn = { 
+                { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, 
+                id, 
+                client.lastUpdate.x,
+                client.lastUpdate.y,
+                client.lastUpdate.z 
+            };
+            if (send(clientSock, (char*)&otherSpawn, sizeof(otherSpawn), 0) == SOCKET_ERROR) {
+                std::cout << "[오류] 기존 클라이언트 정보 전송 실패. ID: " << id << std::endl;
+                continue;
+            }
+            std::cout << "[스폰] 기존 클라이언트 " << id << " 정보를 새 클라이언트 " 
+                      << clientID << "에게 전송" << std::endl;
         }
     }
     
     // 새 클라이언트 정보를 기존 클라이언트들에게 전송
     for (const auto& [id, client] : g_clients) {
-        if (id != clientID && client.socket != INVALID_SOCKET) {
-            send(client.socket, (char*)&spawnPacket, sizeof(spawnPacket), 0);
-            std::cout << "[Spawn] Sent new client " << clientID << " info to client " << id << std::endl;
+        if (id != clientID) {
+            if (send(client.socket, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
+                std::cout << "[오류] 새 클라이언트 정보 전송 실패. 대상 ID: " << id << std::endl;
+                continue;
+            }
+            std::cout << "[스폰] 새 클라이언트 " << clientID << " 정보를 클라이언트 " 
+                      << id << "에게 전송" << std::endl;
         }
     }
 
-    // 클라이언트의 수신 시작
     StartReceive(clientSock, clientID);
 }
 

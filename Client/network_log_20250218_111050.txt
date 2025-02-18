@@ -1,0 +1,14 @@
+[11:10:50] NetworkManager initialized
+[11:10:53] [Info] Found PlayerObject in scene
+[11:10:53] [Client] Connecting to server 127.0.0.1:5000
+[11:10:53] [Client] Successfully connected to server
+[11:10:53] [Thread] Network thread started
+[11:10:53] [Receive] Received 24 bytes
+[11:10:53] [Receive] Packet type: 2, size: 24
+[11:10:53] [Client] Processing packet type: 2, size: 24, expected size: 4
+[11:10:53] [Spawn] Processing spawn packet for ID: 2 at position: (600.000000, 0.000000, 600.000000)
+[11:10:53] [Info] Set my client ID to: 2
+[11:10:53] [Receive] Received 24 bytes
+[11:10:53] [Receive] Packet type: 2, size: 24
+[11:10:53] [Client] Processing packet type: 2, size: 24, expected size: 4
+[11:10:53] [Spawn] Processing spawn packet for ID: 601 at position: (-24.865170, 601.643555, 0.000000)

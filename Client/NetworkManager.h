@@ -5,6 +5,7 @@
 #include "GameTimer.h"
 #include <fstream>
 #include <ctime>
+#include <mutex>
 
 class OtherPlayerManager;
 class Scene;
@@ -31,4 +32,6 @@ private:
     char m_recvBuffer[1024];
     std::ofstream m_logFile;
     int m_myClientID{0};  // 자신의 클라이언트 ID 저장
+    std::mutex m_logMutex;
+    int m_lastReceivedPacketID{0};
 };

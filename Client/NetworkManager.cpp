@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include <ctime>
 #include <cstdio>
+#include <mutex>
 
 NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false), m_myClientID(0) {
     // 로그 파일 생성 (현재 시간을 파일명에 포함)
@@ -148,19 +149,29 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
         pkt.z = z;
         pkt.rotY = rotY;
 
-        std::string logMsg = "[Send] Player Update: (" + std::to_string(x) + ", " + 
-                            std::to_string(y) + ", " + std::to_string(z) + 
-                            ") rot: " + std::to_string(rotY);
-        LogToFile(logMsg);
+        // 로그 기록 실패가 전체 동작에 영향을 주지 않도록 try-catch로 분리
+        try {
+            LogToFile("[Send] Player Update: (" + std::to_string(x) + ", " + 
+                      std::to_string(y) + ", " + std::to_string(z) + 
+                      ") rot: " + std::to_string(rotY));
+        } catch (...) {}
         
         int sendResult = send(sock, (char*)&pkt, sizeof(pkt), 0);
         if (sendResult == SOCKET_ERROR) {
-            LogToFile("[Error] Failed to send update: " + std::to_string(WSAGetLastError()));
-            m_isRunning = false;
+            int error = WSAGetLastError();
+            try {
+                LogToFile("[Error] Failed to send update: " + std::to_string(error));
+            } catch (...) {}
+            
+            if (error != WSAEWOULDBLOCK) {  // 일시적인 에러가 아닐 경우에만 종료
+                m_isRunning = false;
+            }
         }
     }
     catch (const std::exception& e) {
-        LogToFile("[Error] SendPlayerUpdate failed: " + std::string(e.what()));
+        try {
+            LogToFile("[Error] SendPlayerUpdate failed: " + std::string(e.what()));
+        } catch (...) {}
         m_isRunning = false;
     }
 }
@@ -169,6 +180,12 @@ void NetworkManager::ProcessPacket(char* buffer) {
     PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
     
     try {
+        // 패킷 크기 검증 수정
+        if (header->size > sizeof(m_recvBuffer)) {
+            LogToFile("[Error] Packet size too large: " + std::to_string(header->size));
+            return;
+        }
+
         if (!OtherPlayerManager::GetInstance()) {
             LogToFile("[Error] OtherPlayerManager instance is null");
             return;
@@ -187,35 +204,19 @@ void NetworkManager::ProcessPacket(char* buffer) {
         switch (header->type) {
             case PACKET_PLAYER_SPAWN: {
                 PacketPlayerSpawn* pkt = reinterpret_cast<PacketPlayerSpawn*>(buffer);
-                logMsg = "[Client] Processing spawn packet for player ID: " + std::to_string(pkt->playerID);
-                LogToFile(logMsg);
+                LogToFile("[Spawn] Processing spawn packet for ID: " + std::to_string(pkt->playerID) + 
+                         " at position: (" + std::to_string(pkt->x) + ", " + 
+                         std::to_string(pkt->y) + ", " + std::to_string(pkt->z) + ")");
                 
                 if (m_myClientID == 0) {
                     m_myClientID = pkt->playerID;
                     LogToFile("[Info] Set my client ID to: " + std::to_string(m_myClientID));
-                }
-                
-                if (pkt->playerID == m_myClientID) {
-                    LogToFile("[Info] Ignoring own spawn packet");
                     break;
                 }
                 
-                if (OtherPlayerManager::GetInstance()) {
-                    try {
-                        OtherPlayerManager::GetInstance()->SpawnOtherPlayer(pkt->playerID, pkt->x, pkt->y, pkt->z);
-                        LogToFile("[Success] Spawned other player " + std::to_string(pkt->playerID));
-                    } catch (const std::exception& e) {
-                        LogToFile("[Error] Failed to spawn other player: " + std::string(e.what()));
-                    }
-                }
-                
-                try {
-                    if (m_scene) {
-                        m_scene->OnUpdate(GameTimer());  // 임시 GameTimer 객체 생성
-                    }
-                }
-                catch (const std::exception& e) {
-                    LogToFile("[Error] Failed to spawn other player: " + std::string(e.what()));
+                if (pkt->playerID != m_myClientID) {
+                    OtherPlayerManager::GetInstance()->SpawnOtherPlayer(
+                        pkt->playerID, pkt->x, pkt->y, pkt->z);
                 }
                 break;
             }
@@ -256,14 +257,19 @@ void NetworkManager::Shutdown() {
 }
 
 void NetworkManager::LogToFile(const std::string& message) {
-    if (!m_logFile.is_open()) return;
-    
-    time_t now = time(0);
-    tm ltm;
-    localtime_s(&ltm, &now);
-    char timestamp[50];
-    sprintf_s(timestamp, "[%02d:%02d:%02d] ", ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
-    
-    m_logFile << timestamp << message << std::endl;
-    m_logFile.flush();
+    std::lock_guard<std::mutex> lock(m_logMutex);
+    try {
+        if (!m_logFile.is_open()) return;
+        
+        time_t now = time(0);
+        tm ltm;
+        localtime_s(&ltm, &now);
+        char timestamp[50];
+        sprintf_s(timestamp, "[%02d:%02d:%02d] ", ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
+        
+        m_logFile << timestamp << message << std::endl;
+    }
+    catch (...) {
+        // 로그 실패는 무시
+    }
 }

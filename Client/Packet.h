@@ -22,6 +22,7 @@ struct PacketPlayerUpdate {
 
 struct PacketPlayerSpawn {
     PacketHeader header;
+    int packetID;
     int playerID;
     float x, y, z;
 };
