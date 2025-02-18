@@ -42,32 +42,53 @@ void BroadcastPacket(const void* packet, int size, int excludeID = -1) {
             << "), Rotation: " << pkt->rotY << std::endl;
     }
 
+    int targetCount = 0;  // 실제 전송 대상 클라이언트 수
+    for (auto& [id, client] : g_clients) {
+        if (id != excludeID) targetCount++;
+    }
+
     int sentCount = 0;
     for (auto& [id, client] : g_clients) {
         if (id == excludeID) continue;
-        if (send(client.socket, (char*)packet, size, 0) == SOCKET_ERROR) {
-            std::cout << "  -> Failed to send to client " << id << " (Error: " << WSAGetLastError() << ")" << std::endl;
+        
+        int result = send(client.socket, (char*)packet, size, 0);
+        if (result == SOCKET_ERROR) {
+            int error = WSAGetLastError();
+            std::cout << "  -> Failed to send to client " << id << " (Error: " << error << ")" << std::endl;
+            
+            if (error != WSAEWOULDBLOCK) {
+                closesocket(client.socket);
+                g_clients.erase(id);
+            }
         }
         else {
             std::cout << "  -> Successfully sent to client " << id << std::endl;
             sentCount++;
         }
     }
-    std::cout << "  -> Total broadcasts sent: " << sentCount << "/" << g_clients.size() - 1 << std::endl;
+    std::cout << "  -> Total broadcasts sent: " << sentCount << "/" << targetCount << std::endl;
 }
 
 DWORD WINAPI WorkerThread(LPVOID lpParam) {
-    DWORD bytesTransferred;
-    ULONG_PTR completionKey;
-    OVERLAPPED* pOverlapped;
-
-    std::cout << "[Thread] Worker thread started" << std::endl;
-
     while (true) {
+        DWORD bytesTransferred;
+        ULONG_PTR completionKey;
+        OVERLAPPED* pOverlapped;
+        
         BOOL result = GetQueuedCompletionStatus(g_hIOCP, &bytesTransferred, &completionKey, &pOverlapped, INFINITE);
         int clientID = (int)completionKey;
+        
+        if (!pOverlapped) {
+            continue;
+        }
+        
         IOContext* ioContext = CONTAINING_RECORD(pOverlapped, IOContext, overlapped);
-
+        
+        if (g_clients.find(clientID) == g_clients.end()) {
+            if (ioContext) delete ioContext;
+            continue;
+        }
+        
         if (!result || bytesTransferred == 0) {
             std::cout << "\n[Disconnect] Client ID " << clientID << " disconnected" << std::endl;
             std::cout << "  -> Active clients remaining: " << g_clients.size() - 1 << std::endl;
@@ -112,16 +133,15 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
         DWORD recvBytes;
         if (WSARecv(g_clients[clientID].socket, &ioContext->wsaBuf, 1, &recvBytes,
             &ioContext->flags, &ioContext->overlapped, NULL) == SOCKET_ERROR) {
-            if (WSAGetLastError() != ERROR_IO_PENDING) {
-                std::cout << "[Error] WSARecv failed: " << WSAGetLastError() << std::endl;
-                closesocket(g_clients[clientID].socket);
-                g_clients[clientID].socket = INVALID_SOCKET;
-                g_clients.erase(clientID);
+            int error = WSAGetLastError();
+            if (error != ERROR_IO_PENDING && error != WSAEWOULDBLOCK) {
+                std::cout << "[Error] WSARecv failed with error: " << error << std::endl;
                 delete ioContext;
+                return 1;  // 에러 발생 시 1 반환
             }
         }
     }
-    return 0;
+    return 0;  // 정상 종료 시 0 반환
 }
 
 // 클라이언트 연결 시 초기 수신 설정
@@ -135,78 +155,78 @@ void StartReceive(SOCKET clientSocket, int clientID) {
     DWORD recvBytes;
     if (WSARecv(clientSocket, &ioContext->wsaBuf, 1, &recvBytes,
         &ioContext->flags, &ioContext->overlapped, NULL) == SOCKET_ERROR) {
-        if (WSAGetLastError() != ERROR_IO_PENDING) {
-            std::cout << "[Error] Initial WSARecv failed: " << WSAGetLastError() << std::endl;
+        int error = WSAGetLastError();
+        if (error != ERROR_IO_PENDING && error != WSAEWOULDBLOCK) {
+            std::cout << "[Error] Initial WSARecv failed with error: " << error << std::endl;
             delete ioContext;
             return;
         }
     }
 }
 
+void BroadcastNewPlayer(int newClientID, const PacketPlayerSpawn& spawnPacket) {
+    std::cout << "[Broadcast] New player ID: " << newClientID << std::endl;
+    
+    // 새 클라이언트에게 기존 클라이언트 정보 먼저 전송
+    for (const auto& [id, client] : g_clients) {
+        if (id != newClientID) {
+            PacketPlayerSpawn existingClientPacket;
+            existingClientPacket.header.type = PACKET_PLAYER_SPAWN;
+            existingClientPacket.header.size = sizeof(PacketPlayerSpawn);
+            existingClientPacket.playerID = id;
+            existingClientPacket.x = client.lastUpdate.x;
+            existingClientPacket.y = client.lastUpdate.y;
+            existingClientPacket.z = client.lastUpdate.z;
+            
+            if (send(g_clients[newClientID].socket, (char*)&existingClientPacket, sizeof(existingClientPacket), 0) == SOCKET_ERROR) {
+                std::cout << "[오류] 기존 클라이언트 정보 전송 실패. Error: " << WSAGetLastError() << std::endl;
+                continue;
+            }
+            Sleep(10); // 약간의 딜레이 추가
+        }
+    }
+    
+    // 그 다음 기존 클라이언트들에게 새 클라이언트 정보 전송
+    for (const auto& [id, client] : g_clients) {
+        if (id != newClientID) {
+            if (send(client.socket, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
+                std::cout << "[오류] 새 클라이언트 정보 전송 실패. Error: " << WSAGetLastError() << std::endl;
+            }
+            Sleep(10); // 약간의 딜레이 추가
+        }
+    }
+}
+
 void ProcessNewClient(SOCKET clientSock) {
-    static int nextClientID = 1;  // 정적 변수로 변경
-    int clientID = nextClientID++;
+    int clientID = g_nextClientID++;
     
     ClientInfo newClient;
     newClient.socket = clientSock;
     newClient.clientID = clientID;
-    newClient.lastUpdate = { 0 };  // 초기화 추가
+    newClient.lastUpdate = { 0 };
     
     g_clients[clientID] = newClient;
     
     CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
-    std::cout << "[연결] 새로운 클라이언트 연결됨. ID: " << clientID << std::endl;
     
-    // 스폰 패킷에 packetID 추가
+    // StartReceive를 먼저 호출
+    StartReceive(clientSock, clientID);
+    
+    // 그 다음 패킷 전송
     PacketPlayerSpawn spawnPacket;
     spawnPacket.header.type = PACKET_PLAYER_SPAWN;
     spawnPacket.header.size = sizeof(PacketPlayerSpawn);
     spawnPacket.playerID = clientID;
-    spawnPacket.packetID = nextClientID;  // packetID 설정
-    spawnPacket.x = 600.0f;  // 클라이언트별 위치 조정
+    spawnPacket.x = 600.0f + (clientID * 2.0f);
     spawnPacket.y = 0.0f;
     spawnPacket.z = 600.0f;
     
     if (send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
-        std::cout << "[오류] 스폰 패킷 전송 실패. 클라이언트 ID: " << clientID << std::endl;
+        std::cout << "[오류] 스폰 패킷 전송 실패" << std::endl;
         return;
     }
-    std::cout << "[스폰] 클라이언트 " << clientID << "에게 스폰 패킷 전송됨" << std::endl;
-
-    Sleep(100);  // 패킷 처리 시간 확보
-
-    // 기존 클라이언트들의 정보를 새 클라이언트에게 전송
-    for (const auto& [id, client] : g_clients) {
-        if (id != clientID) {
-            PacketPlayerSpawn otherSpawn = { 
-                { sizeof(PacketPlayerSpawn), PACKET_PLAYER_SPAWN }, 
-                id, 
-                client.lastUpdate.x,
-                client.lastUpdate.y,
-                client.lastUpdate.z 
-            };
-            if (send(clientSock, (char*)&otherSpawn, sizeof(otherSpawn), 0) == SOCKET_ERROR) {
-                std::cout << "[오류] 기존 클라이언트 정보 전송 실패. ID: " << id << std::endl;
-                continue;
-            }
-            std::cout << "[스폰] 기존 클라이언트 " << id << " 정보를 새 클라이언트 " 
-                      << clientID << "에게 전송" << std::endl;
-        }
-    }
     
-    // 새 클라이언트 정보를 기존 클라이언트들에게 전송
-    for (const auto& [id, client] : g_clients) {
-        if (id != clientID) {
-            if (send(client.socket, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
-                std::cout << "[오류] 새 클라이언트 정보 전송 실패. 대상 ID: " << id << std::endl;
-                continue;
-            }
-            std::cout << "[스폰] 새 클라이언트 " << clientID << " 정보를 클라이언트 " 
-                      << id << "에게 전송" << std::endl;
-        }
-    }
-
-    StartReceive(clientSock, clientID);
+    BroadcastNewPlayer(clientID, spawnPacket);
 }
 
 int main() {

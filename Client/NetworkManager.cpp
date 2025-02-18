@@ -8,19 +8,34 @@
 #include <mutex>
 
 NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false), m_myClientID(0) {
-    // 로그 파일 생성 (현재 시간을 파일명에 포함)
-    time_t now = time(0);
-    tm ltm;
-    localtime_s(&ltm, &now);
-    char filename[100];
-    sprintf_s(filename, "network_log_%d%02d%02d_%02d%02d%02d.txt",
-        ltm.tm_year + 1900, ltm.tm_mon + 1, ltm.tm_mday,
-        ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
+
     
-    m_logFile.open(filename);
-    if (m_logFile.is_open()) {
-        LogToFile("NetworkManager initialized");
+    try {
+        CreateDirectory(L"logs", NULL);
+        
+        time_t now = time(0);
+        tm ltm;
+        localtime_s(&ltm, &now);
+        char filename[100];
+        sprintf_s(filename, "logs/network_log_%d%02d%02d_%02d%02d%02d.txt",
+            ltm.tm_year + 1900, ltm.tm_mon + 1, ltm.tm_mday,
+            ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
+        
+        m_logFile.open(filename);
+        if (m_logFile.is_open()) {
+            LogToFile("NetworkManager initialized");
+        }
+        else {
+            std::cerr << "Failed to open log file: " << filename << std::endl;
+        }
     }
+    catch (const std::exception& e) {
+        std::cerr << "Failed to initialize NetworkManager: " << e.what() << std::endl;
+    }
+    catch (...) {
+        std::cerr << "Unknown error in NetworkManager initialization" << std::endl;
+    }
+    
 }
 
 NetworkManager::~NetworkManager() {
@@ -83,7 +98,7 @@ bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
     // Scene의 PlayerObject 설정과 동일하게 프리팹 생성
     PlayerObject* playerPrefab = new PlayerObject(nullptr);
     
-    playerPrefab->AddComponent(Position{ 0.f, 0.f, 0.f, 1.f, playerPrefab });
+    playerPrefab->AddComponent(Position{ 600.0f, 0.0f, 600.0f, 1.0f, playerPrefab });  // 서버의 초기 스폰 위치와 동일하게
     playerPrefab->AddComponent(Rotation{ 0.0f, 180.0f, 0.0f, 0.0f, playerPrefab });
     playerPrefab->AddComponent(Scale{ 0.1f, playerPrefab });
     
@@ -92,8 +107,11 @@ bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
         playerPrefab->AddComponent(Mesh{ rm.GetSubMeshData().at("1P(boy-idle).fbx"), playerPrefab });
     }
     
-    OtherPlayerManager::GetInstance()->Initialize(m_scene);  // Scene 포인터 전달
+    OtherPlayerManager::GetInstance()->Initialize(m_scene);
+    OtherPlayerManager::GetInstance()->SetNetworkManager(this);
     delete playerPrefab;  // 메모리 해제 추가
+
+ 
     return true;
 }
 
@@ -101,38 +119,82 @@ DWORD WINAPI NetworkManager::NetworkThread(LPVOID arg) {
     NetworkManager* network = (NetworkManager*)arg;
     network->LogToFile("[Thread] Network thread started");
     
+    int errorCount = 0;
+    const int MAX_ERRORS = 3;  // 최대 연속 에러 허용 횟수
+    const int ERROR_RESET_TIME = 5000;  // 에러 카운트 리셋 시간 (ms)
+    DWORD lastErrorTime = GetTickCount();
+    
     while (network->m_isRunning) {
-        int recvBytes = recv(network->sock, network->m_recvBuffer, sizeof(network->m_recvBuffer), 0);
-        network->LogToFile("[Receive] Received " + std::to_string(recvBytes) + " bytes");
-        
-        if (recvBytes <= 0) {
-            if (recvBytes == 0) {
-                std::cout << "[Disconnect] Server closed connection" << std::endl;
-                network->LogToFile("[Disconnect] Server closed connection");
+        try {
+            fd_set readSet;
+            FD_ZERO(&readSet);
+            FD_SET(network->sock, &readSet);
+            
+            timeval timeout;
+            timeout.tv_sec = 0;
+            timeout.tv_usec = 100000;  // 100ms
+            
+            int selectResult = select(0, &readSet, nullptr, nullptr, &timeout);
+            if (selectResult == SOCKET_ERROR) {
+                int error = WSAGetLastError();
+                network->LogToFile("[Error] Select failed with error: " + std::to_string(error));
+                if (error != WSAEWOULDBLOCK) {
+                    if (++errorCount >= MAX_ERRORS) {
+                        network->LogToFile("[Critical] Too many select errors, closing connection");
+                        break;
+                    }
+                    Sleep(1000);  // 에러 발생 시 잠시 대기
+                }
+                continue;
             }
-            else {
-                std::string errorMsg = "[Error] recv failed: " + std::to_string(WSAGetLastError());
-                std::cout << errorMsg << std::endl;
-                network->LogToFile(errorMsg);
+            
+            if (selectResult == 0) continue;  // 타임아웃
+
+            int recvBytes = recv(network->sock, network->m_recvBuffer, sizeof(network->m_recvBuffer), 0);
+            if (recvBytes <= 0) {
+                int error = WSAGetLastError();
+                if (error != WSAEWOULDBLOCK) {
+                    network->LogToFile("[Error] Receive failed: " + std::to_string(error));
+                    if (++errorCount >= MAX_ERRORS) {
+                        network->LogToFile("[Critical] Too many receive errors, closing connection");
+                        break;
+                    }
+                    Sleep(1000);
+                }
+                continue;
             }
-            network->m_isRunning = false;
-            break;
+
+            // 패킷 헤더 검증
+            PacketHeader* header = (PacketHeader*)network->m_recvBuffer;
+            if (recvBytes < sizeof(PacketHeader) || recvBytes != header->size) {
+                network->LogToFile("[Error] Invalid packet size or header");
+                if (++errorCount >= MAX_ERRORS) {
+                    network->LogToFile("[Critical] Too many invalid packets, closing connection");
+                    break;
+                }
+                continue;
+            }
+
+            // 성공적인 패킷 수신 시 에러 카운트 관리
+            DWORD currentTime = GetTickCount();
+            if (currentTime - lastErrorTime > ERROR_RESET_TIME) {
+                errorCount = 0;  // 일정 시간 동안 에러가 없었다면 카운트 리셋
+                lastErrorTime = currentTime;
+            }
+
+            network->ProcessPacket(network->m_recvBuffer);
         }
-
-        PacketHeader* header = (PacketHeader*)network->m_recvBuffer;
-        std::string logMsg = "[Receive] Packet type: " + std::to_string(header->type) + ", size: " + std::to_string(header->size);
-        network->LogToFile(logMsg);
-
-        if (header->type == PACKET_PLAYER_UPDATE) {
-            PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)network->m_recvBuffer;
-            std::cout << "[Update] Other player position: (" << pkt->x << ", " << pkt->y << ", " << pkt->z
-                << ") rot: " << pkt->rotY << std::endl;
+        catch (const std::exception& e) {
+            network->LogToFile("[Error] Exception in network thread: " + std::string(e.what()));
+            if (++errorCount >= MAX_ERRORS) {
+                network->LogToFile("[Critical] Too many exceptions, closing connection");
+                break;
+            }
+            Sleep(1000);
         }
-
-        network->ProcessPacket(network->m_recvBuffer);
     }
     
-    network->LogToFile("[Thread] Network thread ended");
+    network->LogToFile("[Thread] Network thread ended normally");
     return 0;
 }
 
@@ -177,69 +239,56 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
 }
 
 void NetworkManager::ProcessPacket(char* buffer) {
-    PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-    
+    PacketHeader* header = (PacketHeader*)buffer;
+    LogToFile("[ProcessPacket] Starting to process packet type: " + std::to_string(header->type));
+
     try {
-        // 패킷 크기 검증 수정
-        if (header->size > sizeof(m_recvBuffer)) {
-            LogToFile("[Error] Packet size too large: " + std::to_string(header->size));
-            return;
-        }
-
-        if (!OtherPlayerManager::GetInstance()) {
-            LogToFile("[Error] OtherPlayerManager instance is null");
-            return;
-        }
-        
-        if (!m_scene) {
-            LogToFile("[Error] Scene is null");
-            return;
-        }
-
-        std::string logMsg = "[Client] Processing packet type: " + std::to_string(header->type) + 
-                            ", size: " + std::to_string(header->size) + 
-                            ", expected size: " + std::to_string(sizeof(PacketHeader));
-        LogToFile(logMsg);
-        
         switch (header->type) {
             case PACKET_PLAYER_SPAWN: {
-                PacketPlayerSpawn* pkt = reinterpret_cast<PacketPlayerSpawn*>(buffer);
-                LogToFile("[Spawn] Processing spawn packet for ID: " + std::to_string(pkt->playerID) + 
-                         " at position: (" + std::to_string(pkt->x) + ", " + 
-                         std::to_string(pkt->y) + ", " + std::to_string(pkt->z) + ")");
-                
+                PacketPlayerSpawn* pkt = (PacketPlayerSpawn*)buffer;
+                LogToFile("[Spawn] Processing spawn packet for ID: " + std::to_string(pkt->playerID));
+
                 if (m_myClientID == 0) {
                     m_myClientID = pkt->playerID;
-                    LogToFile("[Info] Set my client ID to: " + std::to_string(m_myClientID));
-                    break;
+                    LogToFile("[Spawn] Set my client ID to: " + std::to_string(m_myClientID));
+                    return;
                 }
-                
-                if (pkt->playerID != m_myClientID) {
-                    OtherPlayerManager::GetInstance()->SpawnOtherPlayer(
-                        pkt->playerID, pkt->x, pkt->y, pkt->z);
+
+                if (pkt->playerID == m_myClientID) {
+                    LogToFile("[Spawn] Ignoring own spawn packet");
+                    return;
                 }
+
+                OtherPlayerManager::GetInstance()->SpawnOtherPlayer(
+                    pkt->playerID, pkt->x, pkt->y, pkt->z);
+                LogToFile("[Spawn] Successfully spawned other player: " + std::to_string(pkt->playerID));
                 break;
             }
+
             case PACKET_PLAYER_UPDATE: {
-                PacketPlayerUpdate* pkt = reinterpret_cast<PacketPlayerUpdate*>(buffer);
-                if (pkt->clientID != m_myClientID) {
-                    try {
-                        OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
-                            pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
-                    } catch (const std::exception& e) {
-                        LogToFile("[Error] Failed to update other player: " + std::string(e.what()));
-                    }
+                PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)buffer;
+                if (pkt->clientID == m_myClientID) {
+                    LogToFile("[Update] Ignoring own update packet");
+                    return;
                 }
+
+                OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
+                    pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
+                LogToFile("[Update] Successfully updated player: " + std::to_string(pkt->clientID));
                 break;
             }
+
             default:
-                std::cout << "[Client] Unknown packet type: " << header->type << std::endl;
+                LogToFile("[Warning] Unknown packet type: " + std::to_string(header->type));
                 break;
         }
     }
     catch (const std::exception& e) {
-        LogToFile("[Error] ProcessPacket failed: " + std::string(e.what()));
+        LogToFile("[Error] Failed to process packet: " + std::string(e.what()));
+        // 예외를 상위로 전파하지 않고 여기서 처리
     }
+
+    LogToFile("[ProcessPacket] Finished processing packet type: " + std::to_string(header->type));
 }
 
 void NetworkManager::Shutdown() {
@@ -257,9 +306,19 @@ void NetworkManager::Shutdown() {
 }
 
 void NetworkManager::LogToFile(const std::string& message) {
+    // 로그 기록 비활성화
+    
+    static bool logFailureReported = false;
+    
     std::lock_guard<std::mutex> lock(m_logMutex);
     try {
-        if (!m_logFile.is_open()) return;
+        if (!m_logFile.is_open()) {
+            if (!logFailureReported) {
+                std::cerr << "Log file is not open" << std::endl;
+                logFailureReported = true;
+            }
+            return;
+        }
         
         time_t now = time(0);
         tm ltm;
@@ -268,8 +327,14 @@ void NetworkManager::LogToFile(const std::string& message) {
         sprintf_s(timestamp, "[%02d:%02d:%02d] ", ltm.tm_hour, ltm.tm_min, ltm.tm_sec);
         
         m_logFile << timestamp << message << std::endl;
+        m_logFile.flush();
     }
-    catch (...) {
-        // 로그 실패는 무시
+    catch (const std::exception& e) {
+        if (!logFailureReported) {
+            std::cerr << "Failed to write to log file: " << e.what() << std::endl;
+            logFailureReported = true;
+        }
     }
+    
 }
+
