@@ -481,12 +481,6 @@ void Scene::OnUpdate(GameTimer& gTimer)
         visit([&gTimer](auto& arg) {arg.OnUpdate(gTimer); }, value);
     }
     
-    // 다른 플레이어들 업데이트
-    if (auto otherPlayerMgr = OtherPlayerManager::GetInstance()) {
-        otherPlayerMgr->Update(gTimer);
-    }
-
-    // ̴��� ����
     memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX)); // ó�� �Ű������� �����ּ�
 }
 
@@ -505,10 +499,6 @@ void Scene::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandLis
         visit([device, commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
     }
     
-    // 다른 플레이어들 렌더링
-    if (auto otherPlayerMgr = OtherPlayerManager::GetInstance()) {
-        otherPlayerMgr->Render(device, commandList);
-    }
 }
 
 void Scene::OnResize(UINT width, UINT height)
@@ -640,23 +630,3 @@ ID3D12DescriptorHeap* Scene::GetDescriptorHeap()
     return m_descriptorHeap.Get();
 }
 
-void Scene::UpdateNetwork(NetworkManager& networkManager)
-{
-    auto& player = GetObj<PlayerObject>(L"PlayerObject");
-    auto& position = player.GetComponent<Position>();
-    auto& rotation = player.GetComponent<Rotation>();
-
-    XMFLOAT4 pos = position.mFloat4;
-    XMFLOAT4 rot = rotation.mFloat4;
-
-    static XMFLOAT4 lastPos = pos;
-    static XMFLOAT4 lastRot = rot;
-
-    if (memcmp(&lastPos, &pos, sizeof(XMFLOAT4)) != 0 ||
-        memcmp(&lastRot, &rot, sizeof(XMFLOAT4)) != 0)
-    {
-        networkManager.SendPlayerUpdate(pos.x, pos.y, pos.z, rot.y);
-        lastPos = pos;
-        lastRot = rot;
-    }
-}

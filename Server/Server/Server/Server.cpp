@@ -10,6 +10,7 @@
 
 #define MAX_CLIENTS 2
 #define SERVER_PORT 5000
+#define MAX_PACKET_SIZE 1024  // IOContext의 buffer 크기와 동일하게 설정
 
 HANDLE g_hIOCP;  // IOCP 핸들 전역 변수 추가
 int g_nextClientID = 1;  // 클라이언트 ID 카운터도 필요
@@ -33,6 +34,11 @@ struct IOContext {
 
 void BroadcastPacket(const void* packet, int size, int excludeID = -1) {
     PacketHeader* header = (PacketHeader*)packet;
+    if (size < sizeof(PacketHeader) || size != header->size) {
+        std::cout << "[Error] Invalid packet size in broadcast" << std::endl;
+        return;
+    }
+
     std::cout << "\n[Broadcast] Type: " << header->type << ", Size: " << size << std::endl;
     std::cout << "  -> Excluding client ID: " << excludeID << std::endl;
 
@@ -91,41 +97,65 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
         
         if (!result || bytesTransferred == 0) {
             std::cout << "\n[Disconnect] Client ID " << clientID << " disconnected" << std::endl;
-            std::cout << "  -> Active clients remaining: " << g_clients.size() - 1 << std::endl;
             closesocket(g_clients[clientID].socket);
-            g_clients[clientID].socket = INVALID_SOCKET;
             g_clients.erase(clientID);
+            std::cout << "  -> Active clients remaining: " << g_clients.size() << std::endl;
             delete ioContext;
             continue;
         }
 
         // 패킷 처리
         PacketHeader* header = (PacketHeader*)ioContext->buffer;
+        if (header->size == 0 || header->size > MAX_PACKET_SIZE || header->type <= 0) {
+            std::cout << "[Error] Invalid packet header - Size: " << header->size 
+                      << ", Type: " << header->type << std::endl;
+            continue;
+        }
+
+        if (bytesTransferred < sizeof(PacketHeader)) {
+            std::cout << "[Error] Invalid packet size (smaller than header)" << std::endl;
+            continue;
+        }
+
+        // 완전한 패킷을 수신했는지 확인
+        if (bytesTransferred < header->size) {
+            std::cout << "[Error] Incomplete packet received" << std::endl;
+            continue;
+        }
+
         std::cout << "\n[Receive] From client " << clientID << std::endl;
         std::cout << "  -> Packet type: " << header->type << std::endl;
         std::cout << "  -> Packet size: " << header->size << std::endl;
 
-        if (header->type == PACKET_PLAYER_UPDATE) {
-            PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)ioContext->buffer;
-            pkt->clientID = clientID;  // 클라이언트 ID 설정
-            
-            // 이전 위치와 비교
-            float oldX = g_clients[clientID].lastUpdate.x;
-            float oldY = g_clients[clientID].lastUpdate.y;
-            float oldZ = g_clients[clientID].lastUpdate.z;
-            float oldRotY = g_clients[clientID].lastUpdate.rotY;
-
-            // 새 위치 저장
-            g_clients[clientID].lastUpdate = *pkt;
-
-            std::cout << "  -> Client " << clientID << " position update:" << std::endl;
-            std::cout << "     Previous: (" << oldX << ", " << oldY << ", " << oldZ << ") rot: " << oldRotY << std::endl;
-            std::cout << "     Current:  (" << pkt->x << ", " << pkt->y << ", " << pkt->z << ") rot: " << pkt->rotY << std::endl;
-
-            BroadcastPacket(pkt, sizeof(PacketPlayerUpdate), clientID);
+        switch (header->type) {
+            case PACKET_PLAYER_UPDATE: {
+                if (header->size != sizeof(PacketPlayerUpdate)) {
+                    std::cout << "[Error] Invalid PLAYER_UPDATE packet size" << std::endl;
+                    break;
+                }
+                PacketPlayerUpdate* pkt = (PacketPlayerUpdate*)ioContext->buffer;
+                pkt->clientID = clientID;
+                g_clients[clientID].lastUpdate = *pkt;
+                BroadcastPacket(pkt, sizeof(PacketPlayerUpdate), clientID);
+                break;
+            }
+            case PACKET_PLAYER_SPAWN: {
+                if (header->size != sizeof(PacketPlayerSpawn)) {
+                    std::cout << "[Error] Invalid PLAYER_SPAWN packet size" << std::endl;
+                    break;
+                }
+                // 스폰 패킷 처리 로직 추가
+                PacketPlayerSpawn* pkt = (PacketPlayerSpawn*)ioContext->buffer;
+                BroadcastPacket(pkt, sizeof(PacketPlayerSpawn), clientID);
+                break;
+            }
+            default:
+                std::cout << "  -> Unknown packet type" << std::endl;
+                break;
         }
 
         // 다음 수신 준비
+        memset(ioContext->buffer, 0, sizeof(ioContext->buffer));  // 버퍼 초기화 추가
         memset(&ioContext->overlapped, 0, sizeof(OVERLAPPED));
         ioContext->wsaBuf.len = sizeof(ioContext->buffer);
         ioContext->flags = 0;
@@ -137,7 +167,7 @@ DWORD WINAPI WorkerThread(LPVOID lpParam) {
             if (error != ERROR_IO_PENDING && error != WSAEWOULDBLOCK) {
                 std::cout << "[Error] WSARecv failed with error: " << error << std::endl;
                 delete ioContext;
-                return 1;  // 에러 발생 시 1 반환
+                continue;
             }
         }
     }
@@ -165,68 +195,91 @@ void StartReceive(SOCKET clientSocket, int clientID) {
 }
 
 void BroadcastNewPlayer(int newClientID, const PacketPlayerSpawn& spawnPacket) {
-    std::cout << "[Broadcast] New player ID: " << newClientID << std::endl;
+    std::cout << "\n[BroadcastNewPlayer] New client ID: " << newClientID << std::endl;
     
-    // 새 클라이언트에게 기존 클라이언트 정보 먼저 전송
+    // 새 클라이언트에게 기존 클라이언트들의 정보 전송
     for (const auto& [id, client] : g_clients) {
         if (id != newClientID) {
             PacketPlayerSpawn existingClientPacket;
             existingClientPacket.header.type = PACKET_PLAYER_SPAWN;
             existingClientPacket.header.size = sizeof(PacketPlayerSpawn);
+            existingClientPacket.packetID = 0;
             existingClientPacket.playerID = id;
             existingClientPacket.x = client.lastUpdate.x;
             existingClientPacket.y = client.lastUpdate.y;
             existingClientPacket.z = client.lastUpdate.z;
-            
-            if (send(g_clients[newClientID].socket, (char*)&existingClientPacket, sizeof(existingClientPacket), 0) == SOCKET_ERROR) {
-                std::cout << "[오류] 기존 클라이언트 정보 전송 실패. Error: " << WSAGetLastError() << std::endl;
-                continue;
-            }
-            Sleep(10); // 약간의 딜레이 추가
+            existingClientPacket.rotY = client.lastUpdate.rotY;
+            existingClientPacket.velX = client.lastUpdate.velX;
+            existingClientPacket.velY = client.lastUpdate.velY;
+            existingClientPacket.velZ = client.lastUpdate.velZ;
+            existingClientPacket.isGrounded = client.lastUpdate.isGrounded;
+            existingClientPacket.isColliding = client.lastUpdate.isColliding;
+            existingClientPacket.animationState = client.lastUpdate.animationState;
+            existingClientPacket.scale = 0.1f;
+
+            std::cout << "  -> Sending existing client " << id << " info to new client" << std::endl;
+            send(g_clients[newClientID].socket, (char*)&existingClientPacket, sizeof(existingClientPacket), 0);
         }
     }
     
-    // 그 다음 기존 클라이언트들에게 새 클라이언트 정보 전송
-    for (const auto& [id, client] : g_clients) {
-        if (id != newClientID) {
-            if (send(client.socket, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
-                std::cout << "[오류] 새 클라이언트 정보 전송 실패. Error: " << WSAGetLastError() << std::endl;
-            }
-            Sleep(10); // 약간의 딜레이 추가
-        }
-    }
+    // 기존 클라이언트들에게 새 클라이언트 정보 전송
+    std::cout << "  -> Broadcasting new client info to existing clients" << std::endl;
+    BroadcastPacket(&spawnPacket, sizeof(spawnPacket), newClientID);
 }
 
 void ProcessNewClient(SOCKET clientSock) {
     int clientID = g_nextClientID++;
-    
+    std::cout << "[Info] ProcessNewClient" << std::endl;
     ClientInfo newClient;
     newClient.socket = clientSock;
     newClient.clientID = clientID;
     newClient.lastUpdate = { 0 };
+    newClient.lastUpdate.header.type = PACKET_PLAYER_UPDATE;
+    newClient.lastUpdate.header.size = sizeof(PacketPlayerUpdate);
+    newClient.lastUpdate.clientID = clientID;
     
     g_clients[clientID] = newClient;
     
+    // 맵에 제대로 추가되었는지 검증
+    if (g_clients.find(clientID) == g_clients.end()) {
+        std::cout << "[Error] Failed to add client to map" << std::endl;
+        return;
+    }
+    
+    std::cout << "[ProcessNewClient] " << clientID << " added to map. Total clients: " << g_clients.size() << std::endl;
+    
     CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
     
-    // StartReceive를 먼저 호출
-    StartReceive(clientSock, clientID);
-    
-    // 그 다음 패킷 전송
+    // 스폰 패킷 생성 및 전송
     PacketPlayerSpawn spawnPacket;
     spawnPacket.header.type = PACKET_PLAYER_SPAWN;
     spawnPacket.header.size = sizeof(PacketPlayerSpawn);
+    spawnPacket.packetID = 0;  // 패킷 ID 초기화
     spawnPacket.playerID = clientID;
     spawnPacket.x = 600.0f + (clientID * 2.0f);
     spawnPacket.y = 0.0f;
     spawnPacket.z = 600.0f;
+    spawnPacket.rotY = 180.0f;  // 기본 회전값
+    spawnPacket.velX = 0.0f;    // 초기 속도 0
+    spawnPacket.velY = 0.0f;
+    spawnPacket.velZ = 0.0f;
+    spawnPacket.isGrounded = true;  // 초기에는 바닥에 있음
+    spawnPacket.isColliding = false; // 초기에는 충돌 없음
+    spawnPacket.animationState = 0;  // 초기 애니메이션 상태
+    spawnPacket.scale = 0.1f;  // 기본 스케일
+
     
+    // 새 클라이언트에게 자신의 ID 전송
     if (send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
-        std::cout << "[오류] 스폰 패킷 전송 실패" << std::endl;
+        std::cout << "[Error] Failed to send spawn packet to new client" << std::endl;
         return;
     }
     
+    // 다른 클라이언트들에게 새 클라이언트 정보 전송
     BroadcastNewPlayer(clientID, spawnPacket);
+    
+    // 수신 시작
+    StartReceive(clientSock, clientID);
 }
 
 int main() {

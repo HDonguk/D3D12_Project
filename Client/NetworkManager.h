@@ -20,6 +20,7 @@ public:
     void Shutdown();
     bool IsRunning() const { return m_isRunning; }
     void LogToFile(const std::string& message);
+    void Update(GameTimer& gTimer, Scene* scene);
 
 private:
     static DWORD WINAPI NetworkThread(LPVOID arg);
@@ -34,4 +35,10 @@ private:
     int m_myClientID{0};  // 자신의 클라이언트 ID 저장
     std::mutex m_logMutex;
     int m_lastReceivedPacketID{0};
+    float m_updateTimer{0.0f};
+    XMFLOAT4 m_lastPosition{};
+    XMFLOAT4 m_lastRotation{};
+    XMFLOAT4 m_lastVelocity{};
+    int m_lastAnimState{0};
+    std::string m_lastAnimName{};
 };

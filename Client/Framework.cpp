@@ -39,6 +39,7 @@ int Framework::Run(HINSTANCE hInstance, int nCmdShow)
             CheckCollision();
             LateUpdate(m_Timer);
             OnRender();
+            networkManager.Update(m_Timer, &m_scenes[m_currentSceneName]);
         }
     }
     OnDestroy();
@@ -87,7 +88,16 @@ void Framework::OnUpdate(GameTimer& gTimer)
         static float networkTimer = 0.0f;
         networkTimer += gTimer.DeltaTime();
         if (networkTimer >= 1.0f / 60.0f) {
-            m_scenes[L"BaseScene"].UpdateNetwork(networkManager);
+            auto& player = m_scenes[L"BaseScene"].GetObj<PlayerObject>(L"PlayerObject");
+            auto& position = player.GetComponent<Position>();
+            auto& rotation = player.GetComponent<Rotation>();
+            
+            networkManager.SendPlayerUpdate(
+                position.mFloat4.x,
+                position.mFloat4.y,
+                position.mFloat4.z,
+                rotation.mFloat4.y
+            );
             networkTimer = 0.0f;
         }
     }

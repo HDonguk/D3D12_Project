@@ -164,6 +164,11 @@ DWORD WINAPI NetworkManager::NetworkThread(LPVOID arg) {
                 continue;
             }
 
+            if (recvBytes > sizeof(network->m_recvBuffer)) {
+                network->LogToFile("[Error] Receive buffer overflow: " + std::to_string(recvBytes) + " bytes");
+                return 1;
+            }
+
             // 패킷 헤더 검증
             PacketHeader* header = (PacketHeader*)network->m_recvBuffer;
             if (recvBytes < sizeof(PacketHeader) || recvBytes != header->size) {
@@ -202,6 +207,7 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
     if (!m_isRunning) return;
 
     try {
+        auto& player = m_scene->GetObj<PlayerObject>(L"PlayerObject");
         PacketPlayerUpdate pkt;
         pkt.header.size = sizeof(PacketPlayerUpdate);
         pkt.header.type = PACKET_PLAYER_UPDATE;
@@ -210,24 +216,32 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
         pkt.y = y;
         pkt.z = z;
         pkt.rotY = rotY;
-
-        // 로그 기록 실패가 전체 동작에 영향을 주지 않도록 try-catch로 분리
-        try {
-            LogToFile("[Send] Player Update: (" + std::to_string(x) + ", " + 
-                      std::to_string(y) + ", " + std::to_string(z) + 
-                      ") rot: " + std::to_string(rotY));
-        } catch (...) {}
         
+        auto& velocity = player.GetComponent<Velocity>();
+        auto& gravity = player.GetComponent<Gravity>();
+        auto& collider = player.GetComponent<Collider>();
+        auto& animation = player.GetComponent<Animation>();
+        
+        pkt.velX = velocity.mFloat4.x;
+        pkt.velY = velocity.mFloat4.y;
+        pkt.velZ = velocity.mFloat4.z;
+        pkt.isGrounded = (XMVectorGetY(player.GetComponent<Position>().GetXMVECTOR()) <= 0.0f);
+        pkt.isColliding = collider.mAABB.Intersects(collider.mLocalAABB);
+        pkt.animationState = (animation.mCurrentFileName == "1P(boy-idle).fbx") ? 0 :
+                            (animation.mCurrentFileName == "1P(boy-jump).fbx") ? 1 :
+                            (animation.mCurrentFileName == "boy_run_fix.fbx") ? 2 : 3;  // walk
+
         int sendResult = send(sock, (char*)&pkt, sizeof(pkt), 0);
         if (sendResult == SOCKET_ERROR) {
             int error = WSAGetLastError();
             try {
                 LogToFile("[Error] Failed to send update: " + std::to_string(error));
+                if (error != WSAEWOULDBLOCK) {
+                    LogToFile("[Critical] Shutting down network connection");
+                    Shutdown();  // 명시적으로 연결 종료
+                    return;
+                }
             } catch (...) {}
-            
-            if (error != WSAEWOULDBLOCK) {  // 일시적인 에러가 아닐 경우에만 종료
-                m_isRunning = false;
-            }
         }
     }
     catch (const std::exception& e) {
@@ -336,5 +350,57 @@ void NetworkManager::LogToFile(const std::string& message) {
         }
     }
     
+}
+
+void NetworkManager::Update(GameTimer& gTimer, Scene* scene) {
+    if (!m_scene || !m_isRunning) return;
+
+    auto& player = scene->GetObj<PlayerObject>(L"PlayerObject");
+    auto& position = player.GetComponent<Position>();
+    auto& rotation = player.GetComponent<Rotation>();
+    auto& velocity = player.GetComponent<Velocity>();
+    auto& animation = player.GetComponent<Animation>();
+    
+    const float POSITION_THRESHOLD = 0.01f;
+    const float ROTATION_THRESHOLD = 0.1f;
+    const float VELOCITY_THRESHOLD = 0.01f;
+    
+    bool positionChanged = abs(position.mFloat4.x - m_lastPosition.x) > POSITION_THRESHOLD ||
+                          abs(position.mFloat4.y - m_lastPosition.y) > POSITION_THRESHOLD ||
+                          abs(position.mFloat4.z - m_lastPosition.z) > POSITION_THRESHOLD;
+                          
+    bool rotationChanged = abs(rotation.mFloat4.y - m_lastRotation.y) > ROTATION_THRESHOLD;
+
+    bool velocityChanged = abs(velocity.mFloat4.x - m_lastVelocity.x) > VELOCITY_THRESHOLD ||
+                          abs(velocity.mFloat4.y - m_lastVelocity.y) > VELOCITY_THRESHOLD ||
+                          abs(velocity.mFloat4.z - m_lastVelocity.z) > VELOCITY_THRESHOLD;
+
+    bool animationChanged = (animation.mCurrentFileName == "1P(boy-idle).fbx") ? 0 :
+                           (animation.mCurrentFileName == "1P(boy-jump).fbx") ? 1 :
+                           (animation.mCurrentFileName == "boy_run_fix.fbx") ? 2 : 3;  // walk
+
+    animationChanged = (animationChanged != m_lastAnimState);
+
+    m_updateTimer += gTimer.DeltaTime();
+    const float UPDATE_INTERVAL = 0.1f;
+
+    if (positionChanged || rotationChanged || velocityChanged || 
+        animationChanged || m_updateTimer >= UPDATE_INTERVAL) {
+        
+        SendPlayerUpdate(
+            position.mFloat4.x, 
+            position.mFloat4.y, 
+            position.mFloat4.z,
+            rotation.mFloat4.y
+        );
+        
+        m_lastPosition = position.mFloat4;
+        m_lastRotation = rotation.mFloat4;
+        m_lastVelocity = velocity.mFloat4;
+        m_lastAnimState = (animation.mCurrentFileName == "1P(boy-idle).fbx") ? 0 :
+                         (animation.mCurrentFileName == "1P(boy-jump).fbx") ? 1 :
+                         (animation.mCurrentFileName == "boy_run_fix.fbx") ? 2 : 3;  // walk
+        m_updateTimer = 0.0f;
+    }
 }
 

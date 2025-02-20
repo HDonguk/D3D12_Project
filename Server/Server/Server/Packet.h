@@ -1,5 +1,6 @@
 #pragma once
 #include <winsock2.h>
+#include <string>
 #include <vector>
 
 #pragma pack(push, 1)
@@ -16,14 +17,24 @@ enum PacketType {
 struct PacketPlayerUpdate {
     PacketHeader header;
     int clientID;
-    float x, y, z;
-    float rotY;
+    float x, y, z;          // Position
+    float rotY;             // Rotation
+    float velX, velY, velZ; // Velocity
+    int animationState;     // Current animation state
+    bool isGrounded;        // Gravity/ground check
+    bool isColliding;       // Collision state
 };
 
 struct PacketPlayerSpawn {
     PacketHeader header;
     int packetID;
     int playerID;
-    float x, y, z;
+    float x, y, z;          // Position
+    float rotY;             // Rotation
+    float velX, velY, velZ; // Velocity
+    int animationState;     // Current animation state
+    bool isGrounded;        // Gravity/ground check
+    bool isColliding;       // Collision state
+    float scale;            // Player scale (needed for spawn)
 };
 #pragma pack(pop)

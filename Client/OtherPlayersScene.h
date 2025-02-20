@@ -20,17 +20,13 @@ public:
         playerPrefab->AddComponent(Scale{ 0.1f, playerPrefab });
         playerPrefab->AddComponent(Mesh{ subMeshData.at("1P(boy-idle).fbx"), playerPrefab });
         
-        OtherPlayerManager::GetInstance()->Initialize(playerPrefab);
+        delete playerPrefab;  
+        
+        OtherPlayerManager::GetInstance()->Initialize(this);
     }
 
     void OnUpdate(GameTimer& gTimer) override {
         Scene::OnUpdate(gTimer);
-        
-        // 다른 플레이어들 업데이트
-        auto& otherPlayers = OtherPlayerManager::GetInstance()->GetPlayers();
-        for (auto& [id, player] : otherPlayers) {
-            player->OnUpdate(gTimer);
-        }
     }
 
     void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override {

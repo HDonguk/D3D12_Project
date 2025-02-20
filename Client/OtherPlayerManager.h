@@ -65,18 +65,12 @@ public:
     }
 
     void Update(GameTimer& timer) {
-        // 대기 중인 스폰 처리
+        // 대기 중인 스폰 처리만 남김
         for (const auto& spawn : m_pendingSpawns) {
             std::wstring objectName = L"OtherPlayer" + std::to_wstring(spawn.clientID);
             m_currentScene->AddObj(objectName, *spawn.player);
         }
         m_pendingSpawns.clear();
-
-        for (auto& [id, player] : otherPlayers) {
-            if (player) {
-                player->OnUpdate(timer);
-            }
-        }
     }
 
     void Render(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) {
