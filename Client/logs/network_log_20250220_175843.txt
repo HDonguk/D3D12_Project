@@ -1,0 +1,11 @@
+[17:58:43] NetworkManager initialized
+[17:58:46] [Info] Found PlayerObject in scene
+[17:58:46] [Client] Connecting to server 127.0.0.1:5000
+[17:58:46] [Client] Successfully connected to server
+[17:58:46] [Thread] Network thread started
+[17:58:46] [ProcessPacket] Starting to process packet type: 2
+[17:58:46] [Spawn] Processing spawn packet for ID: 1
+[17:58:46] [Spawn] Set my client ID to: 1
+[17:58:46] [ProcessPacket] Finished processing packet type: 2
+[17:58:55] [ProcessPacket] Starting to process packet type: 2
+[17:58:55] [Spawn] Processing spawn packet for ID: 2

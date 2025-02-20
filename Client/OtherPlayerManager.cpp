@@ -4,18 +4,37 @@
 OtherPlayerManager* OtherPlayerManager::instance = nullptr;
 
 void OtherPlayerManager::SpawnOtherPlayer(int clientID) {
-    std::lock_guard<std::mutex> lock(m_mutex);
-    
     if (otherPlayers.find(clientID) != otherPlayers.end()) {
         m_networkManager->LogToFile("[OtherPlayerManager] Player already exists: " + std::to_string(clientID));
         return;
     }
 
     try {
+        m_networkManager->LogToFile("[OtherPlayerManager] Getting OtherPlayer object from scene...");
         auto& player = m_currentScene->GetObj<PlayerObject>(L"OtherPlayer");
+        
+        m_networkManager->LogToFile("[OtherPlayerManager] Starting component checks...");
+        if (!player.FindComponent<Position>()) {
+            m_networkManager->LogToFile("[OtherPlayerManager] Position component missing");
+            throw std::runtime_error("Position component not found");
+        }
+        if (!player.FindComponent<Rotation>()) {
+            m_networkManager->LogToFile("[OtherPlayerManager] Rotation component missing");
+            throw std::runtime_error("Rotation component not found");
+        }
+        if (!player.FindComponent<Mesh>()) {
+            m_networkManager->LogToFile("[OtherPlayerManager] Mesh component missing");
+            throw std::runtime_error("Mesh component not found");
+        }
+        if (!player.FindComponent<Texture>()) {
+            m_networkManager->LogToFile("[OtherPlayerManager] Texture component missing");
+            throw std::runtime_error("Texture component not found");
+        }
+        
+        m_networkManager->LogToFile("[OtherPlayerManager] All components found, setting player active");
         player.SetActive(true);
         otherPlayers[clientID] = &player;
-        m_networkManager->LogToFile("[OtherPlayerManager] Spawned player " + std::to_string(clientID));
+        m_networkManager->LogToFile("[OtherPlayerManager] Successfully spawned player " + std::to_string(clientID));
     }
     catch (const std::exception& e) {
         m_networkManager->LogToFile("[OtherPlayerManager] Failed to spawn player: " + std::string(e.what()));
@@ -23,20 +42,21 @@ void OtherPlayerManager::SpawnOtherPlayer(int clientID) {
 }
 
 void OtherPlayerManager::UpdateOtherPlayer(int clientID, float x, float y, float z, float rotY) {
-    std::lock_guard<std::mutex> lock(m_mutex);
+   
     
     auto it = otherPlayers.find(clientID);
     if (it == otherPlayers.end()) {
-        // 뮤텍스를 해제한 후 SpawnOtherPlayer 호출
-        lock.~lock_guard();  // 현재 락 해제
+
         SpawnOtherPlayer(clientID);
         return;
     }
 
     auto* player = it->second;
     auto& position = player->GetComponent<Position>();
-    position.mFloat4 = XMFLOAT4(x, y, z, 1.0f);
     auto& rotation = player->GetComponent<Rotation>();
+    
+    // 네트워크에서 받은 위치와 회전값만 업데이트
+    position.mFloat4 = XMFLOAT4(x, y, z, 1.0f);
     rotation.mFloat4 = XMFLOAT4(0.0f, rotY, 0.0f, 0.0f);
 }
 

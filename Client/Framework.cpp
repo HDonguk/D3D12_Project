@@ -2,6 +2,7 @@
 #include "Framework.h"
 #include "DXSampleHelper.h"
 #include <DirectXColors.h>
+#include "OtherPlayerManager.h"
 
 Framework::Framework(HINSTANCE hInstance, int nCmdShow, UINT width, UINT height, std::wstring name) :
     m_frameIndex(0),
@@ -71,6 +72,10 @@ void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
     
     // Scene이 생성된 후 NetworkManager 초기화
     networkManager.Initialize("127.0.0.1", 5000, &m_scenes[L"BaseScene"]);
+    
+    // OtherPlayerManager 초기화 추가
+    OtherPlayerManager::GetInstance()->SetScene(&m_scenes[L"BaseScene"]);
+    OtherPlayerManager::GetInstance()->SetNetworkManager(&networkManager);
     
     // Command List 실행
     ThrowIfFailed(m_commandList->Close());

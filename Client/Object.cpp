@@ -180,6 +180,8 @@ void PlayerObject::LateUpdate(GameTimer& gTimer)
 
 void PlayerObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
+    if (!IsActive()) return;  // 활성화 상태 체크 추가
+    
     CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_root->GetDescriptorHeap()->GetGPUDescriptorHandleForHeapStart());
     hDescriptor.Offset(1 + GetComponent<Texture>().mDescriptorStartIndex, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV));
     commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
