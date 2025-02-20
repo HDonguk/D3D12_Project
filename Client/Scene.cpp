@@ -53,6 +53,21 @@ void Scene::BuildObjects(ID3D12Device* device)
     objectPtr->AddComponent(Gravity{ 2.f, objectPtr });
     objectPtr->AddComponent(Collider{ 0.f, 0.f, 0.f, 4.f, 50.f, 4.f, objectPtr });
 
+    // 다른 플레이어 미리 생성 (초기에는 비활성화)
+    AddObj(L"OtherPlayer", PlayerObject{ this });
+    objectPtr = &GetObj<PlayerObject>(L"OtherPlayer");
+    objectPtr->AddComponent(Position{ 600.f, 0.f, 600.f, 1.f, objectPtr });
+    objectPtr->AddComponent(Velocity{ 0.f, 0.f, 0.f, 0.f, objectPtr });
+    objectPtr->AddComponent(Rotation{ 0.0f, 180.0f, 0.0f, 0.0f, objectPtr });
+    objectPtr->AddComponent(Rotate{ 0.0f, 0.0f, 0.0f, 0.0f, objectPtr });
+    objectPtr->AddComponent(Scale{ 0.1f, objectPtr });
+    objectPtr->AddComponent(Mesh{ subMeshData.at("1P(boy-idle).fbx"), objectPtr });
+    objectPtr->AddComponent(Texture{ m_subTextureData.at(L"boy"), objectPtr });
+    objectPtr->AddComponent(Animation{ animData, objectPtr });
+    objectPtr->AddComponent(Gravity{ 2.f, objectPtr });
+    objectPtr->AddComponent(Collider{ 0.f, 0.f, 0.f, 4.f, 50.f, 4.f, objectPtr });
+    objectPtr->SetActive(false);  // 초기에는 비활성화
+    
     AddObj(L"CameraObject", CameraObject{ 70.f, this });
     objectPtr = &GetObj<CameraObject>(L"CameraObject");
     objectPtr->AddComponent(Position{ 0.f, 0.f, 0.f, 0.f, objectPtr });
@@ -629,4 +644,5 @@ ID3D12DescriptorHeap* Scene::GetDescriptorHeap()
 {
     return m_descriptorHeap.Get();
 }
+
 

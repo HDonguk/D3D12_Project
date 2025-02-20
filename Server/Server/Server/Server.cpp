@@ -194,53 +194,41 @@ void StartReceive(SOCKET clientSocket, int clientID) {
     }
 }
 
-void BroadcastNewPlayer(int newClientID, const PacketPlayerSpawn& spawnPacket) {
+void BroadcastNewPlayer(int newClientID) {
     std::cout << "\n[BroadcastNewPlayer] New client ID: " << newClientID << std::endl;
     
-    // 새 클라이언트에게 기존 클라이언트들의 정보 전송
+    // 새 클라이언트에게 기존 클라이언트들의 ID만 전송
     for (const auto& [id, client] : g_clients) {
         if (id != newClientID) {
             PacketPlayerSpawn existingClientPacket;
             existingClientPacket.header.type = PACKET_PLAYER_SPAWN;
             existingClientPacket.header.size = sizeof(PacketPlayerSpawn);
-            existingClientPacket.packetID = 0;
             existingClientPacket.playerID = id;
-            existingClientPacket.x = client.lastUpdate.x;
-            existingClientPacket.y = client.lastUpdate.y;
-            existingClientPacket.z = client.lastUpdate.z;
-            existingClientPacket.rotY = client.lastUpdate.rotY;
-            existingClientPacket.velX = client.lastUpdate.velX;
-            existingClientPacket.velY = client.lastUpdate.velY;
-            existingClientPacket.velZ = client.lastUpdate.velZ;
-            existingClientPacket.isGrounded = client.lastUpdate.isGrounded;
-            existingClientPacket.isColliding = client.lastUpdate.isColliding;
-            existingClientPacket.animationState = client.lastUpdate.animationState;
-            existingClientPacket.scale = 0.1f;
-
-            std::cout << "  -> Sending existing client " << id << " info to new client" << std::endl;
+            
             send(g_clients[newClientID].socket, (char*)&existingClientPacket, sizeof(existingClientPacket), 0);
         }
     }
     
-    // 기존 클라이언트들에게 새 클라이언트 정보 전송
-    std::cout << "  -> Broadcasting new client info to existing clients" << std::endl;
-    BroadcastPacket(&spawnPacket, sizeof(spawnPacket), newClientID);
+    // 기존 클라이언트들에게 새 클라이언트 ID 전송
+    PacketPlayerSpawn newClientPacket;
+    newClientPacket.header.type = PACKET_PLAYER_SPAWN;
+    newClientPacket.header.size = sizeof(PacketPlayerSpawn);
+    newClientPacket.playerID = newClientID;
+    
+    BroadcastPacket(&newClientPacket, sizeof(newClientPacket), newClientID);
 }
 
 void ProcessNewClient(SOCKET clientSock) {
     int clientID = g_nextClientID++;
     std::cout << "[Info] ProcessNewClient" << std::endl;
+    
     ClientInfo newClient;
     newClient.socket = clientSock;
     newClient.clientID = clientID;
     newClient.lastUpdate = { 0 };
-    newClient.lastUpdate.header.type = PACKET_PLAYER_UPDATE;
-    newClient.lastUpdate.header.size = sizeof(PacketPlayerUpdate);
-    newClient.lastUpdate.clientID = clientID;
     
     g_clients[clientID] = newClient;
     
-    // 맵에 제대로 추가되었는지 검증
     if (g_clients.find(clientID) == g_clients.end()) {
         std::cout << "[Error] Failed to add client to map" << std::endl;
         return;
@@ -250,35 +238,20 @@ void ProcessNewClient(SOCKET clientSock) {
     
     CreateIoCompletionPort((HANDLE)clientSock, g_hIOCP, clientID, 0);
     
-    // 스폰 패킷 생성 및 전송
+    // 새 클라이언트에게 자신의 ID 전송
     PacketPlayerSpawn spawnPacket;
     spawnPacket.header.type = PACKET_PLAYER_SPAWN;
     spawnPacket.header.size = sizeof(PacketPlayerSpawn);
-    spawnPacket.packetID = 0;  // 패킷 ID 초기화
     spawnPacket.playerID = clientID;
-    spawnPacket.x = 600.0f + (clientID * 2.0f);
-    spawnPacket.y = 0.0f;
-    spawnPacket.z = 600.0f;
-    spawnPacket.rotY = 180.0f;  // 기본 회전값
-    spawnPacket.velX = 0.0f;    // 초기 속도 0
-    spawnPacket.velY = 0.0f;
-    spawnPacket.velZ = 0.0f;
-    spawnPacket.isGrounded = true;  // 초기에는 바닥에 있음
-    spawnPacket.isColliding = false; // 초기에는 충돌 없음
-    spawnPacket.animationState = 0;  // 초기 애니메이션 상태
-    spawnPacket.scale = 0.1f;  // 기본 스케일
-
     
-    // 새 클라이언트에게 자신의 ID 전송
     if (send(clientSock, (char*)&spawnPacket, sizeof(spawnPacket), 0) == SOCKET_ERROR) {
         std::cout << "[Error] Failed to send spawn packet to new client" << std::endl;
         return;
     }
     
-    // 다른 클라이언트들에게 새 클라이언트 정보 전송
-    BroadcastNewPlayer(clientID, spawnPacket);
+    // 다른 클라이언트들과 정보 교환
+    BroadcastNewPlayer(clientID);
     
-    // 수신 시작
     StartReceive(clientSock, clientID);
 }
 

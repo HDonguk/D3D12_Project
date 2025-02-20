@@ -95,23 +95,6 @@ bool NetworkManager::Initialize(const char* serverIP, int port, Scene* scene) {
 
     LogToFile("[Client] Successfully connected to server");
 
-    // Scene의 PlayerObject 설정과 동일하게 프리팹 생성
-    PlayerObject* playerPrefab = new PlayerObject(nullptr);
-    
-    playerPrefab->AddComponent(Position{ 600.0f, 0.0f, 600.0f, 1.0f, playerPrefab });  // 서버의 초기 스폰 위치와 동일하게
-    playerPrefab->AddComponent(Rotation{ 0.0f, 180.0f, 0.0f, 0.0f, playerPrefab });
-    playerPrefab->AddComponent(Scale{ 0.1f, playerPrefab });
-    
-    if (m_scene) {
-        auto& rm = m_scene->GetResourceManager();
-        playerPrefab->AddComponent(Mesh{ rm.GetSubMeshData().at("1P(boy-idle).fbx"), playerPrefab });
-    }
-    
-    OtherPlayerManager::GetInstance()->Initialize(m_scene);
-    OtherPlayerManager::GetInstance()->SetNetworkManager(this);
-    delete playerPrefab;  // 메모리 해제 추가
-
- 
     return true;
 }
 
@@ -207,7 +190,6 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
     if (!m_isRunning) return;
 
     try {
-        auto& player = m_scene->GetObj<PlayerObject>(L"PlayerObject");
         PacketPlayerUpdate pkt;
         pkt.header.size = sizeof(PacketPlayerUpdate);
         pkt.header.type = PACKET_PLAYER_UPDATE;
@@ -216,39 +198,14 @@ void NetworkManager::SendPlayerUpdate(float x, float y, float z, float rotY) {
         pkt.y = y;
         pkt.z = z;
         pkt.rotY = rotY;
-        
-        auto& velocity = player.GetComponent<Velocity>();
-        auto& gravity = player.GetComponent<Gravity>();
-        auto& collider = player.GetComponent<Collider>();
-        auto& animation = player.GetComponent<Animation>();
-        
-        pkt.velX = velocity.mFloat4.x;
-        pkt.velY = velocity.mFloat4.y;
-        pkt.velZ = velocity.mFloat4.z;
-        pkt.isGrounded = (XMVectorGetY(player.GetComponent<Position>().GetXMVECTOR()) <= 0.0f);
-        pkt.isColliding = collider.mAABB.Intersects(collider.mLocalAABB);
-        pkt.animationState = (animation.mCurrentFileName == "1P(boy-idle).fbx") ? 0 :
-                            (animation.mCurrentFileName == "1P(boy-jump).fbx") ? 1 :
-                            (animation.mCurrentFileName == "boy_run_fix.fbx") ? 2 : 3;  // walk
 
         int sendResult = send(sock, (char*)&pkt, sizeof(pkt), 0);
         if (sendResult == SOCKET_ERROR) {
-            int error = WSAGetLastError();
-            try {
-                LogToFile("[Error] Failed to send update: " + std::to_string(error));
-                if (error != WSAEWOULDBLOCK) {
-                    LogToFile("[Critical] Shutting down network connection");
-                    Shutdown();  // 명시적으로 연결 종료
-                    return;
-                }
-            } catch (...) {}
+            LogToFile("[Error] Failed to send update packet");
         }
     }
     catch (const std::exception& e) {
-        try {
-            LogToFile("[Error] SendPlayerUpdate failed: " + std::string(e.what()));
-        } catch (...) {}
-        m_isRunning = false;
+        LogToFile("[Error] Exception in SendPlayerUpdate: " + std::string(e.what()));
     }
 }
 
@@ -265,17 +222,16 @@ void NetworkManager::ProcessPacket(char* buffer) {
                 if (m_myClientID == 0) {
                     m_myClientID = pkt->playerID;
                     LogToFile("[Spawn] Set my client ID to: " + std::to_string(m_myClientID));
-                    return;
                 }
-
-                if (pkt->playerID == m_myClientID) {
-                    LogToFile("[Spawn] Ignoring own spawn packet");
-                    return;
+                else if (pkt->playerID != m_myClientID) {
+                    try {
+                        OtherPlayerManager::GetInstance()->SpawnOtherPlayer(pkt->playerID);
+                        LogToFile("[Spawn] Successfully spawned other player: " + std::to_string(pkt->playerID));
+                    }
+                    catch (const std::exception& e) {
+                        LogToFile("[Error] Failed to spawn other player: " + std::string(e.what()));
+                    }
                 }
-
-                OtherPlayerManager::GetInstance()->SpawnOtherPlayer(
-                    pkt->playerID, pkt->x, pkt->y, pkt->z);
-                LogToFile("[Spawn] Successfully spawned other player: " + std::to_string(pkt->playerID));
                 break;
             }
 
@@ -358,48 +314,17 @@ void NetworkManager::Update(GameTimer& gTimer, Scene* scene) {
     auto& player = scene->GetObj<PlayerObject>(L"PlayerObject");
     auto& position = player.GetComponent<Position>();
     auto& rotation = player.GetComponent<Rotation>();
-    auto& velocity = player.GetComponent<Velocity>();
-    auto& animation = player.GetComponent<Animation>();
     
-    const float POSITION_THRESHOLD = 0.01f;
-    const float ROTATION_THRESHOLD = 0.1f;
-    const float VELOCITY_THRESHOLD = 0.01f;
-    
-    bool positionChanged = abs(position.mFloat4.x - m_lastPosition.x) > POSITION_THRESHOLD ||
-                          abs(position.mFloat4.y - m_lastPosition.y) > POSITION_THRESHOLD ||
-                          abs(position.mFloat4.z - m_lastPosition.z) > POSITION_THRESHOLD;
-                          
-    bool rotationChanged = abs(rotation.mFloat4.y - m_lastRotation.y) > ROTATION_THRESHOLD;
-
-    bool velocityChanged = abs(velocity.mFloat4.x - m_lastVelocity.x) > VELOCITY_THRESHOLD ||
-                          abs(velocity.mFloat4.y - m_lastVelocity.y) > VELOCITY_THRESHOLD ||
-                          abs(velocity.mFloat4.z - m_lastVelocity.z) > VELOCITY_THRESHOLD;
-
-    bool animationChanged = (animation.mCurrentFileName == "1P(boy-idle).fbx") ? 0 :
-                           (animation.mCurrentFileName == "1P(boy-jump).fbx") ? 1 :
-                           (animation.mCurrentFileName == "boy_run_fix.fbx") ? 2 : 3;  // walk
-
-    animationChanged = (animationChanged != m_lastAnimState);
-
     m_updateTimer += gTimer.DeltaTime();
-    const float UPDATE_INTERVAL = 0.1f;
+    const float UPDATE_INTERVAL = 0.1f;  // 100ms마다 업데이트
 
-    if (positionChanged || rotationChanged || velocityChanged || 
-        animationChanged || m_updateTimer >= UPDATE_INTERVAL) {
-        
+    if (m_updateTimer >= UPDATE_INTERVAL) {
         SendPlayerUpdate(
             position.mFloat4.x, 
             position.mFloat4.y, 
             position.mFloat4.z,
             rotation.mFloat4.y
         );
-        
-        m_lastPosition = position.mFloat4;
-        m_lastRotation = rotation.mFloat4;
-        m_lastVelocity = velocity.mFloat4;
-        m_lastAnimState = (animation.mCurrentFileName == "1P(boy-idle).fbx") ? 0 :
-                         (animation.mCurrentFileName == "1P(boy-jump).fbx") ? 1 :
-                         (animation.mCurrentFileName == "boy_run_fix.fbx") ? 2 : 3;  // walk
         m_updateTimer = 0.0f;
     }
 }
