@@ -111,6 +111,11 @@ DWORD WINAPI Server::WorkerThread(LPVOID arg) {
             continue;
         }
 
+        if (result) {
+            std::cout << "[WorkerThread] Received data - Bytes: " << bytesTransferred 
+                      << ", ClientID: " << completionKey << std::endl;
+        }
+
         // 패킷 처리
         PacketHeader* header = (PacketHeader*)ioContext->buffer;
         if (header->size == 0 || header->size > MAX_PACKET_SIZE || header->type <= 0) {
@@ -293,7 +298,8 @@ void Server::Update() {
 
 void Server::ProcessNewClient(SOCKET clientSock) {
     int clientID = m_nextClientID++;
-    std::cout << "[Info] ProcessNewClient" << std::endl;
+    std::cout << "\n[ProcessNewClient] New connection accepted" << std::endl;
+    std::cout << "  -> Assigning client ID: " << clientID << std::endl;
     
     ClientInfo newClient;
     newClient.socket = clientSock;
@@ -301,14 +307,6 @@ void Server::ProcessNewClient(SOCKET clientSock) {
     newClient.lastUpdate = { 0 };
     
     m_clients[clientID] = newClient;
-    
-    if (m_clients.find(clientID) == m_clients.end()) {
-        std::cout << "[Error] Failed to add client to map" << std::endl;
-        return;
-    }
-    
-    std::cout << "[ProcessNewClient] " << clientID << " added to map. Total clients: " << m_clients.size() << std::endl;
-    
     CreateIoCompletionPort((HANDLE)clientSock, m_hIOCP, clientID, 0);
     
     // 새 클라이언트에게 자신의 ID 전송
@@ -321,17 +319,16 @@ void Server::ProcessNewClient(SOCKET clientSock) {
         std::cout << "[Error] Failed to send spawn packet to new client" << std::endl;
         return;
     }
+    std::cout << "  -> Sent initial spawn packet to client " << clientID << std::endl;
     
-    // 다른 클라이언트들과 정보 교환
     BroadcastNewPlayer(clientID);
-    
     StartReceive(clientSock, clientID);
 }
 
 void Server::BroadcastNewPlayer(int newClientID) {
     std::cout << "\n[BroadcastNewPlayer] New client ID: " << newClientID << std::endl;
     
-    // 새 클라이언트에게 기존 클라이언트들의 ID만 전송
+    // 새 클라이언트에게 기존 클라이언트들의 정보 전송
     for (const auto& [id, client] : m_clients) {
         if (id != newClientID) {
             PacketPlayerSpawn existingClientPacket;
@@ -339,11 +336,17 @@ void Server::BroadcastNewPlayer(int newClientID) {
             existingClientPacket.header.size = sizeof(PacketPlayerSpawn);
             existingClientPacket.playerID = id;
             
-            send(m_clients[newClientID].socket, (char*)&existingClientPacket, sizeof(existingClientPacket), 0);
+            // 새 클라이언트에게 기존 클라이언트 정보 전송
+            int result = send(m_clients[newClientID].socket, (char*)&existingClientPacket, sizeof(existingClientPacket), 0);
+            if (result == SOCKET_ERROR) {
+                std::cout << "[Error] Failed to send existing client info to new client" << std::endl;
+            } else {
+                std::cout << "  -> Sent existing client " << id << " info to new client " << newClientID << std::endl;
+            }
         }
     }
     
-    // 기존 클라이언트들에게 새 클라이언트 ID 전송
+    // 기존 클라이언트들에게 새 클라이언트 정보 전송
     PacketPlayerSpawn newClientPacket;
     newClientPacket.header.type = PACKET_PLAYER_SPAWN;
     newClientPacket.header.size = sizeof(PacketPlayerSpawn);
