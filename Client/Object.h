@@ -116,15 +116,26 @@ class TigerObject : public Object
 public:
 	TigerObject() = default;
 	TigerObject(Scene* root);
+	
+	void UpdateFromNetwork(float x, float y, float z, float rotY) {
+		GetComponent<Position>().SetXMVECTOR(XMVectorSet(x, y, z, 1.0f));
+		GetComponent<Rotation>().SetXMVECTOR(XMVectorSet(0.0f, rotY, 0.0f, 0.0f));
+	}
+	
+	void SetTigerID(int id) { m_tigerID = id; }
+	int GetTigerID() const { return m_tigerID; }
+
 	void OnUpdate(GameTimer& gTimer) override;
 	void LateUpdate(GameTimer& gTimer) override;
 	void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override;
 	void TigerBehavior(GameTimer& gTimer);
 	void RandomVelocity(GameTimer& gTimer);
+
 private:
 	XMMATRIX mRotation;
 	float mTimer;
 	XMFLOAT3 mTempVelocity;
+	int m_tigerID{0};
 };
 
 class StoneObject : public Object

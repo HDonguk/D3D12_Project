@@ -1,0 +1,18 @@
+[15:28:21] NetworkManager initialized
+[15:28:24] [Info] Found PlayerObject in scene
+[15:28:24] [Client] Connecting to server 127.0.0.1:5000
+[15:28:24] [Client] Successfully connected to server
+[15:28:24] [Thread] Network thread started
+[15:28:24] [ProcessPacket] Starting to process packet type: 2
+[15:28:24] [Spawn] Processing spawn packet for ID: 2
+[15:28:24] [Spawn] Set my client ID to: 2
+[15:28:24] [ProcessPacket] Finished processing packet type: 2
+[15:28:24] [ProcessPacket] Starting to process packet type: 2
+[15:28:24] [Spawn] Processing spawn packet for ID: 1
+[15:28:24] [OtherPlayerManager] Getting OtherPlayer object from scene...
+[15:28:24] [OtherPlayerManager] Starting component checks...
+[15:28:24] [OtherPlayerManager] All components found, setting player active
+[15:28:24] [OtherPlayerManager] Successfully spawned player 1
+[15:28:24] [Spawn] Successfully spawned other player: 1
+[15:28:24] [ProcessPacket] Finished processing packet type: 2
+[15:28:46] [Thread] Network thread ended normally

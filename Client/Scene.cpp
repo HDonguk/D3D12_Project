@@ -125,6 +125,7 @@ void Scene::BuildObjects(ID3D12Device* device)
             objectPtr->AddComponent(Animation{ animData, objectPtr });
             objectPtr->AddComponent(Gravity{ 1.f, objectPtr });
             objectPtr->AddComponent(Collider{ 0.f, 0.f, 0.f, 2.f, 50.f, 10.f, objectPtr });
+            objectPtr->SetActive(false);  // 초기에는 비활성화
         }
     }
 }

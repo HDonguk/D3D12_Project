@@ -154,6 +154,7 @@
     <ClCompile Include="SkinnedData.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Win32Application.cpp" />
+    <ClCompile Include="TigerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="SkinnedData.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Info.h" />
+    <ClInclude Include="TigerManager.h" />
     <ClInclude Include="Win32Application.h" />
   </ItemGroup>
   <ItemGroup>

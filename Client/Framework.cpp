@@ -3,6 +3,7 @@
 #include "DXSampleHelper.h"
 #include <DirectXColors.h>
 #include "OtherPlayerManager.h"
+#include "TigerManager.h"
 
 Framework::Framework(HINSTANCE hInstance, int nCmdShow, UINT width, UINT height, std::wstring name) :
     m_frameIndex(0),
@@ -76,6 +77,10 @@ void Framework::OnInit(HINSTANCE hInstance, int nCmdShow)
     // OtherPlayerManager 초기화 추가
     OtherPlayerManager::GetInstance()->SetScene(&m_scenes[L"BaseScene"]);
     OtherPlayerManager::GetInstance()->SetNetworkManager(&networkManager);
+    
+    // TigerManager 초기화 추가
+    TigerManager::GetInstance()->SetScene(&m_scenes[L"BaseScene"]);
+    TigerManager::GetInstance()->SetNetworkManager(&networkManager);
     
     // Command List 실행
     ThrowIfFailed(m_commandList->Close());

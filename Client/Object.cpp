@@ -548,7 +548,11 @@ void TreeObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comma
 
 }
 
-TigerObject::TigerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }, mTimer{ 10.f }
+TigerObject::TigerObject(Scene* root) 
+    : Object(root)
+    , mRotation(XMMatrixIdentity())
+    , mTimer(10.f)
+    , mTempVelocity(0.f, 0.f, 0.f) 
 {
 }
 

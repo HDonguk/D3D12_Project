@@ -2,9 +2,24 @@
 C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Packet.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
   (소스 파일 'Server.cpp'을(를) 컴파일하는 중)
   
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\TigerManager.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'Server.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'Server.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(100,36): warning C4244: '인수': 'ULONG_PTR'에서 'const _Kty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(100,36): warning C4244:         with
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(100,36): warning C4244:         [
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(100,36): warning C4244:             _Kty=int
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(100,36): warning C4244:         ]
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(107,43): warning C4244: '인수': 'ULONG_PTR'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(108,37): warning C4244: '인수': 'ULONG_PTR'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(137,42): warning C4244: '인수': 'ULONG_PTR'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\Server\Server.cpp(146,39): warning C4244: '인수': 'ULONG_PTR'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다.
-  43 of 225 functions (19.1%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+  192 of 359 functions (53.5%) were compiled, the rest were copied from previous compilation.
+    142 functions were new in current compilation
+    42 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Server.vcxproj -> C:\Users\pc\Desktop\H\D3D12_Project\Server\Server\x64\Release\Server.exe

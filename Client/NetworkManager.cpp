@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cstdio>
 #include <mutex>
+#include "TigerManager.h"
 
 NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false), m_myClientID(0) {
 
@@ -245,6 +246,32 @@ void NetworkManager::ProcessPacket(char* buffer) {
                 OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
                     pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
                 LogToFile("[Update] Successfully updated player: " + std::to_string(pkt->clientID));
+                break;
+            }
+
+            case TIGER_SPAWN: {
+                auto* packet = reinterpret_cast<TigerSpawnPacket*>(buffer);
+                TigerManager::GetInstance()->SpawnTiger(
+                    packet->tigerID,
+                    packet->x, packet->y, packet->z
+                );
+                break;
+            }
+
+            case TIGER_UPDATE: {
+                auto* packet = reinterpret_cast<TigerUpdatePacket*>(buffer);
+                TigerManager::GetInstance()->UpdateTiger(
+                    packet->tigerID,
+                    packet->x, packet->y, packet->z,
+                    packet->rotY
+                );
+                break;
+            }
+
+            case TIGER_REMOVE: {
+                auto* packet = reinterpret_cast<PacketHeader*>(buffer);
+                int tigerID = *reinterpret_cast<int*>(buffer + sizeof(PacketHeader));
+                TigerManager::GetInstance()->RemoveTiger(tigerID);
                 break;
             }
 

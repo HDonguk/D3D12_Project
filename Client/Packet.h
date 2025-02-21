@@ -10,7 +10,10 @@ struct PacketHeader {
 
 enum PacketType {
     PACKET_PLAYER_UPDATE = 1,
-    PACKET_PLAYER_SPAWN = 2
+    PACKET_PLAYER_SPAWN = 2,
+    TIGER_SPAWN = 3,
+    TIGER_UPDATE = 4,
+    TIGER_REMOVE = 5
 };
 
 struct PacketPlayerUpdate {
@@ -23,5 +26,20 @@ struct PacketPlayerUpdate {
 struct PacketPlayerSpawn {
     PacketHeader header;
     int playerID;     // 클라이언트 ID만 필요
+};
+
+struct TigerSpawnPacket {
+    unsigned char size;
+    unsigned char type;
+    int tigerID;
+    float x, y, z;
+};
+
+struct TigerUpdatePacket {
+    unsigned char size;
+    unsigned char type;
+    int tigerID;
+    float x, y, z;
+    float rotY;
 };
 #pragma pack(pop)
