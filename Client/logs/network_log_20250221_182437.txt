@@ -1,0 +1,1584 @@
+[18:24:37] NetworkManager initialized
+[18:24:40] [Info] Found PlayerObject in scene
+[18:24:40] [Client] Connecting to server 127.0.0.1:5000
+[18:24:40] [Client] Successfully connected to server
+[18:24:40] [Thread] Network thread started
+[18:24:40] [ProcessPacket] Starting to process packet type: 2
+[18:24:40] [Spawn] Processing spawn packet for ID: 1
+[18:24:40] [Spawn] Set my client ID to: 1
+[18:24:40] [ProcessPacket] Finished processing packet type: 2
+[18:24:48] [ProcessPacket] Starting to process packet type: 2
+[18:24:48] [Spawn] Processing spawn packet for ID: 2
+[18:24:48] [OtherPlayerManager] Getting OtherPlayer object from scene...
+[18:24:48] [OtherPlayerManager] Starting component checks...
+[18:24:48] [OtherPlayerManager] All components found, setting player active
+[18:24:48] [OtherPlayerManager] Successfully spawned player 2
+[18:24:48] [Spawn] Successfully spawned other player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 2
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:48] [ProcessPacket] Starting to process packet type: 1
+[18:24:48] [Update] Successfully updated player: 2
+[18:24:48] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:49] [ProcessPacket] Starting to process packet type: 1
+[18:24:49] [Update] Successfully updated player: 2
+[18:24:49] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:50] [ProcessPacket] Starting to process packet type: 1
+[18:24:50] [Update] Successfully updated player: 2
+[18:24:50] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:51] [ProcessPacket] Starting to process packet type: 1
+[18:24:51] [Update] Successfully updated player: 2
+[18:24:51] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:52] [ProcessPacket] Starting to process packet type: 1
+[18:24:52] [Update] Successfully updated player: 2
+[18:24:52] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:53] [ProcessPacket] Starting to process packet type: 1
+[18:24:53] [Update] Successfully updated player: 2
+[18:24:53] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:54] [ProcessPacket] Starting to process packet type: 1
+[18:24:54] [Update] Successfully updated player: 2
+[18:24:54] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:55] [ProcessPacket] Starting to process packet type: 1
+[18:24:55] [Update] Successfully updated player: 2
+[18:24:55] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:56] [ProcessPacket] Starting to process packet type: 1
+[18:24:56] [Update] Successfully updated player: 2
+[18:24:56] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:57] [ProcessPacket] Starting to process packet type: 1
+[18:24:57] [Update] Successfully updated player: 2
+[18:24:57] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:58] [ProcessPacket] Starting to process packet type: 1
+[18:24:58] [Update] Successfully updated player: 2
+[18:24:58] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:24:59] [ProcessPacket] Starting to process packet type: 1
+[18:24:59] [Update] Successfully updated player: 2
+[18:24:59] [ProcessPacket] Finished processing packet type: 1
+[18:25:02] [Thread] Network thread ended normally

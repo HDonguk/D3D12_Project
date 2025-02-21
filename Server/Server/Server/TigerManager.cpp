@@ -35,6 +35,8 @@ int TigerManager::SpawnTiger(float x, float y, float z) {
 void TigerManager::Update(float deltaTime) {
     std::lock_guard<std::mutex> lock(m_mutex);
     
+    std::cout << "TigerManager::Update - Tigers count: " << tigers.size() << std::endl;
+    
     static float moveTimer = 0.0f;
     moveTimer += deltaTime;
     
@@ -79,6 +81,11 @@ void TigerManager::Update(float deltaTime) {
         packet.z = pos.z;
         packet.rotY = rotY;
         
+        // 패킷 전송 전 로그
+        std::cout << "Sending TIGER_UPDATE - ID: " << id 
+                  << " Pos: " << pos.x << ", " << pos.z 
+                  << " RotY: " << rotY << std::endl;
+                  
         m_server->BroadcastPacket(&packet, sizeof(packet));
     }
     

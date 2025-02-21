@@ -260,6 +260,8 @@ void NetworkManager::ProcessPacket(char* buffer) {
 
             case TIGER_UPDATE: {
                 auto* packet = reinterpret_cast<TigerUpdatePacket*>(buffer);
+                LogToFile("[NetworkManager] Received TIGER_UPDATE - ID: " + std::to_string(packet->tigerID) +
+                         " Pos: " + std::to_string(packet->x) + ", " + std::to_string(packet->z));
                 TigerManager::GetInstance()->UpdateTiger(
                     packet->tigerID,
                     packet->x, packet->y, packet->z,
