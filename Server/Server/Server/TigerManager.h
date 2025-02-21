@@ -44,7 +44,7 @@ private:
 public:
     static TigerManager* GetInstance();
     void SetServer(Server* server) { m_server = server; }
-    void SpawnTiger(float x, float y, float z);
+    int SpawnTiger(float x, float y, float z);
     void UpdateTiger(int tigerID, float x, float y, float z, float rotY);
     void RemoveTiger(int tigerID);
     void Update(float deltaTime);

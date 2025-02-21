@@ -28,15 +28,13 @@ struct PacketPlayerSpawn {
 };
 
 struct TigerSpawnPacket {
-    unsigned char size;
-    unsigned char type;
+     PacketHeader header;  // unsigned char 대신 PacketHeader 사용
     int tigerID;
     float x, y, z;
 };
 
 struct TigerUpdatePacket {
-    unsigned char size;
-    unsigned char type;
+    PacketHeader header;  // unsigned char 대신 PacketHeader 사용
     int tigerID;
     float x, y, z;
     float rotY;

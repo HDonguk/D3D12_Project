@@ -35,4 +35,7 @@ private:
     int m_myClientID{0};  // 자신의 클라이언트 ID 저장
     std::mutex m_logMutex;
     float m_updateTimer{0.0f};  // 업데이트 간격 타이머
+    std::ofstream m_tigerLogFile;
+    std::mutex m_tigerLogMutex;
+    void LogTigerToFile(const std::string& message);
 };

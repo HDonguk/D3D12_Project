@@ -203,6 +203,7 @@ void Server::ProcessPacket(IOContext* ioContext, int clientID) {
                 break;
             }
             TigerSpawnPacket* pkt = (TigerSpawnPacket*)ioContext->buffer;
+            m_tigerManager->SpawnTiger(pkt->x, pkt->y, pkt->z);  // TigerManager에 등록
             BroadcastPacket(pkt, sizeof(TigerSpawnPacket));
             break;
         }

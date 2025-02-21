@@ -15,20 +15,21 @@ TigerManager* TigerManager::GetInstance() {
     return instance;
 }
 
-void TigerManager::SpawnTiger(float x, float y, float z) {
+int TigerManager::SpawnTiger(float x, float y, float z) {
     std::lock_guard<std::mutex> lock(m_mutex);
     int newID = nextTigerID++;
     tigers[newID] = new Tiger(newID, x, y, z);
     
     TigerSpawnPacket packet;
-    packet.size = sizeof(TigerSpawnPacket);
-    packet.type = TIGER_SPAWN;
+    packet.header.size = sizeof(TigerSpawnPacket);
+    packet.header.type = TIGER_SPAWN;
     packet.tigerID = newID;
     packet.x = x;
     packet.y = y;
     packet.z = z;
     
     m_server->BroadcastPacket(&packet, sizeof(packet));
+    return newID;  // tigerID 반환
 }
 
 void TigerManager::Update(float deltaTime) {
@@ -70,8 +71,8 @@ void TigerManager::Update(float deltaTime) {
         
         // 패킷 전송
         TigerUpdatePacket packet;
-        packet.size = sizeof(TigerUpdatePacket);
-        packet.type = TIGER_UPDATE;
+        packet.header.size = sizeof(TigerUpdatePacket);
+        packet.header.type = TIGER_UPDATE;
         packet.tigerID = id;
         packet.x = pos.x;
         packet.y = pos.y;

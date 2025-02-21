@@ -20,6 +20,12 @@ TigerManager* TigerManager::GetInstance() {
 void TigerManager::SpawnTiger(int tigerID, float x, float y, float z) {
     std::lock_guard<std::mutex> lock(m_mutex);
     
+    if (tigers.find(tigerID) != tigers.end()) {
+        // 이미 존재하는 Tiger는 위치만 업데이트
+        UpdateTiger(tigerID, x, y, z, 0.0f);
+        return;
+    }
+
     try {
         wstring objectName = L"TigerObject_" + to_wstring(tigerID);
         m_currentScene->AddObj(objectName, TigerObject{ m_currentScene });
@@ -28,11 +34,10 @@ void TigerManager::SpawnTiger(int tigerID, float x, float y, float z) {
         newTiger.SetTigerID(tigerID);
         newTiger.GetComponent<Position>().SetXMVECTOR(XMVectorSet(x, y, z, 1.0f));
         tigers[tigerID] = &newTiger;
+        //std::cout << "[TigerManager] Tiger spawned: ID=" << tigerID << std::endl;
     }
     catch (const std::exception& e) {
-        if (m_networkManager) {
-            m_networkManager->LogToFile("[TigerManager] Failed to spawn tiger: " + std::string(e.what()));
-        }
+        //std::cerr << "[TigerManager] Failed to spawn tiger: " << e.what() << std::endl;
     }
 }
 

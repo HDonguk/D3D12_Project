@@ -1,0 +1,135 @@
+[17:20:25] NetworkManager initialized
+[17:20:28] [Info] Found PlayerObject in scene
+[17:20:28] [Client] Connecting to server 127.0.0.1:5000
+[17:20:28] [Client] Successfully connected to server
+[17:20:28] [Thread] Network thread started
+[17:20:28] [ProcessPacket] Starting to process packet type: 2
+[17:20:28] [Spawn] Processing spawn packet for ID: 1
+[17:20:28] [Spawn] Set my client ID to: 1
+[17:20:28] [ProcessPacket] Finished processing packet type: 2
+[17:20:56] [Error] Receive failed: 10054
+[17:20:56] [Error] Failed to send update packet
+[17:20:56] [Error] Failed to send update packet
+[17:20:56] [Error] Failed to send update packet
+[17:20:56] [Error] Failed to send update packet
+[17:20:56] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Receive failed: 10054
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:57] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Receive failed: 10054
+[17:20:58] [Critical] Too many receive errors, closing connection
+[17:20:58] [Thread] Network thread ended normally
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:58] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet
+[17:20:59] [Error] Failed to send update packet

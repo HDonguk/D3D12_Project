@@ -558,8 +558,8 @@ TigerObject::TigerObject(Scene* root)
 
 void TigerObject::OnUpdate(GameTimer& gTimer)
 {
-    RandomVelocity(gTimer);
-    TigerBehavior(gTimer);
+    //RandomVelocity(gTimer);
+    //TigerBehavior(gTimer);
     ResourceManager& rm = m_root->GetResourceManager();
     // terrain Y 로 player Y 설정하기.
     XMFLOAT4 pos = GetComponent<Position>().mFloat4;
