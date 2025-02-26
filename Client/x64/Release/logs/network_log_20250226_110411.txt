@@ -1,0 +1,4 @@
+[11:04:11] NetworkManager initialized
+[11:04:13] [Info] Found PlayerObject in scene
+[11:04:13] [Client] Connecting to server 127.0.0.1:5000
+[11:04:15] [Error] Connection failed
