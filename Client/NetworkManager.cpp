@@ -7,6 +7,9 @@
 #include <cstdio>
 #include <mutex>
 
+std::ofstream NetworkManager::m_logFile;
+std::mutex NetworkManager::m_logMutex;
+
 NetworkManager::NetworkManager() : sock(INVALID_SOCKET), m_networkThread(NULL), m_isRunning(false), m_myClientID(0) {
 
     
@@ -245,6 +248,58 @@ void NetworkManager::ProcessPacket(char* buffer) {
                 OtherPlayerManager::GetInstance()->UpdateOtherPlayer(
                     pkt->clientID, pkt->x, pkt->y, pkt->z, pkt->rotY);
                 LogToFile("[Update] Successfully updated player: " + std::to_string(pkt->clientID));
+                break;
+            }
+
+            case PACKET_TIGER_SPAWN: {
+                PacketTigerSpawn* pkt = (PacketTigerSpawn*)buffer;
+                LogToFile("[Tiger] Received spawn packet for tiger ID: " + std::to_string(pkt->tigerID));
+                
+                // Tiger 정보 저장
+                TigerInfo tigerInfo;
+                tigerInfo.tigerID = pkt->tigerID;
+                tigerInfo.x = pkt->x;
+                tigerInfo.y = pkt->y;
+                tigerInfo.z = pkt->z;
+                tigerInfo.rotY = 0.0f;
+                m_tigers[pkt->tigerID] = tigerInfo;
+                
+                // Scene에 Tiger 생성 요청
+                if (m_scene) {
+                    char buffer[256];
+                    sprintf_s(buffer, "[Tiger] Attempting to create tiger in scene - ID: %d, Position: (%.2f, %.2f, %.2f)", 
+                        pkt->tigerID, pkt->x, pkt->y, pkt->z);
+                    LogToFile(buffer);
+                    
+                    if (m_scene->GetDevice() == nullptr) {
+                        LogToFile("[Error] Device is null before CreateTigerObject");
+                    }
+                    
+                    m_scene->CreateTigerObject(pkt->tigerID, pkt->x, pkt->y, pkt->z, m_scene->GetDevice());
+                    LogToFile("[Tiger] CreateTigerObject call completed");
+                } else {
+                    LogToFile("[Error] Scene is null, cannot create tiger object");
+                }
+                break;
+            }
+            
+            case PACKET_TIGER_UPDATE: {
+                PacketTigerUpdate* pkt = (PacketTigerUpdate*)buffer;
+                LogToFile("[Tiger] Received update for tiger ID: " + std::to_string(pkt->tigerID));
+                
+                if (m_tigers.find(pkt->tigerID) != m_tigers.end()) {
+                    // Tiger 정보 업데이트
+                    m_tigers[pkt->tigerID].x = pkt->x;
+                    m_tigers[pkt->tigerID].y = pkt->y;
+                    m_tigers[pkt->tigerID].z = pkt->z;
+                    m_tigers[pkt->tigerID].rotY = pkt->rotY;
+                    
+                    
+                    // Scene의 Tiger 오브젝트 업데이트
+                    if (m_scene) {
+                        m_scene->UpdateTigerObject(pkt->tigerID, pkt->x, pkt->y, pkt->z, pkt->rotY);
+                    }
+                }
                 break;
             }
 

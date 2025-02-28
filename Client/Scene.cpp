@@ -1,9 +1,9 @@
+#include "NetworkManager.h"
 #include "Scene.h"
 #include "DXSampleHelper.h"
 #include "GameTimer.h"
 #include "string"
 #include "info.h"
-#include "NetworkManager.h"
 #include "OtherPlayerManager.h"
 
 Scene::Scene(UINT width, UINT height, std::wstring name) :
@@ -14,8 +14,78 @@ Scene::Scene(UINT width, UINT height, std::wstring name) :
 {
 }
 
+Scene::Scene(Scene&& other) noexcept :
+    m_viewport(other.m_viewport),
+    m_scissorRect(other.m_scissorRect),
+    m_name(std::move(other.m_name)),
+    m_objects(std::move(other.m_objects)),
+    m_resourceManager(std::move(other.m_resourceManager)),
+    m_rootSignature(std::move(other.m_rootSignature)),
+    m_pipelineState(std::move(other.m_pipelineState)),
+    m_descriptorHeap(std::move(other.m_descriptorHeap)),
+    m_cbvsrvuavDescriptorSize(other.m_cbvsrvuavDescriptorSize),
+    m_vertexBuffer_default(std::move(other.m_vertexBuffer_default)),
+    m_indexBuffer_default(std::move(other.m_indexBuffer_default)),
+    m_vertexBuffer_upload(std::move(other.m_vertexBuffer_upload)),
+    m_indexBuffer_upload(std::move(other.m_indexBuffer_upload)),
+    m_vertexBufferView(other.m_vertexBufferView),
+    m_indexBufferView(other.m_indexBufferView),
+    m_subTextureData(std::move(other.m_subTextureData)),
+    m_DDSFileName(std::move(other.m_DDSFileName)),
+    m_textureBuffer_defaults(std::move(other.m_textureBuffer_defaults)),
+    m_textureBuffer_uploads(std::move(other.m_textureBuffer_uploads)),
+    m_constantBuffer(std::move(other.m_constantBuffer)),
+    m_mappedData(other.m_mappedData),
+    m_proj(other.m_proj),
+    m_device(other.m_device),
+    m_pendingTigerSpawns(std::move(other.m_pendingTigerSpawns)),
+    m_tigerInterpolationData(std::move(other.m_tigerInterpolationData))
+{
+    other.m_mappedData = nullptr;
+    other.m_device = nullptr;
+}
+
+Scene& Scene::operator=(Scene&& other) noexcept
+{
+    if (this != &other)
+    {
+        m_viewport = other.m_viewport;
+        m_scissorRect = other.m_scissorRect;
+        m_name = std::move(other.m_name);
+        m_objects = std::move(other.m_objects);
+        m_resourceManager = std::move(other.m_resourceManager);
+        m_rootSignature = std::move(other.m_rootSignature);
+        m_pipelineState = std::move(other.m_pipelineState);
+        m_descriptorHeap = std::move(other.m_descriptorHeap);
+        m_cbvsrvuavDescriptorSize = other.m_cbvsrvuavDescriptorSize;
+        m_vertexBuffer_default = std::move(other.m_vertexBuffer_default);
+        m_indexBuffer_default = std::move(other.m_indexBuffer_default);
+        m_vertexBuffer_upload = std::move(other.m_vertexBuffer_upload);
+        m_indexBuffer_upload = std::move(other.m_indexBuffer_upload);
+        m_vertexBufferView = other.m_vertexBufferView;
+        m_indexBufferView = other.m_indexBufferView;
+        m_subTextureData = std::move(other.m_subTextureData);
+        m_DDSFileName = std::move(other.m_DDSFileName);
+        m_textureBuffer_defaults = std::move(other.m_textureBuffer_defaults);
+        m_textureBuffer_uploads = std::move(other.m_textureBuffer_uploads);
+        m_constantBuffer = std::move(other.m_constantBuffer);
+        m_mappedData = other.m_mappedData;
+        m_proj = other.m_proj;
+        m_device = other.m_device;
+        m_pendingTigerSpawns = std::move(other.m_pendingTigerSpawns);
+        m_tigerInterpolationData = std::move(other.m_tigerInterpolationData);
+
+        other.m_mappedData = nullptr;
+        other.m_device = nullptr;
+    }
+    return *this;
+}
+
 void Scene::OnInit(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
+    m_device = device; // device 멤버 변수 저장
+    Initialize(); // device 초기화 상태 확인
+    
     LoadMeshAnimationTexture();
     BuildProjMatrix();
     BuildObjects(device);
@@ -106,25 +176,6 @@ void Scene::BuildObjects(ID3D12Device* device)
             objectPtr->AddComponent(Mesh{ subMeshData.at("long_tree.fbx") , objectPtr });
             objectPtr->AddComponent(Texture{ m_subTextureData.at(L"longTree"), objectPtr });
             objectPtr->AddComponent(Collider{ 0.f, 0.f, 0.f, 3.f, 50.f, 3.f, objectPtr });
-        }
-    }
-
-    repeat = 3;
-    for (int i = 0; i < repeat; ++i) {
-        for (int j = 0; j < repeat; ++j) {
-            wstring objectName = L"TigerObject" + to_wstring(j + (repeat * i));
-            AddObj(objectName, TigerObject{ this });
-            objectPtr = &GetObj<TigerObject>(objectName);
-            objectPtr->AddComponent(Position{ 70.f + 700.f * j, 0.f, 70.f + 700.f * i, 1.f, objectPtr });
-            objectPtr->AddComponent(Velocity{ 0.f, 0.f, 0.f, 0.f, objectPtr });
-            objectPtr->AddComponent(Rotation{ 0.0f, 0.0f, 0.0f, 0.0f, objectPtr });
-            objectPtr->AddComponent(Rotate{ 0.0f, 0.0f, 0.0f, 0.0f, objectPtr });
-            objectPtr->AddComponent(Scale{ 0.2f, objectPtr });
-            objectPtr->AddComponent(Mesh{ subMeshData.at("202411_walk_tiger_center.fbx"), objectPtr });
-            objectPtr->AddComponent(Texture{ m_subTextureData.at(L"tigercolor"), objectPtr });
-            objectPtr->AddComponent(Animation{ animData, objectPtr });
-            objectPtr->AddComponent(Gravity{ 1.f, objectPtr });
-            objectPtr->AddComponent(Collider{ 0.f, 0.f, 0.f, 2.f, 50.f, 10.f, objectPtr });
         }
     }
 }
@@ -361,17 +412,17 @@ void Scene::BuildTextureBuffer(ID3D12Device* device, ID3D12GraphicsCommandList* 
         ComPtr<ID3D12Resource> defaultBuffer;
         ComPtr<ID3D12Resource> uploadBuffer;
 
-        // DDSTexture �� ����ϴ� ���
+        // DDSTexture  ϴ 
         unique_ptr<uint8_t[]> ddsData;
         vector<D3D12_SUBRESOURCE_DATA> subresources;
         ThrowIfFailed(LoadDDSTextureFromFile(device, fileName.c_str(), defaultBuffer.GetAddressOf(), ddsData, subresources));
 
-        //// DirectTex�� ����ϴ� ���
+        //// DirectTex ϴ 
         //ScratchImage image;
         //TexMetadata metadata;
 
         //ThrowIfFailed(LoadFromDDSFile(L"./Textures/grass.dds", DDS_FLAGS_NONE, &metadata, image));
-        ////metadata = image.GetMetadata(); // ���ڵ带 ����ϰ� �� �ڵ��� 3��° ���ڸ� nullptr�� �ص� �ȴ�.
+        ////metadata = image.GetMetadata(); // ڵ带 ϰ  ڵ 3° ڸ nullptr ص ȴ.
 
         //ThrowIfFailed(CreateTexture(device, metadata, m_textureBuffer_default.GetAddressOf()));
         //ThrowIfFailed(PrepareUpload(device, image.GetImages(), image.GetImageCount(), metadata, subresources));
@@ -411,7 +462,7 @@ void Scene::BuildTextureBufferView(ID3D12Device* device)
         srvDesc.Texture2D.MipLevels = m_textureBuffer_defaults[i]->GetDesc().MipLevels;
 
         CD3DX12_CPU_DESCRIPTOR_HANDLE hDescriptor(m_descriptorHeap->GetCPUDescriptorHandleForHeapStart());
-        hDescriptor.Offset(1 + i, m_cbvsrvuavDescriptorSize); // 1 + i  ���� 1�� �ǹ̴� ������ ������� constant buffer view�� �� �̴�. ���� �� ���� ����  
+        hDescriptor.Offset(1 + i, m_cbvsrvuavDescriptorSize); // 1 + i   1 ǹ̴   constant buffer view  ̴.      
 
         device->CreateShaderResourceView(m_textureBuffer_defaults[i].Get(), &srvDesc, hDescriptor);
     }
@@ -492,11 +543,34 @@ void Scene::SetDescriptorHeaps(ID3D12GraphicsCommandList* commandList)
 // Update frame-based values.
 void Scene::OnUpdate(GameTimer& gTimer)
 {
+    // 기존 업데이트 코드
     for (auto& [key, value] : m_objects) {
         visit([&gTimer](auto& arg) {arg.OnUpdate(gTimer); }, value);
     }
     
-    memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX)); // ó�� �Ű������� �����ּ�
+    // 호랑이 보간 업데이트
+    float deltaTime = gTimer.DeltaTime();
+    for (auto& [tigerID, interpData] : m_tigerInterpolationData) {
+        wstring objectName = L"NetworkTiger_" + std::to_wstring(tigerID);
+        if (m_objects.find(objectName) != m_objects.end()) {
+            auto& tiger = GetObj<TigerObject>(objectName);
+            
+            interpData.currentTime += deltaTime;
+            float t = min(interpData.currentTime / interpData.interpolationTime, 1.0f);
+            
+            // 선형 보간 수행
+            float newX = std::lerp(interpData.prevPosition.x, interpData.targetPosition.x, t);
+            float newY = std::lerp(interpData.prevPosition.y, interpData.targetPosition.y, t);
+            float newZ = std::lerp(interpData.prevPosition.z, interpData.targetPosition.z, t);
+            float newRotY = std::lerp(interpData.prevRotY, interpData.targetRotY, t);
+            
+            // 실제 위치와 회전 업데이트
+            tiger.GetComponent<Position>().SetXMVECTOR(XMVectorSet(newX, newY, newZ, 1.0f));
+            tiger.GetComponent<Rotation>().SetXMVECTOR(XMVectorSet(0.0f, newRotY, 0.0f, 0.0f));
+        }
+    }
+    
+    memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX));
 }
 
 // Render the scene.
@@ -511,6 +585,11 @@ void Scene::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandLis
 
     // 기존 오브젝트 렌더링
     for (auto& [key, value] : m_objects) {
+        if (key.find(L"NetworkTiger_") != std::wstring::npos) {
+            char buffer[256];
+            sprintf_s(buffer, "Rendering tiger object: %ls\n", key.c_str());
+            NetworkManager::LogToFile(buffer);
+        }
         visit([device, commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
     }
     
@@ -548,53 +627,53 @@ void Scene::CheckCollision()
             Object* object2 = visit([](auto& arg)->Object* { return &arg; }, it2->second);
             if (object2->FindComponent<Collider>() == false) continue;
             Collider& collider2 = object2->GetComponent<Collider>();
-            if (collider1.mAABB.Intersects(collider2.mAABB)) { // obj1 �� obj2 �� �浹�ߴٸ�?
-                if (collider1.FindCollisionObj(object2)) { // ������ ���� ������Ʈ�� �浹�� ���� �ִٸ�?
+            if (collider1.mAABB.Intersects(collider2.mAABB)) { // obj1  obj2  浹ߴٸ?
+                if (collider1.FindCollisionObj(object2)) { //   Ʈ 浹  ִٸ?
                     CollisionState state = collider1.mCollisionStates.at(object2);
-                    if (state == CollisionState::ENTER || state == CollisionState::STAY) { // �浹���°� *** ���?
+                    if (state == CollisionState::ENTER || state == CollisionState::STAY) {
                         collider1.mCollisionStates[object2] = CollisionState::STAY;
-                        OutputDebugStringW((it1->first + L" �� " + it2->first + L" �浹��").c_str());
-                        OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
+                        OutputDebugStringW((it1->first + L" and " + it2->first + L" collision stay\n").c_str());
+                        OutputDebugStringW((L"Collision count: " + to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                     }
-                    else { // EXIT �� ���¿��� �浹�������. ��, Ȯ���� �ſ� �����. ����: EXIT�� �� �� �����Ӹ� �����ȴ�.
+                    else {
                         collider1.mCollisionStates[object2] = CollisionState::ENTER;
                     }
                 }
                 else {
                     collider1.mCollisionStates[object2] = CollisionState::ENTER;
-                    OutputDebugStringW((it1->first + L" �� " + it2->first + L" �浹����").c_str());
-                    OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
+                    OutputDebugStringW((it1->first + L" and " + it2->first + L" collision enter\n").c_str());
+                    OutputDebugStringW((L"Collision count: " + to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                 }
 
                 if (collider2.FindCollisionObj(object1)) {
                     CollisionState state = collider2.mCollisionStates.at(object1);
                     if (state == CollisionState::ENTER || state == CollisionState::STAY) {
                         collider2.mCollisionStates[object1] = CollisionState::STAY;
-                        OutputDebugStringW((it2->first + L" �� " + it1->first + L" �浹��").c_str());
-                        OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
+                        OutputDebugStringW((it2->first + L" and " + it1->first + L" collision stay\n").c_str());
+                        OutputDebugStringW((L"Collision count: " + to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                     }
-                    else { // EXIT �� ���¿��� �浹�������. ��, Ȯ���� �ſ� �����. ����: EXIT�� �� �� �����Ӹ� �����ȴ�.
+                    else {
                         collider2.mCollisionStates[object1] = CollisionState::ENTER;
                     }
                 }
                 else {
                     collider2.mCollisionStates[object1] = CollisionState::ENTER;
-                    OutputDebugStringW((it2->first + L" �� " + it1->first + L" �浹����").c_str());
-                    OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
+                    OutputDebugStringW((it2->first + L" and " + it1->first + L" collision enter\n").c_str());
+                    OutputDebugStringW((L"Collision count: " + to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                 }
             }
-            else { // obj1 �� obj2�� �浹���� �ʾҴٸ�
+            else { // obj1  obj2 浹 ʾҴٸ
                 if (collider1.FindCollisionObj(object2)) {
                     CollisionState state = collider1.mCollisionStates.at(object2);
                     if (state == CollisionState::EXIT) {
                         collider1.mCollisionStates.erase(object2);
-                        OutputDebugStringW((it1->first + L" �� " + it2->first + L" �浹����").c_str());
-                        OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
+                        OutputDebugStringW((it1->first + L" and " + it2->first + L" collision exit\n").c_str());
+                        OutputDebugStringW((L"Collision count: " + to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                     }
                     else {
                         collider1.mCollisionStates[object2] = CollisionState::EXIT;
-                        OutputDebugStringW((it1->first + L" �� " + it2->first + L" �浹��").c_str());
-                        OutputDebugStringW((to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
+                        OutputDebugStringW((it1->first + L" and " + it2->first + L" collision exit\n").c_str());
+                        OutputDebugStringW((L"Collision count: " + to_wstring(collider1.mCollisionStates.size()) + L"\n").c_str());
                     }
                 }
 
@@ -602,13 +681,13 @@ void Scene::CheckCollision()
                     CollisionState state = collider2.mCollisionStates.at(object1);
                     if (state == CollisionState::EXIT) {
                         collider2.mCollisionStates.erase(object1);
-                        OutputDebugStringW((it2->first + L" �� " + it1->first + L" �浹����").c_str());
-                        OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
+                        OutputDebugStringW((it2->first + L" and " + it1->first + L" collision exit\n").c_str());
+                        OutputDebugStringW((L"Collision count: " + to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                     }
                     else {
                         collider2.mCollisionStates[object1] = CollisionState::EXIT;
-                        OutputDebugStringW((it2->first + L" �� " + it1->first + L" �浹��").c_str());
-                        OutputDebugStringW((to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
+                        OutputDebugStringW((it2->first + L" and " + it1->first + L" collision exit\n").c_str());
+                        OutputDebugStringW((L"Collision count: " + to_wstring(collider2.mCollisionStates.size()) + L"\n").c_str());
                     }
                 }
             }
@@ -636,13 +715,167 @@ ResourceManager& Scene::GetResourceManager()
 
 void* Scene::GetConstantBufferMappedData()
 {
-    // TODO: ���⿡ return ���� �����մϴ�.
+    // TODO: ⿡ return  մϴ.
     return m_mappedData;
 }
 
 ID3D12DescriptorHeap* Scene::GetDescriptorHeap()
 {
     return m_descriptorHeap.Get();
+}
+
+void Scene::CreateTigerObject(int tigerID, float x, float y, float z, ID3D12Device* device) {
+    NetworkManager::LogToFile("=== CreateTigerObject Start ===");
+    NetworkManager::LogToFile("[Debug] Function called with parameters:");
+    char buffer[256];
+    sprintf_s(buffer, "tigerID: %d, position: (%.2f, %.2f, %.2f)", tigerID, x, y, z);
+    NetworkManager::LogToFile(buffer);
+    
+    if (!device) {
+        NetworkManager::LogToFile("[Error] Device is null");
+        return;
+    }
+
+    wstring objectName = L"NetworkTiger_" + std::to_wstring(tigerID);
+    NetworkManager::LogToFile("[Debug] Creating object with name: NetworkTiger_" + std::to_string(tigerID));
+    
+    // 기존 Tiger가 있다면 제거
+    if (m_objects.find(objectName) != m_objects.end()) {
+        NetworkManager::LogToFile("[Debug] Found existing tiger with same ID - removing it");
+        m_objects.erase(objectName);
+    }
+    
+    try {
+        NetworkManager::LogToFile("[Debug] Adding new TigerObject");
+        AddObj(objectName, TigerObject(this));
+        
+        auto& tiger = GetObj<TigerObject>(objectName);
+        NetworkManager::LogToFile("[Debug] Successfully created TigerObject");
+        
+        // 지형 높이 계산
+        float terrainHeight = CalculateTerrainHeight(x, z);
+        sprintf_s(buffer, "[Debug] Calculated terrain height: %.2f", terrainHeight);
+        NetworkManager::LogToFile(buffer);
+        
+        // 컴포넌트 추가
+        NetworkManager::LogToFile("[Debug] Adding components...");
+        tiger.AddComponent<Position>(Position{ x, terrainHeight, z, 1.0f, &tiger });
+        tiger.AddComponent<Rotation>(Rotation{ 0.0f, 0.0f, 0.0f, 0.0f, &tiger });
+        tiger.AddComponent<Scale>(Scale{ 0.2f, &tiger });
+        tiger.AddComponent<Velocity>(Velocity{ 0.0f, 0.0f, 0.0f, 0.0f, &tiger });
+        tiger.AddComponent<Animation>(Animation{ m_resourceManager->GetAnimationData(), &tiger });
+        tiger.AddComponent<Mesh>(Mesh{ m_resourceManager->GetSubMeshData().at("202411_walk_tiger_center.fbx"), &tiger });
+        tiger.AddComponent<Texture>(Texture{ m_subTextureData.at(L"tigercolor"), &tiger });
+        tiger.AddComponent<Collider>(Collider{ 0.0f, 0.0f, 0.0f, 2.0f, 50.0f, 10.0f, &tiger });
+        NetworkManager::LogToFile("[Debug] All components added successfully");
+        
+        // 상수 버퍼 생성
+        NetworkManager::LogToFile("[Debug] Building constant buffer");
+        tiger.BuildConstantBuffer(device);
+        NetworkManager::LogToFile("[Debug] Constant buffer created successfully");
+        
+    } catch (const std::exception& e) {
+        sprintf_s(buffer, "[Error] Exception during tiger creation: %s", e.what());
+        NetworkManager::LogToFile(buffer);
+    }
+    
+    NetworkManager::LogToFile("=== CreateTigerObject End ===");
+}
+
+void Scene::UpdateTigerObject(int tigerID, float x, float y, float z, float rotY) {
+    NetworkManager::LogToFile("[Tiger] Updating tiger object with ID: " + std::to_string(tigerID));
+    wstring objectName = L"NetworkTiger_" + std::to_wstring(tigerID);
+    char buffer[256];
+    
+    if (m_objects.find(objectName) != m_objects.end()) {
+        auto& tiger = GetObj<TigerObject>(objectName);
+        
+        // 현재 위치를 이전 위치로 저장
+        XMFLOAT3 currentPos;
+        XMStoreFloat3(&currentPos, tiger.GetComponent<Position>().GetXMVECTOR());
+        float currentRotY = XMVectorGetY(tiger.GetComponent<Rotation>().GetXMVECTOR());
+        
+        // 지형 높이 계산
+        float terrainHeight = CalculateTerrainHeight(x, z);
+        
+        // 보간 데이터 업데이트
+        TigerInterpolationData& interpData = m_tigerInterpolationData[tigerID];
+        interpData.prevPosition = currentPos;
+        interpData.targetPosition = XMFLOAT3(x, terrainHeight, z);  // y 대신 terrainHeight 사용
+        interpData.prevRotY = currentRotY;
+        interpData.targetRotY = rotY;
+        interpData.interpolationTime = INTERPOLATION_DURATION;
+        interpData.currentTime = 0.0f;
+        
+        sprintf_s(buffer, "Updated Tiger %d interpolation data from (%.2f, %.2f, %.2f) to (%.2f, %.2f, %.2f)\n", 
+            tigerID, currentPos.x, currentPos.y, currentPos.z, x, terrainHeight, z);
+        NetworkManager::LogToFile(buffer);
+    } else {
+        sprintf_s(buffer, "Failed to update Tiger %d: object not found\n", tigerID);
+        NetworkManager::LogToFile(buffer);
+    }
+}
+
+float Scene::CalculateTerrainHeight(float x, float z) {
+    ResourceManager& rm = GetResourceManager();
+    int width = rm.GetTerrainData().terrainWidth;
+    int height = rm.GetTerrainData().terrainHeight;
+    int terrainScale = rm.GetTerrainData().terrainScale;
+    
+    if (x >= 0 && z >= 0 && x <= width * terrainScale && z <= height * terrainScale) {
+        vector<Vertex>& vertexBuffer = rm.GetVertexBuffer();
+        UINT startVertex = GetObj<TerrainObject>(L"TerrainObject").GetComponent<Mesh>().mSubMeshData.startVertexLocation;
+
+        int indexX = (int)(x / terrainScale);
+        int indexZ = (int)(z / terrainScale);
+
+        float leftBottom = vertexBuffer[startVertex + indexZ * width + indexX].position.y;
+        float rightBottom = vertexBuffer[startVertex + indexZ * width + indexX + 1].position.y;
+        float leftTop = vertexBuffer[startVertex + (indexZ + 1) * width + indexX].position.y;
+        float rightTop = vertexBuffer[startVertex + (indexZ + 1) * width + indexX + 1].position.y;
+
+        float offsetX = x / terrainScale - indexX;
+        float offsetZ = z / terrainScale - indexZ;
+
+        float lerpXBottom = (1 - offsetX) * leftBottom + offsetX * rightBottom;
+        float lerpXTop = (1 - offsetX) * leftTop + offsetX * rightTop;
+
+        return (1 - offsetZ) * lerpXBottom + offsetZ * lerpXTop;
+    }
+    return 0.0f;
+}
+
+void Scene::Initialize() {
+    // Device 초기화가 완료되었는지 확인하는 로그 추가
+    if (m_device) {
+        NetworkManager::LogToFile("[Scene] Device initialized successfully");
+    } else {
+        NetworkManager::LogToFile("[Scene] Device initialization failed");
+    }
+}
+
+void Scene::ProcessTigerSpawn(const PacketTigerSpawn* packet) {
+    if (!m_device) {
+        NetworkManager::LogToFile("[Scene] Queueing tiger spawn - Device not ready");
+        // 대기 큐에 추가
+        m_pendingTigerSpawns.push_back(*packet);
+        return;
+    }
+    
+    // 타이거 생성 시도
+    CreateTigerObject(packet->tigerID, packet->x, packet->y, packet->z, m_device);
+}
+
+// Device 초기화 완료 시 호출
+void Scene::OnDeviceReady() {
+    NetworkManager::LogToFile("[Scene] Device is ready, processing pending spawns");
+    
+    // 대기 중인 타이거 스폰 처리
+    for (const auto& spawnPacket : m_pendingTigerSpawns) {
+        CreateTigerObject(spawnPacket.tigerID, 
+            spawnPacket.x, spawnPacket.y, spawnPacket.z, m_device);
+    }
+    m_pendingTigerSpawns.clear();
 }
 
 

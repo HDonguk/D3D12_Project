@@ -6,6 +6,7 @@
 class GameTimer;
 class Scene;
 
+// 기본 Object 클래스만 정의
 class Object
 {
 public:
@@ -13,11 +14,9 @@ public:
 	Object(Scene* root);
 	virtual ~Object() = default;
 
-	//virtual void OnInit(ID3D12Device* device);
 	virtual void OnUpdate(GameTimer& gTimer) = 0;
 	virtual void LateUpdate(GameTimer& gTimer) = 0;
 	virtual void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) = 0;
-	//virtual void OnDestroy();
 
 	void BuildConstantBuffer(ID3D12Device* device);
 
@@ -114,17 +113,13 @@ public:
 class TigerObject : public Object
 {
 public:
-	TigerObject() = default;
 	TigerObject(Scene* root);
-	void OnUpdate(GameTimer& gTimer) override;
-	void LateUpdate(GameTimer& gTimer) override;
-	void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override;
-	void TigerBehavior(GameTimer& gTimer);
-	void RandomVelocity(GameTimer& gTimer);
+	virtual void OnUpdate(GameTimer& gTimer) override;
+	virtual void LateUpdate(GameTimer& gTimer) override;
+	virtual void OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList) override;
+
 private:
 	XMMATRIX mRotation;
-	float mTimer;
-	XMFLOAT3 mTempVelocity;
 };
 
 class StoneObject : public Object

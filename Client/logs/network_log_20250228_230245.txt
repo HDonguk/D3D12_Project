@@ -1,0 +1,6 @@
+[23:02:45] NetworkManager initialized
+[23:02:47] [Info] Found PlayerObject in scene
+[23:02:47] [Client] Connecting to server 127.0.0.1:5000
+[23:02:47] [Client] Successfully connected to server
+[23:02:47] [Thread] Network thread started
+[23:02:51] [Thread] Network thread ended normally

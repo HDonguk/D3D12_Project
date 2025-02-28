@@ -1,0 +1,932 @@
+[23:31:07] NetworkManager initialized
+[23:31:09] [Info] Found PlayerObject in scene
+[23:31:09] [Client] Connecting to server 127.0.0.1:5000
+[23:31:09] [Client] Successfully connected to server
+[23:31:09] [Thread] Network thread started
+[23:31:09] [ProcessPacket] Starting to process packet type: 2
+[23:31:09] [Spawn] Processing spawn packet for ID: 1
+[23:31:09] [Spawn] Set my client ID to: 1
+[23:31:09] [ProcessPacket] Finished processing packet type: 2
+[23:31:09] [ProcessPacket] Starting to process packet type: 3
+[23:31:09] [Tiger] Received spawn packet for tiger ID: 1
+[23:31:09] [Tiger] Attempting to create tiger in scene - ID: 1, Position: (295.11, 0.00, 59.68)
+[23:31:09] [Error] Device is null before CreateTigerObject
+[23:31:09] === CreateTigerObject Start ===
+[23:31:09] [Debug] Function called with parameters:
+[23:31:09] tigerID: 1, position: (295.11, 0.00, 59.68)
+[23:31:09] [Error] Device is null
+[23:31:09] [Tiger] CreateTigerObject call completed
+[23:31:09] [ProcessPacket] Finished processing packet type: 3
+[23:31:09] [Error] Invalid packet size or header
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 1
+[23:31:09] [Tiger] Updating tiger object with ID: 1
+[23:31:09] Failed to update Tiger 1: object not found
+
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 2
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 3
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 4
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 5
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 1
+[23:31:09] [Tiger] Updating tiger object with ID: 1
+[23:31:09] Failed to update Tiger 1: object not found
+
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 2
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 3
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 4
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 5
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 1
+[23:31:09] [Tiger] Updating tiger object with ID: 1
+[23:31:09] Failed to update Tiger 1: object not found
+
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 2
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:09] [ProcessPacket] Starting to process packet type: 4
+[23:31:09] [Tiger] Received update for tiger ID: 1
+[23:31:09] [Tiger] Updating tiger object with ID: 1
+[23:31:09] Failed to update Tiger 1: object not found
+
+[23:31:09] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 4
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 5
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 1
+[23:31:10] [Tiger] Updating tiger object with ID: 1
+[23:31:10] Failed to update Tiger 1: object not found
+
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 2
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:10] [ProcessPacket] Starting to process packet type: 4
+[23:31:10] [Tiger] Received update for tiger ID: 3
+[23:31:10] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 1
+[23:31:11] [Tiger] Updating tiger object with ID: 1
+[23:31:11] Failed to update Tiger 1: object not found
+
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 2
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 3
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 4
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:11] [ProcessPacket] Starting to process packet type: 4
+[23:31:11] [Tiger] Received update for tiger ID: 5
+[23:31:11] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 1
+[23:31:12] [Tiger] Updating tiger object with ID: 1
+[23:31:12] Failed to update Tiger 1: object not found
+
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 5
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 2
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 3
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:12] [ProcessPacket] Starting to process packet type: 4
+[23:31:12] [Tiger] Received update for tiger ID: 4
+[23:31:12] [ProcessPacket] Finished processing packet type: 4
+[23:31:53] [Error] Receive failed: 10054
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:53] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Receive failed: 10054
+[23:31:54] [Critical] Too many receive errors, closing connection
+[23:31:54] [Thread] Network thread ended normally
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:54] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet
+[23:31:55] [Error] Failed to send update packet

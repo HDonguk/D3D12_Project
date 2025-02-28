@@ -1,0 +1,1091 @@
+[23:14:53] NetworkManager initialized
+[23:14:55] [Info] Found PlayerObject in scene
+[23:14:55] [Client] Connecting to server 127.0.0.1:5000
+[23:14:55] [Client] Successfully connected to server
+[23:14:55] [Thread] Network thread started
+[23:14:55] [ProcessPacket] Starting to process packet type: 2
+[23:14:55] [Spawn] Processing spawn packet for ID: 1
+[23:14:55] [Spawn] Set my client ID to: 1
+[23:14:55] [ProcessPacket] Finished processing packet type: 2
+[23:14:55] [Error] Invalid packet size or header
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 1
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 1
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 2
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 3
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 2
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 4
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 3
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 4
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 5
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 5
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 1
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 2
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 3
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 4
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 1
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 5
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:55] [ProcessPacket] Starting to process packet type: 4
+[23:14:55] [Tiger] Received update for tiger ID: 2
+[23:14:55] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 1
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 2
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 3
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 4
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:56] [ProcessPacket] Starting to process packet type: 4
+[23:14:56] [Tiger] Received update for tiger ID: 5
+[23:14:56] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 3
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 4
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 5
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 1
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:14:57] [ProcessPacket] Starting to process packet type: 4
+[23:14:57] [Tiger] Received update for tiger ID: 2
+[23:14:57] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 1
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 2
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 3
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 4
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:16] [ProcessPacket] Starting to process packet type: 4
+[23:15:16] [Tiger] Received update for tiger ID: 5
+[23:15:16] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 1
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 2
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 3
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 4
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:17] [ProcessPacket] Starting to process packet type: 4
+[23:15:17] [Tiger] Received update for tiger ID: 5
+[23:15:17] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 3
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 3
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 4
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 4
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 5
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 5
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 3
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 4
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 5
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 3
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 4
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 5
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 3
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 3
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 4
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 4
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 5
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 5
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 1
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:26] [ProcessPacket] Starting to process packet type: 4
+[23:15:26] [Tiger] Received update for tiger ID: 2
+[23:15:26] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 1
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 2
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 3
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 4
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:27] [ProcessPacket] Starting to process packet type: 4
+[23:15:27] [Tiger] Received update for tiger ID: 5
+[23:15:27] [ProcessPacket] Finished processing packet type: 4
+[23:15:31] [Thread] Network thread ended normally

@@ -1,7 +1,8 @@
 #pragma once
 #include "stdafx.h"
-#include "Object.h"
+#include "Object.h"  // Objects.h 대신 Object.h를 포함
 #include "ResourceManager.h"
+#include "Packet.h"  // 패킷 정의를 위해 추가
 #include <utility>
 
 class NetworkManager;  // 전방 선언 추가
@@ -12,6 +13,14 @@ class Scene
 public:
     Scene() = default;
     Scene(UINT width, UINT height, wstring name);
+    
+    // 복사 생성자와 복사 할당 연산자를 삭제
+    Scene(const Scene& other) = delete;
+    Scene& operator=(const Scene& other) = delete;
+    
+    // 이동 생성자와 이동 할당 연산자만 허용
+    Scene(Scene&& other) noexcept;
+    Scene& operator=(Scene&& other) noexcept;
 
     virtual void OnInit(ID3D12Device* device, ID3D12GraphicsCommandList* commandList);
     virtual void OnUpdate(GameTimer& gTimer);
@@ -23,12 +32,15 @@ public:
 
     virtual void OnKeyDown(UINT8 key);
     virtual void OnKeyUp(UINT8 key);
+    virtual void OnDeviceReady();
+    virtual void Initialize();
 
     void SetState(ID3D12GraphicsCommandList* commandList);
     void SetDescriptorHeaps(ID3D12GraphicsCommandList* commandList);
 
     wstring GetSceneName() const;
     ResourceManager& GetResourceManager();
+    ID3D12Device* GetDevice() const { return m_device; }
 
     template<typename T>
     void AddObj(const wstring& name, T&& object) { m_objects.emplace(name, move(object)); }
@@ -41,8 +53,13 @@ public:
 
     UINT CalcConstantBufferByteSize(UINT byteSize);
 
-
     const auto& GetSubTextureData() const { return m_subTextureData; }; //Hong other player 에서 사용
+
+    void ProcessTigerSpawn(const PacketTigerSpawn* packet);
+    void CreateTigerObject(int tigerID, float x, float y, float z, ID3D12Device* device);
+    void UpdateTigerObject(int tigerID, float x, float y, float z, float rotY);
+
+    float CalculateTerrainHeight(float x, float z);
 
 private:
     void BuildRootSignature(ID3D12Device* device);
@@ -59,6 +76,18 @@ private:
     void BuildProjMatrix();
     void BuildObjects(ID3D12Device* device);
     void LoadMeshAnimationTexture();
+
+    struct TigerInterpolationData {
+        XMFLOAT3 prevPosition;
+        XMFLOAT3 targetPosition;
+        float prevRotY;
+        float targetRotY;
+        float interpolationTime;
+        float currentTime;
+    };
+    
+    std::unordered_map<int, TigerInterpolationData> m_tigerInterpolationData;
+    const float INTERPOLATION_DURATION = 0.1f; // 보간에 걸리는 시간 (100ms)
 
     wstring m_name;
     unordered_map<wstring, ObjectVariant> m_objects;
@@ -88,4 +117,6 @@ private:
     void* m_mappedData;
     //
     XMFLOAT4X4 m_proj;
+    ID3D12Device* m_device{ nullptr };
+    std::vector<PacketTigerSpawn> m_pendingTigerSpawns;  // 대기 중인 타이거 스폰 패킷들
 };

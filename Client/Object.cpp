@@ -548,14 +548,12 @@ void TreeObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comma
 
 }
 
-TigerObject::TigerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }, mTimer{ 10.f }
+TigerObject::TigerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }
 {
 }
 
 void TigerObject::OnUpdate(GameTimer& gTimer)
 {
-    RandomVelocity(gTimer);
-    TigerBehavior(gTimer);
     ResourceManager& rm = m_root->GetResourceManager();
     // terrain Y 로 player Y 설정하기.
     XMFLOAT4 pos = GetComponent<Position>().mFloat4;
@@ -589,64 +587,30 @@ void TigerObject::OnUpdate(GameTimer& gTimer)
 
     XMVECTOR newPos = XMVECTOR{ pos.x, newY, pos.z };
     GetComponent<Position>().SetXMVECTOR(newPos);
-    // terrain Y 로 tiger Y 설정하기. end
 
-    GetComponent<Rotation>().SetXMVECTOR(GetComponent<Rotation>().GetXMVECTOR() + GetComponent<Rotate>().GetXMVECTOR() * gTimer.DeltaTime());
-    GetComponent<Position>().SetXMVECTOR(GetComponent<Position>().GetXMVECTOR() + GetComponent<Velocity>().GetXMVECTOR() * gTimer.DeltaTime());
-
-    // 충돌체 조정
-    XMMATRIX scale = XMMatrixIdentity();
+    // 충돌체 업데이트
+    XMMATRIX scale = XMMatrixScalingFromVector(GetComponent<Scale>().GetXMVECTOR());
     XMMATRIX rotate = XMMatrixRotationRollPitchYawFromVector(GetComponent<Rotation>().GetXMVECTOR() * (XM_PI / 180.0f));
     XMMATRIX translate = XMMatrixTranslationFromVector(GetComponent<Position>().GetXMVECTOR());
-    XMMATRIX world = XMMatrixIdentity();
-    world = scale * mRotation * rotate * translate;
+    XMMATRIX world = scale * mRotation * rotate * translate;
     GetComponent<Collider>().mLocalAABB.Transform(GetComponent<Collider>().mAABB, world);
-    //GetComponent<Collider>().mAABB.Center = { pos.x, newY, pos.z };
 
-
-    if (FindComponent<Gravity>()) {
-        float& t = GetComponent<Gravity>().mGravityTime;
-        float y = XMVectorGetY(GetComponent<Position>().GetXMVECTOR());
-        if (y > newY) {
-            t += gTimer.DeltaTime();
-            //currentFileName = "1P(boy-jump).fbx";
-            GetComponent<Velocity>().SetXMVECTOR(XMVectorSetY(GetComponent<Velocity>().GetXMVECTOR(), 0.5 * -9.8 * (t * t)));
-        }
-        else {
-            t = 0;
-        }
-    }
-
-    XMVECTOR velocity = GetComponent<Velocity>().GetXMVECTOR();
-
-    string currentFileName{};
-    if (XMVector4Equal(velocity, XMVectorZero())) {
-        currentFileName = "202411_walk_tiger_center.fbx";
-    }
-    else if (XMVectorGetY(velocity) != 0.f) {
-        currentFileName = "202411_walk_tiger_center.fbx";
-    }
-    else if (XMVectorGetX(velocity) != 0 || XMVectorGetZ(velocity) != 0) {
-        currentFileName = "202411_walk_tiger_center.fbx";
-        if (abs(XMVectorGetX(velocity)) > 15 || abs(XMVectorGetZ(velocity)) > 15) {
-            currentFileName = "202411_walk_tiger_center.fbx";
-        }
-    }
-
+    // 애니메이션 업데이트
     int isAnimate = FindComponent<Animation>();
-    //int isAnimate = false;
     if (isAnimate) {
         vector<XMFLOAT4X4> finalTransforms{ 90 };
         Animation& animComponent = GetComponent<Animation>();
-        SkinnedData& animData = animComponent.mAnimData->at(currentFileName);
+        SkinnedData& animData = animComponent.mAnimData->at("202411_walk_tiger_center.fbx");
         animComponent.mAnimationTime += gTimer.DeltaTime();
         string clipName = "Take 001";
         if (animComponent.mAnimationTime >= animData.GetClipEndTime(clipName)) animComponent.mAnimationTime = 0.f;
         animData.GetFinalTransforms(clipName, animComponent.mAnimationTime, finalTransforms);
-        memcpy(m_mappedData + sizeof(XMMATRIX), finalTransforms.data(), sizeof(XMMATRIX) * 90); // 처음 매개변수는 시작주소
+        memcpy(m_mappedData + sizeof(XMMATRIX), finalTransforms.data(), sizeof(XMMATRIX) * 90);
     }
+    
+    // 상수 버퍼 업데이트
     memcpy(m_mappedData + sizeof(XMMATRIX) * 91, &isAnimate, sizeof(int));
-    float powValue = 1.f; // 짝수이면 안됨
+    float powValue = 1.f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4, &powValue, sizeof(float));
     float ambiantValue = 0.4f;
     memcpy(m_mappedData + sizeof(XMFLOAT4X4) * 91 + sizeof(int) * 4 + sizeof(float), &ambiantValue, sizeof(float));
@@ -711,61 +675,6 @@ void TigerObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comm
     commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
 }
 
-void TigerObject::TigerBehavior(GameTimer& gTimer)
-{
-    XMVECTOR pos = GetComponent<Position>().GetXMVECTOR();
-    PlayerObject& player = m_root->GetObj<PlayerObject>(L"PlayerObject");
-    XMVECTOR playerPos = player.GetComponent<Position>().GetXMVECTOR();
-    XMVECTOR velocity{ playerPos - pos };
-    XMVECTOR up{ 0.f, 1.f, 0.f, 0.f };
-    float speed = 15.f;
-    float result = XMVectorGetX(XMVector3Length(velocity));
-    if (result < 200.f) {
-        velocity = XMVectorSetY(velocity, 0.f);
-        velocity = XMVector3Normalize(velocity);
-        GetComponent<Velocity>().SetXMVECTOR(velocity * speed);
-        XMMATRIX rotate{ XMVector3Cross(up, velocity), up, velocity, XMVECTOR{ 0.f, 0.f, 0.f, 1.f } };
-        mRotation = rotate;
-    }
-    else {
-        velocity = { mTempVelocity.x, mTempVelocity.y, mTempVelocity.z, 0.f };
-        velocity = XMVectorSetY(velocity, 0.f);
-        velocity = XMVector3Normalize(velocity);
-        GetComponent<Velocity>().SetXMVECTOR(velocity * speed);
-        XMMATRIX rotate{ XMVector3Cross(up, velocity), up, velocity, XMVECTOR{ 0.f, 0.f, 0.f, 1.f } };
-        mRotation = rotate;
-    }
-}
-
-void TigerObject::RandomVelocity(GameTimer& gTimer)
-{
-
-    mTimer += gTimer.DeltaTime();
-    XMVECTOR pos = GetComponent<Position>().GetXMVECTOR();
-    if (XMVectorGetX(pos) <= 0.f) {
-        mTimer = 0.f;
-        //float value = static_cast<float>(uid(dre)) ? 1.f : -1.f;
-        mTempVelocity = { 1.f, 0.f, (float)uidZ(dreZ) };
-    }
-
-    if (XMVectorGetZ(pos) <= 0.f) {
-        mTimer = 0.f;
-        //float value = static_cast<float>(uid(dre)) ? 1.f : -1.f;
-        mTempVelocity = { (float)uidX(dreX), 0.f, 1.f };
-
-    }
-
-    if (mTimer >= 5.f) {
-        mTimer = 0.f;
-        //float value = static_cast<float>(uid(dre)) ? 0.5f : -1.f;
-        float x = (float)uidX(dreX);
-        float z = (float)uidZ(dreZ);
-        if (x == 0 && z == 0) {
-            mTempVelocity = { x, 0.f, 1.f };
-        }
-        mTempVelocity = { x, 0.f, z };
-    }
-}
 
 StoneObject::StoneObject(Scene* root) : Object{ root }
 {
