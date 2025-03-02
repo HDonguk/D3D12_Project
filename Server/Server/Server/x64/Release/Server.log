@@ -6,8 +6,8 @@ C:\Users\PC\OneDrive\바탕 화면\D3D12_Project\Server\Server\Server\Packet.h(1
   (소스 파일 'Server.cpp'을(를) 컴파일하는 중)
   
   코드를 생성하고 있습니다.
-  0 of 430 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  84 of 480 functions (17.5%) were compiled, the rest were copied from previous compilation.
+    50 functions were new in current compilation
+    51 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Server.vcxproj -> C:\Users\PC\OneDrive\바탕 화면\D3D12_Project\Server\Server\x64\Release\Server.exe

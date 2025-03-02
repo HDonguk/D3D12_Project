@@ -341,6 +341,9 @@ void GameServer::ProcessNewClient(SOCKET clientSocket) {
     
     // 5. 타이거 정보 전송
     std::cout << "[ProcessNewClient] Sending existing tiger information..." << std::endl;
+    
+    // 모든 호랑이 정보를 하나의 버퍼에 모음
+    std::vector<PacketTigerSpawn> tigerPackets;
     for (const auto& [tigerID, tiger] : m_tigers) {
         PacketTigerSpawn tigerPacket;
         tigerPacket.header.type = PACKET_TIGER_SPAWN;
@@ -349,12 +352,33 @@ void GameServer::ProcessNewClient(SOCKET clientSocket) {
         tigerPacket.x = tiger.x;
         tigerPacket.y = tiger.y;
         tigerPacket.z = tiger.z;
-        
-        if (!SendPacket(clientSocket, &tigerPacket, sizeof(tigerPacket))) {
-            std::cout << "[Error] Failed to send tiger spawn packet for ID: " << tiger.tigerID << std::endl;
-            continue;
+        tigerPackets.push_back(tigerPacket);
+    }
+    
+    // 패킷 크기 정보 전송
+    int numTigers = static_cast<int>(tigerPackets.size());
+    if (!SendPacket(clientSocket, &numTigers, sizeof(int))) {
+        std::cout << "[Error] Failed to send tiger count" << std::endl;
+        closesocket(clientSocket);
+        return;
+    }
+    
+    // 모든 호랑이 패킷을 한 번에 전송
+    for (const auto& packet : tigerPackets) {
+        if (!SendPacket(clientSocket, &packet, sizeof(PacketTigerSpawn))) {
+            std::cout << "[Error] Failed to send tiger spawn packet for ID: " << packet.tigerID << std::endl;
+            closesocket(clientSocket);
+            return;
         }
-        std::cout << "[Success] Sent tiger spawn packet for ID: " << tiger.tigerID << std::endl;
+        std::cout << "[Success] Sent tiger spawn packet for ID: " << packet.tigerID << std::endl;
+    }
+    
+    // 전송 완료 확인 패킷
+    int confirmPacket = 1;
+    if (!SendPacket(clientSocket, &confirmPacket, sizeof(int))) {
+        std::cout << "[Error] Failed to send confirmation packet" << std::endl;
+        closesocket(clientSocket);
+        return;
     }
     
     // 6. 다른 플레이어 정보 브로드캐스트
@@ -364,8 +388,10 @@ void GameServer::ProcessNewClient(SOCKET clientSocket) {
 bool GameServer::SendPacket(SOCKET socket, const void* packet, int size) {
     const char* data = static_cast<const char*>(packet);
     int totalSent = 0;
+    int retryCount = 0;
+    const int MAX_RETRIES = 3;
     
-    while (totalSent < size) {
+    while (totalSent < size && retryCount < MAX_RETRIES) {
         int result = send(socket, data + totalSent, size - totalSent, 0);
         if (result == SOCKET_ERROR) {
             int error = WSAGetLastError();
@@ -373,12 +399,15 @@ bool GameServer::SendPacket(SOCKET socket, const void* packet, int size) {
                 std::cout << "[Error] Send failed with error: " << error << std::endl;
                 return false;
             }
-            Sleep(1);  // WSAEWOULDBLOCK 발생 시 잠시 대기
+            Sleep(10);  // WSAEWOULDBLOCK 발생 시 잠시 대기
+            retryCount++;
             continue;
         }
         totalSent += result;
+        retryCount = 0;  // 성공하면 재시도 카운트 리셋
     }
-    return true;
+    
+    return totalSent == size;
 }
 
 bool GameServer::StartReceive(SOCKET clientSocket, int clientID, IOContext* ioContext) {

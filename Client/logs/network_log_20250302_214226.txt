@@ -1,0 +1,168 @@
+[21:42:26] NetworkManager initialized
+[21:42:26] [Scene] Device initialized successfully
+[21:42:28] [Info] Found PlayerObject in scene
+[21:42:28] [Client] Connecting to server 127.0.0.1:5000
+[21:42:28] [Client] Successfully connected to server
+[21:42:28] [Thread] Network thread started
+[21:42:28] [ProcessPacket] Starting to process packet type: 2
+[21:42:28] [Spawn] Processing spawn packet for ID: 1
+[21:42:28] [Spawn] Set my client ID to: 1
+[21:42:28] [ProcessPacket] Finished processing packet type: 2
+[21:42:28] [ProcessPacket] Starting to process packet type: 4
+[21:42:28] [Tiger] Received update for tiger ID: 1
+[21:42:28] [ProcessPacket] Finished processing packet type: 4
+[21:42:28] [ProcessPacket] Starting to process packet type: 4
+[21:42:28] [Tiger] Received update for tiger ID: 2
+[21:42:28] [ProcessPacket] Finished processing packet type: 4
+[21:42:28] [ProcessPacket] Starting to process packet type: 4
+[21:42:28] [Tiger] Received update for tiger ID: 3
+[21:42:28] [ProcessPacket] Finished processing packet type: 4
+[21:42:28] [ProcessPacket] Starting to process packet type: 4
+[21:42:28] [Tiger] Received update for tiger ID: 4
+[21:42:28] [ProcessPacket] Finished processing packet type: 4
+[21:42:28] [ProcessPacket] Starting to process packet type: 3
+[21:42:28] [Tiger] Received spawn packet for tiger ID: 1
+[21:42:28] [Tiger] Attempting to create tiger in scene - ID: 1, Position: (949.32, 0.00, 158.90)
+[21:42:28] === CreateTigerObject Start ===
+[21:42:28] [Debug] Function called with parameters:
+[21:42:28] tigerID: 1, position: (949.32, 0.00, 158.90)
+[21:42:28] [Debug] Creating object with name: NetworkTiger_1
+[21:42:28] [Debug] Adding new TigerObject
+[21:42:28] [Debug] Successfully created TigerObject
+[21:42:28] [Debug] Calculated terrain height: -21.79
+[21:42:28] [Debug] Adding components...
+[21:42:28] [Debug] All components added successfully
+[21:42:28] [Debug] Building constant buffer
+[21:42:28] [Debug] Constant buffer created successfully
+[21:42:28] === CreateTigerObject End ===
+[21:42:28] [Tiger] CreateTigerObject call completed
+[21:42:28] [ProcessPacket] Finished processing packet type: 3
+[21:42:28] [ProcessPacket] Starting to process packet type: 4
+[21:42:28] [Tiger] Received update for tiger ID: 5
+[21:42:28] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 1
+[21:42:29] [Tiger] Updating tiger object with ID: 1
+[21:42:29] Updated Tiger 1 interpolation data from (949.32, -21.79, 158.90) to (948.64, -22.04, 160.53)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 2
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 3
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 4
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 5
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 1
+[21:42:29] [Tiger] Updating tiger object with ID: 1
+[21:42:29] Updated Tiger 1 interpolation data from (949.32, -21.79, 158.90) to (948.18, -22.21, 161.61)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 2
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 3
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 3
+[21:42:29] [Tiger] Received spawn packet for tiger ID: 2
+[21:42:29] [Tiger] Attempting to create tiger in scene - ID: 2, Position: (645.18, 0.00, 144.15)
+[21:42:29] === CreateTigerObject Start ===
+[21:42:29] [Debug] Function called with parameters:
+[21:42:29] tigerID: 2, position: (645.18, 0.00, 144.15)
+[21:42:29] [Debug] Creating object with name: NetworkTiger_2
+[21:42:29] [Debug] Adding new TigerObject
+[21:42:29] [Debug] Successfully created TigerObject
+[21:42:29] [Debug] Calculated terrain height: -13.33
+[21:42:29] [Debug] Adding components...
+[21:42:29] [Debug] All components added successfully
+[21:42:29] [Debug] Building constant buffer
+[21:42:29] [Debug] Constant buffer created successfully
+[21:42:29] === CreateTigerObject End ===
+[21:42:29] [Tiger] CreateTigerObject call completed
+[21:42:29] [ProcessPacket] Finished processing packet type: 3
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 4
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 5
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 1
+[21:42:29] [Tiger] Updating tiger object with ID: 1
+[21:42:29] Updated Tiger 1 interpolation data from (949.32, -21.79, 158.90) to (947.78, -22.36, 162.57)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 2
+[21:42:29] [Tiger] Updating tiger object with ID: 2
+[21:42:29] Updated Tiger 2 interpolation data from (645.18, -13.33, 144.15) to (643.09, -13.33, 144.88)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 3
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 4
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 5
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [Error] Invalid packet size or header
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 4
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 5
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 3
+[21:42:29] [Tiger] Received spawn packet for tiger ID: 4
+[21:42:29] [Tiger] Attempting to create tiger in scene - ID: 4, Position: (210.11, 0.00, 723.46)
+[21:42:29] === CreateTigerObject Start ===
+[21:42:29] [Debug] Function called with parameters:
+[21:42:29] tigerID: 4, position: (210.11, 0.00, 723.46)
+[21:42:29] [Debug] Creating object with name: NetworkTiger_4
+[21:42:29] [Debug] Adding new TigerObject
+[21:42:29] [Debug] Successfully created TigerObject
+[21:42:29] [Debug] Calculated terrain height: 7.84
+[21:42:29] [Debug] Adding components...
+[21:42:29] [Debug] All components added successfully
+[21:42:29] [Debug] Building constant buffer
+[21:42:29] [Debug] Constant buffer created successfully
+[21:42:29] === CreateTigerObject End ===
+[21:42:29] [Tiger] CreateTigerObject call completed
+[21:42:29] [ProcessPacket] Finished processing packet type: 3
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 1
+[21:42:29] [Tiger] Updating tiger object with ID: 1
+[21:42:29] Updated Tiger 1 interpolation data from (949.32, -21.79, 158.90) to (946.60, -22.80, 165.38)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 2
+[21:42:29] [Tiger] Updating tiger object with ID: 2
+[21:42:29] Updated Tiger 2 interpolation data from (645.18, -13.33, 144.15) to (640.22, -13.33, 145.89)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 3
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 4
+[21:42:29] [Tiger] Updating tiger object with ID: 4
+[21:42:29] Updated Tiger 4 interpolation data from (210.11, 7.84, 723.46) to (209.88, 7.84, 724.37)
+
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:29] [ProcessPacket] Starting to process packet type: 4
+[21:42:29] [Tiger] Received update for tiger ID: 5
+[21:42:29] [ProcessPacket] Finished processing packet type: 4
+[21:42:33] [Error] Invalid packet size or header
+[21:42:33] [Error] Invalid packet size or header
+[21:42:33] [Critical] Too many invalid packets, closing connection
+[21:42:33] [Thread] Network thread ended normally
