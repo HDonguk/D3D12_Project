@@ -16,11 +16,11 @@
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedHeight": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -31,7 +31,7 @@
               "RelativeDocumentMoniker": "Server\\Server.cpp",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\D3D12_Project\\Server\\Server\\Server\\Server.cpp",
               "RelativeToolTip": "Server\\Server.cpp",
-              "ViewState": "AQIAAFYBAAAAAAAAAAAAAF4BAAAsAAAA",
+              "ViewState": "AQIAAPoBAAAAAAAAAAAAAAACAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-03T06:58:50.464Z",
               "IsPinned": true,
@@ -57,9 +57,19 @@
               "RelativeDocumentMoniker": "Server\\Packet.h",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\D3D12_Project\\Server\\Server\\Server\\Packet.h",
               "RelativeToolTip": "Server\\Packet.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBQAAAAhAAAA",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAIwBMAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-03T06:59:33.761Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

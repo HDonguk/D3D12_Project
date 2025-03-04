@@ -5,8 +5,11 @@
 #include "string"
 #include "info.h"
 #include "OtherPlayerManager.h"
+#include "Framework.h"
+#include <array>
 
-Scene::Scene(UINT width, UINT height, std::wstring name) :
+Scene::Scene(Framework* parent, UINT width, UINT height, std::wstring name) :
+    m_parent{ parent },
     m_viewport(0.0f, 0.0f, static_cast<float>(width), static_cast<float>(height)),
     m_scissorRect(0, 0, static_cast<LONG>(width), static_cast<LONG>(height)),
     m_name(name),
@@ -15,13 +18,14 @@ Scene::Scene(UINT width, UINT height, std::wstring name) :
 }
 
 Scene::Scene(Scene&& other) noexcept :
+    m_parent(other.m_parent),
     m_viewport(other.m_viewport),
     m_scissorRect(other.m_scissorRect),
     m_name(std::move(other.m_name)),
     m_objects(std::move(other.m_objects)),
     m_resourceManager(std::move(other.m_resourceManager)),
     m_rootSignature(std::move(other.m_rootSignature)),
-    m_pipelineState(std::move(other.m_pipelineState)),
+    m_PSOs(std::move(other.m_PSOs)),
     m_descriptorHeap(std::move(other.m_descriptorHeap)),
     m_cbvsrvuavDescriptorSize(other.m_cbvsrvuavDescriptorSize),
     m_vertexBuffer_default(std::move(other.m_vertexBuffer_default)),
@@ -39,8 +43,12 @@ Scene::Scene(Scene&& other) noexcept :
     m_proj(other.m_proj),
     m_device(other.m_device),
     m_pendingTigerSpawns(std::move(other.m_pendingTigerSpawns)),
-    m_tigerInterpolationData(std::move(other.m_tigerInterpolationData))
+    m_tigerInterpolationData(std::move(other.m_tigerInterpolationData)),
+    m_shadow(std::move(other.m_shadow)),
+    m_shaders(std::move(other.m_shaders)),
+    m_inputElement(std::move(other.m_inputElement))
 {
+    other.m_parent = nullptr;
     other.m_mappedData = nullptr;
     other.m_device = nullptr;
 }
@@ -49,13 +57,14 @@ Scene& Scene::operator=(Scene&& other) noexcept
 {
     if (this != &other)
     {
+        m_parent = other.m_parent;
         m_viewport = other.m_viewport;
         m_scissorRect = other.m_scissorRect;
         m_name = std::move(other.m_name);
         m_objects = std::move(other.m_objects);
         m_resourceManager = std::move(other.m_resourceManager);
         m_rootSignature = std::move(other.m_rootSignature);
-        m_pipelineState = std::move(other.m_pipelineState);
+        m_PSOs = std::move(other.m_PSOs);
         m_descriptorHeap = std::move(other.m_descriptorHeap);
         m_cbvsrvuavDescriptorSize = other.m_cbvsrvuavDescriptorSize;
         m_vertexBuffer_default = std::move(other.m_vertexBuffer_default);
@@ -74,7 +83,11 @@ Scene& Scene::operator=(Scene&& other) noexcept
         m_device = other.m_device;
         m_pendingTigerSpawns = std::move(other.m_pendingTigerSpawns);
         m_tigerInterpolationData = std::move(other.m_tigerInterpolationData);
+        m_shadow = std::move(other.m_shadow);
+        m_shaders = std::move(other.m_shaders);
+        m_inputElement = std::move(other.m_inputElement);
 
+        other.m_parent = nullptr;
         other.m_mappedData = nullptr;
         other.m_device = nullptr;
     }
@@ -83,23 +96,46 @@ Scene& Scene::operator=(Scene&& other) noexcept
 
 void Scene::OnInit(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
-    m_device = device; // device 멤버 변수 저장
-    Initialize(); // device 초기화 상태 확인
+    NetworkManager::LogToFile("[Scene] OnInit - Starting");
     
+    m_device = device;
+    Initialize();
+    
+    NetworkManager::LogToFile("[Scene] OnInit - Loading Mesh/Animation/Texture");
     LoadMeshAnimationTexture();
+    NetworkManager::LogToFile("[Scene] OnInit - Building Projection Matrix");
     BuildProjMatrix();
+    NetworkManager::LogToFile("[Scene] OnInit - Building Objects");
     BuildObjects(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Root Signature");
     BuildRootSignature(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Input Element");
+    BuildInputElement();
+    NetworkManager::LogToFile("[Scene] OnInit - Building Shaders");
+    BuildShaders();
+    NetworkManager::LogToFile("[Scene] OnInit - Building PSO");
     BuildPSO(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Vertex Buffer");
     BuildVertexBuffer(device, commandList);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Index Buffer");
     BuildIndexBuffer(device, commandList);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Texture Buffer");
     BuildTextureBuffer(device, commandList);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Constant Buffer");
     BuildConstantBuffer(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Descriptor Heap");
     BuildDescriptorHeap(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Vertex Buffer View");
     BuildVertexBufferView();
+    NetworkManager::LogToFile("[Scene] OnInit - Building Index Buffer View");
     BuildIndexBufferView();
+    NetworkManager::LogToFile("[Scene] OnInit - Building Constant Buffer View");
     BuildConstantBufferView(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Texture Buffer View");
     BuildTextureBufferView(device);
+    NetworkManager::LogToFile("[Scene] OnInit - Building Shadow");
+    BuildShadow();
+    NetworkManager::LogToFile("[Scene] OnInit - Complete");
 }
 
 void Scene::BuildObjects(ID3D12Device* device)
@@ -110,7 +146,10 @@ void Scene::BuildObjects(ID3D12Device* device)
 
     Object* objectPtr = nullptr;
 
+    NetworkManager::LogToFile("[Debug] Creating PlayerObject...");
     AddObj(L"PlayerObject", PlayerObject{ this });
+    NetworkManager::LogToFile("[Debug] PlayerObject created successfully");
+    
     objectPtr = &GetObj<PlayerObject>(L"PlayerObject");
     objectPtr->AddComponent(Position{ 600.f, 0.f, 600.f, 1.f, objectPtr });
     objectPtr->AddComponent(Velocity{ 0.f, 0.f, 0.f, 0.f, objectPtr });
@@ -193,39 +232,55 @@ void Scene::BuildRootSignature(ID3D12Device* device)
         featureData.HighestVersion = D3D_ROOT_SIGNATURE_VERSION_1_0;
     }
 
-    CD3DX12_DESCRIPTOR_RANGE1 ranges[2] = {};
-    ranges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC);
-    ranges[1].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC);
+    CD3DX12_DESCRIPTOR_RANGE1 ranges[3] = {};
+    ranges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0, 0);
+    ranges[1].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0);
+    ranges[2].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 1, 0);
 
-    CD3DX12_ROOT_PARAMETER1 rootParameters[3] = {};
+    CD3DX12_ROOT_PARAMETER1 rootParameters[4] = {};
     rootParameters[0].InitAsDescriptorTable(1, &ranges[0], D3D12_SHADER_VISIBILITY_VERTEX);
     rootParameters[1].InitAsDescriptorTable(1, &ranges[1], D3D12_SHADER_VISIBILITY_PIXEL);
     rootParameters[2].InitAsConstantBufferView(1);
+    rootParameters[3].InitAsDescriptorTable(1, &ranges[2], D3D12_SHADER_VISIBILITY_PIXEL);
 
-    D3D12_STATIC_SAMPLER_DESC sampler{};
-    sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
-    sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-    sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-    sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-    sampler.MipLODBias = 0;
-    sampler.MaxAnisotropy = 0;
-    sampler.ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER;
-    sampler.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
-    sampler.MinLOD = 0.0f;
-    sampler.MaxLOD = D3D12_FLOAT32_MAX;
-    sampler.ShaderRegister = 0;
-    sampler.RegisterSpace = 0;
-    sampler.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+    std::array<D3D12_STATIC_SAMPLER_DESC, 2> samplerDesc = {};
+    D3D12_STATIC_SAMPLER_DESC* descPtr = nullptr;
 
-    // Allow input layout and deny uneccessary access to certain pipeline stages.
-    D3D12_ROOT_SIGNATURE_FLAGS rootSignatureFlags =
-        D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT |
-        D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS |
-        D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS |
-        D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS;
+    descPtr = &samplerDesc[0];
+    descPtr->Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
+    descPtr->AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    descPtr->AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    descPtr->AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    descPtr->MipLODBias = 0;
+    descPtr->MaxAnisotropy = 0;
+    descPtr->ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER;
+    descPtr->BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
+    descPtr->MinLOD = 0.0f;
+    descPtr->MaxLOD = D3D12_FLOAT32_MAX;
+    descPtr->ShaderRegister = 0;
+    descPtr->RegisterSpace = 0;
+    descPtr->ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+
+    descPtr = &samplerDesc[1];
+    descPtr->Filter = D3D12_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT;
+    descPtr->AddressU = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+    descPtr->AddressV = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+    descPtr->AddressW = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+    descPtr->MipLODBias = 0;
+    descPtr->MaxAnisotropy = 0;
+    descPtr->ComparisonFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
+    descPtr->BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_WHITE;
+    descPtr->MinLOD = 0.0f;
+    descPtr->MaxLOD = 0.0f;
+    descPtr->ShaderRegister = 1;
+    descPtr->RegisterSpace = 0;
+    descPtr->ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+
+    D3D12_ROOT_SIGNATURE_FLAGS flags = 
+        D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 
     CD3DX12_VERSIONED_ROOT_SIGNATURE_DESC rootSignatureDesc;
-    rootSignatureDesc.Init_1_1(_countof(rootParameters), rootParameters, 1, &sampler, rootSignatureFlags);
+    rootSignatureDesc.Init_1_1(_countof(rootParameters), rootParameters, samplerDesc.size(), samplerDesc.data(), flags);
 
     ComPtr<ID3DBlob> signature;
     ComPtr<ID3DBlob> error;
@@ -235,46 +290,113 @@ void Scene::BuildRootSignature(ID3D12Device* device)
 
 void Scene::BuildPSO(ID3D12Device* device)
 {
-    // Create the pipeline state, which includes compiling and loading shaders.
-    ComPtr<ID3DBlob> vertexShader;
-    ComPtr<ID3DBlob> pixelShader;
-
-#if defined(_DEBUG)
-    // Enable better shader debugging with the graphics debugging tools.
-    UINT compileFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
-#else
-    UINT compileFlags = 0;
-#endif
-
-    ThrowIfFailed(D3DCompileFromFile(L"shaders.hlsl", nullptr, nullptr, "VSMain", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
-    ThrowIfFailed(D3DCompileFromFile(L"shaders.hlsl", nullptr, nullptr, "PSMain", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
-
-    // Define the vertex input layout.
-    D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
-    {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-        { "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-        { "WEIGHT", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 32, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-        { "BONEINDEX", 0, DXGI_FORMAT_R32G32B32A32_UINT, 0, 48, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
-    };
-
+    NetworkManager::LogToFile("[Scene] BuildPSO - Starting PSO creation");
+    
     // Describe and create the graphics pipeline state object (PSO).
     D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {};
-    psoDesc.InputLayout = { inputElementDescs, _countof(inputElementDescs) };
+    
+    NetworkManager::LogToFile("[Scene] BuildPSO - Setting up input layout");
+    psoDesc.InputLayout = { m_inputElement.data(), static_cast<UINT>(m_inputElement.size())};
+    
+    NetworkManager::LogToFile("[Scene] BuildPSO - Setting up root signature");
+    if (!m_rootSignature) {
+        NetworkManager::LogToFile("[Scene] BuildPSO - ERROR: Root signature is null");
+        return;
+    }
     psoDesc.pRootSignature = m_rootSignature.Get();
-    psoDesc.VS = CD3DX12_SHADER_BYTECODE(vertexShader.Get());
-    psoDesc.PS = CD3DX12_SHADER_BYTECODE(pixelShader.Get());
+    
+    NetworkManager::LogToFile("[Scene] BuildPSO - Setting up vertex shader");
+    if (!m_shaders.contains("VS_Opaque")) {
+        NetworkManager::LogToFile("[Scene] BuildPSO - ERROR: VS_Opaque shader not found");
+        return;
+    }
+    psoDesc.VS = CD3DX12_SHADER_BYTECODE(m_shaders.at("VS_Opaque").Get());
+    
+    NetworkManager::LogToFile("[Scene] BuildPSO - Setting up pixel shader");
+    if (!m_shaders.contains("PS_Opaque")) {
+        NetworkManager::LogToFile("[Scene] BuildPSO - ERROR: PS_Opaque shader not found");
+        return;
+    }
+    psoDesc.PS = CD3DX12_SHADER_BYTECODE(m_shaders.at("PS_Opaque").Get());
+    
+    NetworkManager::LogToFile("[Scene] BuildPSO - Setting up rasterizer state");
     psoDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
     psoDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
     psoDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+    psoDesc.DepthStencilState.DepthEnable = TRUE;
+    psoDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
+    psoDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
+    psoDesc.DSVFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
     psoDesc.SampleMask = UINT_MAX;
     psoDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
     psoDesc.NumRenderTargets = 1;
     psoDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
     psoDesc.SampleDesc.Count = 1;
-    psoDesc.DSVFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
-    ThrowIfFailed(device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_pipelineState)));
+    psoDesc.SampleDesc.Quality = 0;
+
+    // 추가 검증
+    if (!psoDesc.pRootSignature || !psoDesc.VS.pShaderBytecode || !psoDesc.PS.pShaderBytecode) {
+        NetworkManager::LogToFile("[Scene] BuildPSO - ERROR: Required PSO components are null");
+        return;
+    }
+
+    // PSO 상태 로깅
+    char buffer[256];
+    sprintf_s(buffer, "[Scene] BuildPSO - PSO State: RTV Format: %d, DSV Format: %d", 
+        psoDesc.RTVFormats[0], psoDesc.DSVFormat);
+    NetworkManager::LogToFile(buffer);
+    sprintf_s(buffer, "[Scene] BuildPSO - Sample Count: %d, Quality: %d", 
+        psoDesc.SampleDesc.Count, psoDesc.SampleDesc.Quality);
+    NetworkManager::LogToFile(buffer);
+
+    NetworkManager::LogToFile("[Scene] BuildPSO - Creating Opaque PSO");
+    HRESULT hr = device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(m_PSOs["PSO_Opaque"].GetAddressOf()));
+    if (FAILED(hr)) {
+        sprintf_s(buffer, "[Scene] BuildPSO - Failed to create Opaque PSO. HRESULT: 0x%08X", hr);
+        NetworkManager::LogToFile(buffer);
+        
+        // 추가 디버그 정보
+        NetworkManager::LogToFile("[Scene] BuildPSO - Debug Info:");
+        sprintf_s(buffer, "Input Layout Elements: %d", psoDesc.InputLayout.NumElements);
+        NetworkManager::LogToFile(buffer);
+        sprintf_s(buffer, "VS ByteCode Size: %zu", psoDesc.VS.BytecodeLength);
+        NetworkManager::LogToFile(buffer);
+        sprintf_s(buffer, "PS ByteCode Size: %zu", psoDesc.PS.BytecodeLength);
+        NetworkManager::LogToFile(buffer);
+        return;
+    }
+    NetworkManager::LogToFile("[Scene] BuildPSO - Opaque PSO created successfully");
+
+    // Shadow PSO 설정
+    NetworkManager::LogToFile("[Scene] BuildPSO - Setting up shadow PSO");
+    psoDesc.RasterizerState.DepthBias = 10000;
+    psoDesc.RasterizerState.DepthBiasClamp = 0.0f;
+    psoDesc.RasterizerState.SlopeScaledDepthBias = 1.2f;
+    
+    if (!m_shaders.contains("VS_Shadow")) {
+        NetworkManager::LogToFile("[Scene] BuildPSO - ERROR: VS_Shadow shader not found");
+        return;
+    }
+    psoDesc.VS = CD3DX12_SHADER_BYTECODE(m_shaders.at("VS_Shadow").Get());
+    
+    if (!m_shaders.contains("PS_Shadow")) {
+        NetworkManager::LogToFile("[Scene] BuildPSO - ERROR: PS_Shadow shader not found");
+        return;
+    }
+    psoDesc.PS = CD3DX12_SHADER_BYTECODE(m_shaders.at("PS_Shadow").Get());
+    
+    psoDesc.NumRenderTargets = 0;
+    psoDesc.RTVFormats[0] = DXGI_FORMAT_UNKNOWN;
+
+    NetworkManager::LogToFile("[Scene] BuildPSO - Creating Shadow PSO");
+    hr = device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(m_PSOs["PSO_Shadow"].GetAddressOf()));
+    if (FAILED(hr)) {
+        sprintf_s(buffer, "[Scene] BuildPSO - Failed to create Shadow PSO. HRESULT: 0x%08X", hr);
+        NetworkManager::LogToFile(buffer);
+        return;
+    }
+    NetworkManager::LogToFile("[Scene] BuildPSO - Shadow PSO created successfully");
+    NetworkManager::LogToFile("[Scene] BuildPSO - Complete");
 }
 
 void Scene::BuildVertexBuffer(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
@@ -473,6 +595,16 @@ UINT Scene::CalcConstantBufferByteSize(UINT byteSize)
     return (byteSize + 255) & ~255;
 }
 
+Framework* Scene::GetFramework()
+{
+    return m_parent;
+}
+
+UINT Scene::GetNumOfTexture()
+{
+    return static_cast<UINT>(m_DDSFileName.size());
+}
+
 void Scene::BuildProjMatrix()
 {
     XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PI * 0.25f, m_viewport.Width / m_viewport.Height, 1.0f, 1000.0f);
@@ -481,9 +613,15 @@ void Scene::BuildProjMatrix()
 
 void Scene::LoadMeshAnimationTexture()
 {
+    NetworkManager::LogToFile("[Scene] LoadMeshAnimationTexture - Starting");
+    
     m_resourceManager = make_unique<ResourceManager>();
+    NetworkManager::LogToFile("[Scene] Creating Plane");
     m_resourceManager->CreatePlane("Plane", 500);
+    NetworkManager::LogToFile("[Scene] Creating Terrain");
     m_resourceManager->CreateTerrain("HeightMap.raw", 200, 10, 80);
+    
+    NetworkManager::LogToFile("[Scene] Loading FBX files");
     m_resourceManager->LoadFbx("1P(boy-idle).fbx", false, false);
     m_resourceManager->LoadFbx("1P(boy-jump).fbx", true, false);
     m_resourceManager->LoadFbx("boy_run_fix.fbx", true, false);
@@ -491,7 +629,8 @@ void Scene::LoadMeshAnimationTexture()
     m_resourceManager->LoadFbx("boy_pickup_fix.fbx", true, false);
     m_resourceManager->LoadFbx("long_tree.fbx", false, true);
     m_resourceManager->LoadFbx("202411_walk_tiger_center.fbx", false, false);
-
+    
+    NetworkManager::LogToFile("[Scene] Loading DDS textures");
     int i = 0;
     m_DDSFileName.push_back(L"./Textures/boy.dds");
     m_subTextureData.insert({ L"boy", i++ });
@@ -523,12 +662,14 @@ void Scene::LoadMeshAnimationTexture()
     m_subTextureData.insert({ L"longTree", i++ });
     m_DDSFileName.push_back(L"./Textures/rock(smooth).dds");
     m_subTextureData.insert({ L"rock", i++ });
+    
+    NetworkManager::LogToFile("[Scene] LoadMeshAnimationTexture - Complete");
 }
 
 void Scene::SetState(ID3D12GraphicsCommandList* commandList)
 {
     // Set necessary state.
-    commandList->SetPipelineState(m_pipelineState.Get());
+    commandList->SetPipelineState(m_PSOs["PSO_Opaque"].Get());
     commandList->SetGraphicsRootSignature(m_rootSignature.Get());
     commandList->RSSetViewports(1, &m_viewport);
     commandList->RSSetScissorRects(1, &m_scissorRect);
@@ -569,30 +710,51 @@ void Scene::OnUpdate(GameTimer& gTimer)
             tiger.GetComponent<Rotation>().SetXMVECTOR(XMVectorSet(0.0f, newRotY, 0.0f, 0.0f));
         }
     }
-    
+     m_shadow->UpdateShadow();
     memcpy(static_cast<UINT8*>(m_mappedData) + sizeof(XMMATRIX), &XMMatrixTranspose(XMLoadFloat4x4(&m_proj)), sizeof(XMMATRIX));
 }
 
 // Render the scene.
-void Scene::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
+void Scene::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList, ePass pass)
 {
-    commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    commandList->IASetVertexBuffers(0, 1, &m_vertexBufferView);
-    commandList->IASetIndexBuffer(&m_indexBufferView);
+    switch (pass)
+    {
+    case ePass::Shadow:
+    {
+        commandList->SetGraphicsRootSignature(m_rootSignature.Get());
+        ID3D12DescriptorHeap* ppHeaps[] = { m_descriptorHeap.Get() };
+        commandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
+        commandList->SetGraphicsRootDescriptorTable(3, m_shadow->GetGpuDescHandleForNullShadow());
+        CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_descriptorHeap->GetGPUDescriptorHandleForHeapStart());
+        commandList->SetGraphicsRootDescriptorTable(0, hDescriptor);
+        commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+        commandList->IASetVertexBuffers(0, 1, &m_vertexBufferView);
+        commandList->IASetIndexBuffer(&m_indexBufferView);
+        m_shadow->DrawShadowMap();
 
-    CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_descriptorHeap->GetGPUDescriptorHandleForHeapStart());
-    commandList->SetGraphicsRootDescriptorTable(0, hDescriptor);
-
-    // 기존 오브젝트 렌더링
-    for (auto& [key, value] : m_objects) {
-        if (key.find(L"NetworkTiger_") != std::wstring::npos) {
-            char buffer[256];
-            sprintf_s(buffer, "Rendering tiger object: %ls\n", key.c_str());
-            NetworkManager::LogToFile(buffer);
+        // 그림자 패스에서 객체들 렌더링
+        for (auto& [key, value] : m_objects) {
+            if (key.find(L"NetworkTiger_") != std::wstring::npos) {
+                char buffer[256];
+                sprintf_s(buffer, "Rendering tiger object in shadow pass: %ls\n", key.c_str());
+                NetworkManager::LogToFile(buffer);
+            }
+            visit([device, commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
         }
-        visit([device, commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
+        break;
     }
-    
+    case ePass::Default:
+    {
+        commandList->RSSetViewports(1, &m_viewport);
+        commandList->RSSetScissorRects(1, &m_scissorRect);
+        commandList->SetPipelineState(m_PSOs["PSO_Opaque"].Get());
+        commandList->SetGraphicsRootDescriptorTable(3, m_shadow->GetGpuDescHandleForShadow());
+        RenderObjects(device, commandList);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 void Scene::OnResize(UINT width, UINT height)
@@ -846,12 +1008,27 @@ float Scene::CalculateTerrainHeight(float x, float z) {
 }
 
 void Scene::Initialize() {
-    // Device 초기화가 완료되었는지 확인하는 로그 추가
+    NetworkManager::LogToFile("[Scene] Starting initialization");
+    
     if (m_device) {
         NetworkManager::LogToFile("[Scene] Device initialized successfully");
+        NetworkManager::LogToFile("[Scene] Starting to build objects...");
+        try {
+            // 리소스 매니저 초기화 확인
+            if (!m_resourceManager) {
+                NetworkManager::LogToFile("[Scene] Creating ResourceManager");
+                m_resourceManager = make_unique<ResourceManager>();
+            }
+            NetworkManager::LogToFile("[Scene] ResourceManager initialized");
+        }
+        catch (const std::exception& e) {
+            NetworkManager::LogToFile(std::string("[Scene] Error during initialization: ") + e.what());
+        }
     } else {
         NetworkManager::LogToFile("[Scene] Device initialization failed");
     }
+    
+    NetworkManager::LogToFile("[Scene] Initialization complete");
 }
 
 void Scene::ProcessTigerSpawn(const PacketTigerSpawn* packet) {
@@ -877,5 +1054,80 @@ void Scene::OnDeviceReady() {
     }
     m_pendingTigerSpawns.clear();
 }
+
+void Scene::BuildShadow()
+{
+    m_shadow = make_unique<Shadow>(this, 2048, 2048);
+}
+
+void Scene::BuildShaders()
+{
+    m_shaders["VS_Opaque"] = CompileShader(L"Shaders/Opaque.hlsl", nullptr, "VS", "vs_5_1");
+    m_shaders["PS_Opaque"] = CompileShader(L"Shaders/Opaque.hlsl", nullptr, "PS", "ps_5_1");
+    m_shaders["VS_Shadow"] = CompileShader(L"Shaders/Shadow.hlsl", nullptr, "VS", "vs_5_1");
+    m_shaders["PS_Shadow"] = CompileShader(L"Shaders/Shadow.hlsl", nullptr, "PS", "ps_5_1");
+}
+
+void Scene::BuildInputElement()
+{
+    m_inputElement =
+    {
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+        { "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+        { "WEIGHT", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 32, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+        { "BONEINDEX", 0, DXGI_FORMAT_R32G32B32A32_SINT, 0, 48, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+    };
+}
+
+ComPtr<ID3DBlob> Scene::CompileShader(
+    const std::wstring& fileName,
+    const D3D_SHADER_MACRO* defines,
+    const std::string& entryPoint,
+    const std::string& target)
+{
+    UINT compileFlags = 0;
+#if defined(_DEBUG) || defined(DBG)
+    compileFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+#endif
+
+    HRESULT hr;
+    ComPtr<ID3DBlob> byteCode = nullptr;
+    ComPtr<ID3DBlob> errors;
+    hr = D3DCompileFromFile(fileName.c_str(), defines, D3D_COMPILE_STANDARD_FILE_INCLUDE,
+        entryPoint.c_str(), target.c_str(), compileFlags, 0, &byteCode, &errors);
+
+    if (errors != nullptr)
+    {
+        OutputDebugStringA((char*)errors->GetBufferPointer());
+    }
+    ThrowIfFailed(hr);
+
+    return byteCode;
+}
+
+void Scene::RenderObjects(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
+{
+    commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    commandList->IASetVertexBuffers(0, 1, &m_vertexBufferView);
+    commandList->IASetIndexBuffer(&m_indexBufferView);
+
+    CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_descriptorHeap->GetGPUDescriptorHandleForHeapStart());
+    commandList->SetGraphicsRootDescriptorTable(0, hDescriptor);
+
+    // 기존 오브젝트 렌더링
+    for (auto& [key, value] : m_objects) {
+        if (key.find(L"NetworkTiger_") != std::wstring::npos) {
+            char buffer[256];
+            sprintf_s(buffer, "Rendering tiger object: %ls\n", key.c_str());
+            NetworkManager::LogToFile(buffer);
+        }
+        visit([device, commandList](auto& arg) {arg.OnRender(device, commandList); }, value);
+    }
+}
+
+
+
+
 
 

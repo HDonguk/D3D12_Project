@@ -27,6 +27,9 @@ public:
 	Scene& GetScene(const wstring& name);
 	const wstring& GetCurrentSceneName();
 	Win32Application& GetWin32App();
+	ID3D12Device* GetDevice();
+	ID3D12GraphicsCommandList* GetCommandList();
+	ID3D12DescriptorHeap* GetDsvDescHeap();
 
 	void OnNetworkUpdate();  // ©ø¡¿¨¡¢ç¢¯??? ?©ø¢¬¢ç ?©¬¡Æ¢® Hong
 private:

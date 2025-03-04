@@ -1,0 +1,15 @@
+[19:20:17] NetworkManager initialized
+[19:20:17] [Framework] Starting initialization
+[19:20:17] [Framework] Window initialized
+[19:20:17] [Framework] D3D12 factory and device created
+[19:20:18] [Framework] Command queue and swap chain created
+[19:20:18] [Framework] D3D12 resources initialized
+[19:20:18] [Framework] Starting scene creation
+[19:20:18] [Scene] Starting initialization
+[19:20:18] [Scene] Device initialized successfully
+[19:20:18] [Scene] Starting to build objects...
+[19:20:18] [Scene] Creating ResourceManager
+[19:20:18] [Scene] ResourceManager initialized
+[19:20:18] [Scene] Initialization complete
+[19:20:19] [Debug] Creating PlayerObject...
+[19:20:19] [Debug] PlayerObject created successfully

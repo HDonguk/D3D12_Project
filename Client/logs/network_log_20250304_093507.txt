@@ -1,0 +1,51 @@
+[09:35:07] NetworkManager initialized
+[09:35:07] [Framework] Starting initialization
+[09:35:07] [Framework] Window initialized
+[09:35:07] [Framework] D3D12 factory and device created
+[09:35:07] [Framework] Command queue and swap chain created
+[09:35:07] [Framework] D3D12 resources initialized
+[09:35:07] [Framework] Starting scene creation
+[09:35:07] [Scene] OnInit - Starting
+[09:35:07] [Scene] Starting initialization
+[09:35:07] [Scene] Device initialized successfully
+[09:35:07] [Scene] Starting to build objects...
+[09:35:07] [Scene] Creating ResourceManager
+[09:35:07] [Scene] ResourceManager initialized
+[09:35:07] [Scene] Initialization complete
+[09:35:07] [Scene] OnInit - Loading Mesh/Animation/Texture
+[09:35:07] [Scene] LoadMeshAnimationTexture - Starting
+[09:35:07] [Scene] Creating Plane
+[09:35:07] [Scene] Creating Terrain
+[09:35:07] [Scene] Loading FBX files
+[09:35:09] [Scene] Loading DDS textures
+[09:35:09] [Scene] LoadMeshAnimationTexture - Complete
+[09:35:09] [Scene] OnInit - Building Projection Matrix
+[09:35:09] [Scene] OnInit - Building Objects
+[09:35:09] [Debug] Creating PlayerObject...
+[09:35:09] [Debug] PlayerObject created successfully
+[09:35:09] [Scene] OnInit - Building Root Signature
+[09:35:09] [Scene] OnInit - Building Input Element
+[09:35:09] [Scene] OnInit - Building Shaders
+[09:35:09] [Scene] OnInit - Building PSO
+[09:35:09] [Scene] BuildPSO - Starting PSO creation
+[09:35:09] [Scene] BuildPSO - Setting up input layout
+[09:35:09] [Scene] BuildPSO - Setting up root signature
+[09:35:09] [Scene] BuildPSO - Setting up vertex shader
+[09:35:09] [Scene] BuildPSO - Setting up pixel shader
+[09:35:09] [Scene] BuildPSO - Setting up rasterizer state
+[09:35:09] [Scene] BuildPSO - Creating Opaque PSO
+[09:35:09] [Scene] BuildPSO - Failed to create Opaque PSO. HRESULT: 0x80070057
+[09:35:09] [Scene] BuildPSO - Debug Info:
+[09:35:09] Input Layout Elements: 5
+[09:35:09] VS ByteCode Size: 5140
+[09:35:09] PS ByteCode Size: 2956
+[09:35:09] [Scene] OnInit - Building Vertex Buffer
+[09:35:09] [Scene] OnInit - Building Index Buffer
+[09:35:09] [Scene] OnInit - Building Texture Buffer
+[09:35:09] [Scene] OnInit - Building Constant Buffer
+[09:35:09] [Scene] OnInit - Building Descriptor Heap
+[09:35:09] [Scene] OnInit - Building Vertex Buffer View
+[09:35:09] [Scene] OnInit - Building Index Buffer View
+[09:35:09] [Scene] OnInit - Building Constant Buffer View
+[09:35:09] [Scene] OnInit - Building Texture Buffer View
+[09:35:09] [Scene] OnInit - Building Shadow

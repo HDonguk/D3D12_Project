@@ -6,6 +6,8 @@
 class GameTimer;
 class Scene;
 
+enum class ePass;  // Forward declaration
+
 // 기본 Object 클래스만 정의
 class Object
 {

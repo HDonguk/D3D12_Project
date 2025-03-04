@@ -39,6 +39,23 @@ private:
 
 inline void ThrowIfFailed(HRESULT hr)
 {
+    if (hr == DXGI_ERROR_UNSUPPORTED) {
+        OutputDebugStringA("GPU가 Direct3D 12를 지원하지 않음\n");
+        // GPU가 Direct3D 12를 지원하지 않음
+    }
+    else if (hr == E_OUTOFMEMORY) {
+        OutputDebugStringA("메모리 부족\n");
+        // 메모리 부족
+    }
+    else if (hr == E_INVALIDARG) {
+        OutputDebugStringA("잘못된 매개변수\n");
+        // 잘못된 매개변수
+    }
+    else if (hr == DXGI_ERROR_DEVICE_REMOVED) {
+        OutputDebugStringA("GPU가 제거됨\n");
+        // GPU가 제거됨
+    }
+
     if (FAILED(hr))
     {
         throw HrException(hr);

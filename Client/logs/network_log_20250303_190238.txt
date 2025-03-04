@@ -1,0 +1,2 @@
+[19:02:38] NetworkManager initialized
+[19:02:39] [Scene] Device initialized successfully

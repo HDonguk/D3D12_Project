@@ -45,8 +45,8 @@ void Win32Application::CreateWnd(Framework* framework, HINSTANCE hInstance)
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
-        windowRect.right - windowRect.left, // AdjustWindowRect() ÇÔ¼ö¿¡ ÀÇÇØ¼­ Å©±â°¡ Á¶Á¤µÆ±â ¶§¹®
-        windowRect.bottom - windowRect.top, // AdjustWindowRect() ÇÔ¼ö¿¡ ÀÇÇØ¼­ Å©±â°¡ Á¶Á¤µÆ±â ¶§¹®
+        windowRect.right - windowRect.left, // AdjustWindowRect() ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ ï¿½ï¿½ï¿½ï¿½
+        windowRect.bottom - windowRect.top, // AdjustWindowRect() ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ ï¿½ï¿½ï¿½ï¿½
         nullptr,        // We have no parent window.
         nullptr,        // We aren't using menus.
         hInstance,

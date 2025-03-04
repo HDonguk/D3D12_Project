@@ -180,14 +180,13 @@ void PlayerObject::LateUpdate(GameTimer& gTimer)
 
 void PlayerObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
-    if (!IsActive()) return;  // 활성화 상태 체크 추가
-    
+    if (!IsActive()) return;
+
     CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_root->GetDescriptorHeap()->GetGPUDescriptorHandleForHeapStart());
     hDescriptor.Offset(1 + GetComponent<Texture>().mDescriptorStartIndex, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV));
     commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
     commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
     SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
-    //commandList->DrawIndexedInstanced(data.indexCountPerInstance, 1, data.startIndexLocation, data.baseVertexLocation, 0);
     commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
 }
 
@@ -318,7 +317,6 @@ void TestObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comma
     commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
     commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
     SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
-    //commandList->DrawIndexedInstanced(data.indexCountPerInstance, 1, data.startIndexLocation, data.baseVertexLocation, 0);
     commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
 }
 
@@ -454,7 +452,6 @@ void TerrainObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* co
     commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
     SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
     commandList->DrawIndexedInstanced(data.indexCountPerInstance, 1, data.startIndexLocation, data.baseVertexLocation, 0);
-    //commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
 }
 
 TreeObject::TreeObject(Scene* root) : Object{ root }
@@ -543,9 +540,7 @@ void TreeObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comma
     commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
     commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
     SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
-    //commandList->DrawIndexedInstanced(data.indexCountPerInstance, 1, data.startIndexLocation, data.baseVertexLocation, 0);
     commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
-
 }
 
 TigerObject::TigerObject(Scene* root) : Object{ root }, mRotation{ XMMatrixIdentity() }
@@ -671,7 +666,6 @@ void TigerObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* comm
     commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
     commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
     SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
-    //commandList->DrawIndexedInstanced(data.indexCountPerInstance, 1, data.startIndexLocation, data.baseVertexLocation, 0);
     commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
 }
 
@@ -690,4 +684,10 @@ void StoneObject::LateUpdate(GameTimer& gTimer)
 
 void StoneObject::OnRender(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
 {
+    CD3DX12_GPU_DESCRIPTOR_HANDLE hDescriptor(m_root->GetDescriptorHeap()->GetGPUDescriptorHandleForHeapStart());
+    hDescriptor.Offset(1 + GetComponent<Texture>().mDescriptorStartIndex, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV));
+    commandList->SetGraphicsRootDescriptorTable(1, hDescriptor);
+    commandList->SetGraphicsRootConstantBufferView(2, m_constantBuffer.Get()->GetGPUVirtualAddress());
+    SubMeshData& data = GetComponent<Mesh>().mSubMeshData;
+    commandList->DrawInstanced(data.vertexCountPerInstance, 1, data.startVertexLocation, 0);
 }

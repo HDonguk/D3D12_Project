@@ -1,0 +1,29 @@
+[19:25:56] NetworkManager initialized
+[19:25:56] [Framework] Starting initialization
+[19:25:56] [Framework] Window initialized
+[19:25:57] [Framework] D3D12 factory and device created
+[19:25:57] [Framework] Command queue and swap chain created
+[19:25:57] [Framework] D3D12 resources initialized
+[19:25:57] [Framework] Starting scene creation
+[19:25:57] [Scene] OnInit - Starting
+[19:25:57] [Scene] Starting initialization
+[19:25:57] [Scene] Device initialized successfully
+[19:25:57] [Scene] Starting to build objects...
+[19:25:57] [Scene] Creating ResourceManager
+[19:25:57] [Scene] ResourceManager initialized
+[19:25:57] [Scene] Initialization complete
+[19:25:57] [Scene] OnInit - Loading Mesh/Animation/Texture
+[19:25:57] [Scene] LoadMeshAnimationTexture - Starting
+[19:25:57] [Scene] Creating Plane
+[19:25:57] [Scene] Creating Terrain
+[19:25:57] [Scene] Loading FBX files
+[19:25:58] [Scene] Loading DDS textures
+[19:25:58] [Scene] LoadMeshAnimationTexture - Complete
+[19:25:58] [Scene] OnInit - Building Projection Matrix
+[19:25:58] [Scene] OnInit - Building Objects
+[19:25:58] [Debug] Creating PlayerObject...
+[19:25:58] [Debug] PlayerObject created successfully
+[19:25:58] [Scene] OnInit - Building Root Signature
+[19:25:58] [Scene] OnInit - Building Input Element
+[19:25:58] [Scene] OnInit - Building Shaders
+[19:25:59] [Scene] OnInit - Building PSO
