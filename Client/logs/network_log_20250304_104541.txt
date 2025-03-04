@@ -1,0 +1,193 @@
+[10:45:41] NetworkManager initialized
+[10:45:41] [Framework] Starting initialization
+[10:45:41] [Framework] Window initialized
+[10:45:41] [Framework] D3D12 factory and device created
+[10:45:41] [Framework] Command queue and swap chain created
+[10:45:41] [Framework] D3D12 resources initialized
+[10:45:41] [Framework] Starting scene creation
+[10:45:41] [Scene] OnInit - Starting
+[10:45:41] [Scene] Starting initialization
+[10:45:41] [Scene] Device initialized successfully
+[10:45:41] [Scene] Starting to build objects...
+[10:45:41] [Scene] Creating ResourceManager
+[10:45:41] [Scene] ResourceManager initialized
+[10:45:41] [Scene] Initialization complete
+[10:45:41] [Scene] OnInit - Loading Mesh/Animation/Texture
+[10:45:41] [Scene] LoadMeshAnimationTexture - Starting
+[10:45:41] [Scene] Creating Plane
+[10:45:41] [Scene] Creating Terrain
+[10:45:41] [Scene] Loading FBX files
+[10:45:43] [Scene] Loading DDS textures
+[10:45:43] [Scene] LoadMeshAnimationTexture - Complete
+[10:45:43] [Scene] OnInit - Building Projection Matrix
+[10:45:43] [Scene] OnInit - Building Objects
+[10:45:43] [Debug] Creating PlayerObject...
+[10:45:43] [Debug] PlayerObject created successfully
+[10:45:43] [Scene] OnInit - Building Root Signature
+[10:45:43] [Scene] OnInit - Building Input Element
+[10:45:43] [Scene] OnInit - Building Shaders
+[10:45:43] [Scene] OnInit - Building PSO
+[10:45:43] [Scene] BuildPSO - Starting PSO creation
+[10:45:43] [Scene] BuildPSO - Setting up input layout
+[10:45:43] [Scene] BuildPSO - Setting up root signature
+[10:45:43] [Scene] BuildPSO - Setting up vertex shader
+[10:45:43] [Scene] BuildPSO - Setting up pixel shader
+[10:45:43] [Scene] BuildPSO - Setting up rasterizer state
+[10:45:43] [Scene] BuildPSO - PSO State: RTV Format: 28, DSV Format: 45
+[10:45:43] [Scene] BuildPSO - Sample Count: 1, Quality: 0
+[10:45:43] [Scene] BuildPSO - Creating Opaque PSO
+[10:45:43] [Scene] BuildPSO - Opaque PSO created successfully
+[10:45:43] [Scene] BuildPSO - Setting up shadow PSO
+[10:45:43] [Scene] BuildPSO - Creating Shadow PSO
+[10:45:43] [Scene] BuildPSO - Shadow PSO created successfully
+[10:45:43] [Scene] BuildPSO - Complete
+[10:45:43] [Scene] OnInit - Building Vertex Buffer
+[10:45:43] [Scene] OnInit - Building Index Buffer
+[10:45:43] [Scene] OnInit - Building Texture Buffer
+[10:45:43] [Scene] OnInit - Building Constant Buffer
+[10:45:43] [Scene] OnInit - Building Descriptor Heap
+[10:45:43] [Scene] OnInit - Building Vertex Buffer View
+[10:45:43] [Scene] OnInit - Building Index Buffer View
+[10:45:43] [Scene] OnInit - Building Constant Buffer View
+[10:45:43] [Scene] OnInit - Building Texture Buffer View
+[10:45:43] [Scene] OnInit - Building Shadow
+[10:45:43] [Shadow] Constructor - Starting initialization
+[10:45:43] [Shadow] Setting light direction
+[10:45:43] [Shadow] Getting descriptor heap
+[10:45:43] [Shadow] Calculating descriptor handles
+[10:45:43] [Shadow] Number of textures: 15
+[10:45:43] [Shadow] Descriptor heap index: 16
+[10:45:43] [Shadow] Getting Framework
+[10:45:43] [Shadow] Getting Device
+[10:45:43] [Shadow] Getting increment size
+[10:45:43] [Shadow] Getting DSV heap
+[10:45:43] [Shadow] Starting BuildResource
+[10:45:43] [Shadow] BuildResource - Starting
+[10:45:43] [Shadow] Creating shadow map resource
+[10:45:43] [Shadow] Shadow map resource created successfully
+[10:45:43] [Shadow] BuildResource - Complete
+[10:45:43] [Shadow] Starting BuildDescView
+[10:45:43] [Shadow] Constructor - Initialization complete
+[10:45:43] [Scene] OnInit - Complete
+[10:45:43] [Framework] Executing initial command list
+[10:45:43] [Info] Found PlayerObject in scene
+[10:45:43] [Client] Connecting to server 127.0.0.1:5000
+[10:45:43] [Client] Successfully connected to server
+[10:45:43] [Framework] Initialization complete
+[10:45:43] [Thread] Network thread started
+[10:45:43] [ProcessPacket] Starting to process packet type: 4
+[10:45:43] [Tiger] Received update for tiger ID: 1
+[10:45:43] [ProcessPacket] Finished processing packet type: 4
+[10:45:43] [ProcessPacket] Starting to process packet type: 2
+[10:45:43] [Spawn] Processing spawn packet for ID: 1
+[10:45:43] [Spawn] Set my client ID to: 1
+[10:45:43] [ProcessPacket] Finished processing packet type: 2
+[10:45:43] [ProcessPacket] Starting to process packet type: 4
+[10:45:43] [Tiger] Received update for tiger ID: 2
+[10:45:43] [ProcessPacket] Finished processing packet type: 4
+[10:45:43] [ProcessPacket] Starting to process packet type: 4
+[10:45:43] [Tiger] Received update for tiger ID: 3
+[10:45:43] [ProcessPacket] Finished processing packet type: 4
+[10:45:43] [Error] Invalid packet size or header
+[10:45:43] [ProcessPacket] Starting to process packet type: 4
+[10:45:43] [Tiger] Received update for tiger ID: 4
+[10:45:43] [ProcessPacket] Finished processing packet type: 4
+[10:45:43] [Shadow] DrawShadowMap - Starting
+[10:45:43] [Shadow] DrawShadowMap - Complete
+[10:45:43] [Shadow] DrawShadowMap - Starting
+[10:45:43] [Shadow] DrawShadowMap - Complete
+[10:45:43] [ProcessPacket] Starting to process packet type: 4
+[10:45:43] [Tiger] Received update for tiger ID: 5
+[10:45:43] [ProcessPacket] Finished processing packet type: 4
+[10:45:43] [Shadow] DrawShadowMap - Starting
+[10:45:43] [Shadow] DrawShadowMap - Complete
+[10:45:43] [Shadow] DrawShadowMap - Starting
+[10:45:43] [Shadow] DrawShadowMap - Complete
+[10:45:43] [ProcessPacket] Starting to process packet type: 3
+[10:45:43] [Tiger] Received spawn packet for tiger ID: 2
+[10:45:43] [Tiger] Attempting to create tiger in scene - ID: 2, Position: (290.29, 0.00, 988.58)
+[10:45:43] === CreateTigerObject Start ===
+[10:45:43] [Debug] Function called with parameters:
+[10:45:43] tigerID: 2, position: (290.29, 0.00, 988.58)
+[10:45:43] [Debug] Creating object with name: NetworkTiger_2
+[10:45:43] [Debug] Adding new TigerObject
+[10:45:43] [Debug] Successfully created TigerObject
+[10:45:43] [Debug] Calculated terrain height: 7.84
+[10:45:43] [Debug] Adding components...
+[10:45:43] [Debug] All components added successfully
+[10:45:43] [Debug] Building constant buffer
+[10:45:43] [Debug] Constant buffer created successfully
+[10:45:43] === CreateTigerObject End ===
+[10:45:43] [Tiger] CreateTigerObject call completed
+[10:45:43] [ProcessPacket] Finished processing packet type: 3
+[10:45:43] [ProcessPacket] Starting to process packet type: 3
+[10:45:43] [Tiger] Received spawn packet for tiger ID: 3
+[10:45:43] [Tiger] Attempting to create tiger in scene - ID: 3, Position: (939.42, 0.00, 350.79)
+[10:45:43] === CreateTigerObject Start ===
+[10:45:43] [Debug] Function called with parameters:
+[10:45:43] tigerID: 3, position: (939.42, 0.00, 350.79)
+[10:45:43] [Debug] Creating object with name: NetworkTiger_3
+[10:45:43] [Debug] Adding new TigerObject
+[10:45:43] [Debug] Successfully created TigerObject
+[10:45:43] [Debug] Calculated terrain height: -37.68
+[10:45:43] [Debug] Adding components...
+[10:45:43] [Debug] All components added successfully
+[10:45:43] [Debug] Building constant buffer
+[10:45:43] [Debug] Constant buffer created successfully
+[10:45:43] === CreateTigerObject End ===
+[10:45:43] [Tiger] CreateTigerObject call completed
+[10:45:43] [ProcessPacket] Finished processing packet type: 3
+[10:45:43] [Shadow] DrawShadowMap - Starting
+[10:45:43] Rendering tiger object: NetworkTiger_2
+
+[10:45:43] Rendering tiger object: NetworkTiger_3
+
+[10:45:43] [Shadow] DrawShadowMap - Complete
+[10:45:43] [ProcessPacket] Starting to process packet type: 3
+[10:45:43] [Tiger] Received spawn packet for tiger ID: 4
+[10:45:43] Rendering tiger object in shadow pass: NetworkTiger_2
+
+[10:45:43] Rendering tiger object in shadow pass: NetworkTiger_3
+
+[10:45:43] [Tiger] Attempting to create tiger in scene - ID: 4, Position: (855.30, 0.00, 749.87)
+[10:45:43] === CreateTigerObject Start ===
+[10:45:43] [Debug] Function called with parameters:
+[10:45:43] tigerID: 4, position: (855.30, 0.00, 749.87)
+[10:45:43] [Debug] Creating object with name: NetworkTiger_4
+[10:45:43] [Debug] Adding new TigerObject
+[10:45:43] [Debug] Successfully created TigerObject
+[10:45:43] [Debug] Calculated terrain height: -45.55
+[10:45:43] [Debug] Adding components...
+[10:45:43] Rendering tiger object: NetworkTiger_2
+
+[10:45:43] Rendering tiger object: NetworkTiger_3
+
+[10:45:43] Rendering tiger object: NetworkTiger_4
+
+[10:45:43] [Debug] All components added successfully
+[10:45:43] [Debug] Building constant buffer
+[10:45:43] [Debug] Constant buffer created successfully
+[10:45:43] === CreateTigerObject End ===
+[10:45:43] [Tiger] CreateTigerObject call completed
+[10:45:43] [ProcessPacket] Finished processing packet type: 3
+[10:45:43] [ProcessPacket] Starting to process packet type: 3
+[10:45:43] [Tiger] Received spawn packet for tiger ID: 5
+[10:45:43] [Tiger] Attempting to create tiger in scene - ID: 5, Position: (925.17, 0.00, 778.11)
+[10:45:43] === CreateTigerObject Start ===
+[10:45:43] [Debug] Function called with parameters:
+[10:45:43] tigerID: 5, position: (925.17, 0.00, 778.11)
+[10:45:43] [Debug] Creating object with name: NetworkTiger_5
+[10:45:43] [Debug] Adding new TigerObject
+[10:45:43] [Debug] Successfully created TigerObject
+[10:45:43] [Debug] Calculated terrain height: -46.53
+[10:45:43] [Debug] Adding components...
+[10:45:43] [Debug] All components added successfully
+[10:45:43] [Debug] Building constant buffer
+[10:45:43] [Debug] Constant buffer created successfully
+[10:45:43] === CreateTigerObject End ===
+[10:45:43] [Tiger] CreateTigerObject call completed
+[10:45:43] [ProcessPacket] Finished processing packet type: 3
+[10:45:43] [Error] Invalid packet size or header
+[10:45:44] [Error] Invalid packet size or header
+[10:45:44] [Critical] Too many invalid packets, closing connection
+[10:45:44] [Thread] Network thread ended normally
